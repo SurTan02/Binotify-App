@@ -7,3 +7,14 @@ services:
       - ./src:/var/www/html
     ports:
       - 8008:80
+
+  db:
+    image: postgres:latest
+    restart: always
+    ports:
+      - 15432:5432
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=database
+    volumes:
+      - ./database.sql:/docker-entrypoint-initdb.d/database.sql
