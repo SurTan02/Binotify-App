@@ -3,7 +3,7 @@ $head_html = file_get_contents('./view/html/templates/head.html');
 
 // Replace any variables in the html files.
 $head_html = str_replace('{title}', 'Login: Spotify', $head_html);
-$head_html = str_replace('{css2}', './css/login.css', $head_html);
+$head_html = str_replace('{css2}', './view/css/login.css', $head_html);
 
 // BODY HTML 
 $login_html = file_get_contents('./view/html/login.html');
