@@ -39,6 +39,15 @@
     </div>
     <div class="songs">
       <h2 class="songs-header">Songs</h2>
+      <div class="songs-pagination">
+        <span class="songs-pagination-information">
+          Showing results <b>1-10</b> of <b>215</b>
+        </span>
+        <div class="songs-pagination-sort">
+          <button><img src="./view/assets/img/judul_desc.png" /></button>
+          <button><img src="./view/assets/img/tahun_asc.png" /></button>
+        </div>
+      </div>
       <ol class="songs-list">
         <li>
           <div class="song">
@@ -47,11 +56,14 @@
               class="song-image"
               src="./view/assets/img/genre_placeholder.jpeg"
             />
-            <div class="song-information">
+            <div class="song-information1">
               <span class="song-title">{song-title}</span>
-              <span class="song-author">{song-author}</span>
+              <span class="song-genre">{song-genre}</span>
             </div>
-            <span class="song-year">{song-year}</span>
+            <div class="song-information2">
+              <span class="song-author">{song-author}</span>
+              <span class="song-year">{song-year}</span>
+            </div>
           </div>
         </li>
         <li>
@@ -61,11 +73,14 @@
               class="song-image"
               src="./view/assets/img/genre_placeholder.jpeg"
             />
-            <div class="song-information">
+            <div class="song-information1">
               <span class="song-title">{song-title}</span>
-              <span class="song-author">{song-author}</span>
+              <span class="song-genre">{song-genre}</span>
             </div>
-            <span class="song-year">{song-year}</span>
+            <div class="song-information2">
+              <span class="song-author">{song-author}</span>
+              <span class="song-year">{song-year}</span>
+            </div>
           </div>
         </li>
         <li>
@@ -75,11 +90,14 @@
               class="song-image"
               src="./view/assets/img/genre_placeholder.jpeg"
             />
-            <div class="song-information">
+            <div class="song-information1">
               <span class="song-title">{song-title}</span>
-              <span class="song-author">{song-author}</span>
+              <span class="song-genre">{song-genre}</span>
             </div>
-            <span class="song-year">{song-year}</span>
+            <div class="song-information2">
+              <span class="song-author">{song-author}</span>
+              <span class="song-year">{song-year}</span>
+            </div>
           </div>
         </li>
         <li>
@@ -89,11 +107,14 @@
               class="song-image"
               src="./view/assets/img/genre_placeholder.jpeg"
             />
-            <div class="song-information">
+            <div class="song-information1">
               <span class="song-title">{song-title}</span>
-              <span class="song-author">{song-author}</span>
+              <span class="song-genre">{song-genre}</span>
             </div>
-            <span class="song-year">{song-year}</span>
+            <div class="song-information2">
+              <span class="song-author">{song-author}</span>
+              <span class="song-year">{song-year}</span>
+            </div>
           </div>
         </li>
         <li>
@@ -103,11 +124,14 @@
               class="song-image"
               src="./view/assets/img/genre_placeholder.jpeg"
             />
-            <div class="song-information">
+            <div class="song-information1">
               <span class="song-title">{song-title}</span>
-              <span class="song-author">{song-author}</span>
+              <span class="song-genre">{song-genre}</span>
             </div>
-            <span class="song-year">{song-year}</span>
+            <div class="song-information2">
+              <span class="song-author">{song-author}</span>
+              <span class="song-year">{song-year}</span>
+            </div>
           </div>
         </li>
         <li>
@@ -117,69 +141,27 @@
               class="song-image"
               src="./view/assets/img/genre_placeholder.jpeg"
             />
-            <div class="song-information">
+            <div class="song-information1">
               <span class="song-title">{song-title}</span>
-              <span class="song-author">{song-author}</span>
+              <span class="song-genre">{song-genre}</span>
             </div>
-            <span class="song-year">{song-year}</span>
+            <div class="song-information2">
+              <span class="song-author">{song-author}</span>
+              <span class="song-year">{song-year}</span>
+            </div>
           </div>
         </li>
-        <li>
-          <div class="song">
-            <span>7</span>
-            <img
-              class="song-image"
-              src="./view/assets/img/genre_placeholder.jpeg"
-            />
-            <div class="song-information">
-              <span class="song-title">{song-title}</span>
-              <span class="song-author">{song-author}</span>
-            </div>
-            <span class="song-year">{song-year}</span>
-          </div>
-        </li>
-        <li>
-          <div class="song">
-            <span>8</span>
-            <img
-              class="song-image"
-              src="./view/assets/img/genre_placeholder.jpeg"
-            />
-            <div class="song-information">
-              <span class="song-title">{song-title}</span>
-              <span class="song-author">{song-author}</span>
-            </div>
-            <span class="song-year">{song-year}</span>
-          </div>
-        </li>
-        <li>
-          <div class="song">
-            <span>9</span>
-            <img
-              class="song-image"
-              src="./view/assets/img/genre_placeholder.jpeg"
-            />
-            <div class="song-information">
-              <span class="song-title">{song-title}</span>
-              <span class="song-author">{song-author}</span>
-            </div>
-            <span class="song-year">{song-year}</span>
-          </div>
-        </li>
-        <li>
-          <div class="song">
-            <span>10</span>
-            <img
-              class="song-image"
-              src="./view/assets/img/genre_placeholder.jpeg"
-            />
-            <div class="song-information">
-              <span class="song-title">{song-title}</span>
-              <span class="song-author">{song-author}</span>
-            </div>
-            <span class="song-year">{song-year}</span>
-          </div>
-        </li>
+      </ol>
+      <ol class="songs-pagination-pages">
+        <li>←</li>
+        <li class="page-active">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>...</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>→</li>
       </ol>
     </div>
   </body>
