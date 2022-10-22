@@ -1,4 +1,52 @@
-img {
-	width: 25%;
-	height: 25%;
+.song-card {
+    color: #fff;
+    align-items: center;
+    margin:2vh 0;
+}
+
+.song-card hr{
+    margin-top: 2vh;
+}
+
+.song-card:hover {
+    color: blue;
+}
+
+.song-card a{
+    text-decoration: none; 
+}
+
+
+.song-card table {
+	table-layout: fixed;
+    text-align: center;
+	width: 100%;
+    color : rgb(210,210,210);
+    
+}
+
+.song-card table span{
+    font-weight: 600;
+    align-items: center;
+}
+
+
+.song-card table img{
+    width: 50%;
+    height: 50%;
+    padding-right: 10%;
+    float: right;
+}
+
+.song-card table h5{
+    font-size: 100%;
+    font-style: bold;
+    padding-left: 10%;
+    float: left;
+}
+
+.song-card table h5 .subtitle{
+    font-size: 70%;
+    color : #4c5262;
+    color : rgb(150,150,150);
 }
