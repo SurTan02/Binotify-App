@@ -1,0 +1,65 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../css/login.css" />
+    <link rel="stylesheet" href="{css2}" />
+    <link rel="stylesheet" href="{css3}" />
+    <link rel="stylesheet" href="{css4}" />
+    <link rel="stylesheet" href="{css5}" />
+    <title>{title}</title>
+  </head>
+  <body></body>
+</html>
+
+<div class="main_container">
+  <div class="logo_container">
+    <img src="../assets/img/Icon.svg" id="logo" />
+    <hr />
+  </div>
+  <div class="text_container">
+    <h1>To continue, log in to Spotify.</h1>
+    <div class="form_container">
+      <form
+        action=""
+        method="POST"
+        id="login_form"
+        onsubmit="return validateInput()"
+      >
+        <div class="input_container">
+          <label for="username">Username</label>
+          <input type="text" name="username" id="username" autocomplete="off" />
+          <div class="error" id="error_username"></div>
+        </div>
+
+        <div class="input_container">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            autocomplete="off"
+          />
+          <div class="error" id="error_password"></div>
+        </div>
+
+        <div class="submit_container">
+          <input type="submit" value="Login" name="login" id="login_button" />
+        </div>
+        <div class="register_container">
+          Don't have an account?
+          <a href="register.php">register here.</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
