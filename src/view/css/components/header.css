@@ -24,6 +24,8 @@ header .main-container {
   width: 96%;
   display: flex;
   align-items: center;
+  left: 10px;
+  margin-left: 20px;
 }
 
 .search-container {
