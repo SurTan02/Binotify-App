@@ -9,14 +9,15 @@
     // BODY HTML 
     $detail_lagu_html = file_get_contents('./view/html/detail_lagu.html');
     $foot_html = file_get_contents('./view/html/templates/foot.html');
-   
+    
+    
+    $lagu = new Song();
         if (isset($_GET['song_id'])) {
             $songId = $_GET['song_id'];
-        }
-        
-        $lagu = new Song($songId);
+        } 
         
         $result = $lagu->getSongById($songId);
+        
         if (!$result){
             // Page 404
         } else{
@@ -26,7 +27,7 @@
             $detail_lagu_html = str_replace('{genre}', $result['genre'], $detail_lagu_html);
             $detail_lagu_html = str_replace('{durasi}', $result['duration'], $detail_lagu_html);
             $detail_lagu_html = str_replace('{audio_path}',  $result['audio_path'] . ".mp3", $detail_lagu_html);
-            
+            $detail_lagu_html = str_replace('{image_path}',  $result['image_path'] , $detail_lagu_html);
             
             // Echo the page page.
             echo $head_html;

@@ -25,7 +25,7 @@ SET default_table_access_method = heap;
 --
 
 CREATE TABLE public.Album (
-    album_id integer NOT NULL,
+    album_id SERIAL NOT NULL,
     Judul character varying(64) NOT NULL,
     Penyanyi character varying(128) NOT NULL,
     Total_duration integer NOT NULL,
@@ -42,7 +42,7 @@ ALTER TABLE public.Album OWNER TO postgres;
 --
 
 CREATE TABLE public.Song (
-    song_id integer NOT NULL,
+    song_id SERIAL NOT NULL,
     Judul character varying(64) NOT NULL,
     Penyanyi character varying(128),
     Tanggal_terbit date NOT NULL,
@@ -61,7 +61,7 @@ ALTER TABLE public.Song OWNER TO postgres;
 --
 
 CREATE TABLE public.user (
-    user_id integer NOT NULL,
+    user_id SERIAL NOT NULL,
     email character varying(256) NOT NULL,
     password character varying(256) NOT NULL,
     username character varying(256) NOT NULL,
