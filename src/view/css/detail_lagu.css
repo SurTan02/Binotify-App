@@ -2,10 +2,35 @@
 
 
 
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+.song-card{
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    width: 13rem;
+    border-radius: 0.3rem;
+    padding: 1rem;
+    position: relative;
+    transition: all 0.4s;
+    cursor: pointer;
+}
 
-.now_playing_container {
-    color:black;
+img{
+    width: 25%;
+    height: 25%;
+    object-fit: cover;
+    border-radius: 0.3rem;
+    
+}
+
+.desc{
+    margin-top: 1rem;
+    line-height: 1;
+    color: grey;
     background-color: red;
-    margin: 50px;
 }
