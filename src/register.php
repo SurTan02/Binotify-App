@@ -1,5 +1,8 @@
 <?php
 
+// Connect to backend.
+require_once './app/controller/register.php';
+
 // get head template
 $head_html = file_get_contents('./view/html/templates/head.html');
 
