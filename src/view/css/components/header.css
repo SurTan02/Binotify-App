@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;700;800&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  margin: 0px;
+  padding: 0px;
+}
+
+header {
+  background-image: linear-gradient(to bottom, #000000, #121212);
+  padding: 0px;
+  width: 100%;
+  height: 70px;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.2);
+}
+
+header .main-container {
+  width: 96%;
+  left: 32px;
+  top: 10px;
+  display: flex;
+  position: absolute;
+  align-items: center;
+}
+
+.search-container {
+  width: 90%;
+  height: 56px;
+  min-width: 180px;
+}
+
+.search-container form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.search-container input[type="text"] {
+  border: none;
+  float: left;
+  height: 40px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  width: 80%;
+  min-width: 250px;
+  padding: 10px 10px;
+  font-size: 18px;
+  margin-left: 50px;
+  border-radius: 50px 0px 0px 50px;
+}
+
+.search-container input[type="text"]::placeholder {
+  color: #c4c4c4;
+  font-family: "Inter", sans-serif;
+  text-align: left;
+  font-weight: 200;
+  font-style: oblique;
+  font-size: 13px;
+}
+
+.search-container input[type="button"] {
+  font-family: "Inter", sans-serif;
+  color: #ffffff;
+  float: left;
+  width: 10%;
+  margin: 0 !important;
+  min-width: 50px;
+  font-weight: 200;
+  border: none;
+  height: 40px;
+  background-color: #1db954;
+  border-radius: 0px 50px 50px 0px;
+}
+
+#searchButton {
+  margin: 0px !important;
+}
+
+.search-container input[type="button"]:hover {
+  background-color: #1dc758;
+  cursor: pointer;
+}
+
+.main-container .nav-container {
+  margin: 5px 10px 5px 10px;
+  float: left;
+  display: flex;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+}
+
+.main-container form {
+  display: flex;
+  float: left;
+  margin: 7.5px 0px 5px 0px;
+}
+
+.nav-container {
+  background-color: none;
+  color: #ffffff;
+}
+
+.nav-container form {
+  font-family: "Inter", sans-serif;
+  margin: 5px 10px 5px 10px;
+  float: left;
+  display: flex;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+}
+
+.nav-button {
+  font-family: "Inter", sans-serif;
+  display: inline-block;
+  text-decoration: none;
+  margin: 0px auto;
+  border: none;
+
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: #a4a4a4 !important;
+  width: 90%;
+  min-width: 100px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 20px;
+  margin-right: 20px;
+}
+
+.nav-button:hover {
+  color: #ffffff !important;
+  cursor: pointer;
+}
+
+.logout-button {
+  font-family: "Inter", sans-serif;
+  border: none;
+
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #1db954;
+  text-decoration: none;
+  width: 50%;
+  min-width: 100px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 20px;
+}
+
+.nav-button:hover,
+.logout-button:hover {
+  cursor: pointer;
+  box-shadow: 0px 4px 20px 0px rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
