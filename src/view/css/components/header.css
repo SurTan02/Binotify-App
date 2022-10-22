@@ -12,6 +12,7 @@ body {
 }
 
 header {
+  display: flex;
   background-image: linear-gradient(to bottom, #000000, #121212);
   padding: 0px;
   width: 100%;
@@ -21,10 +22,7 @@ header {
 
 header .main-container {
   width: 96%;
-  left: 32px;
-  top: 10px;
   display: flex;
-  position: absolute;
   align-items: center;
 }
 
@@ -37,7 +35,6 @@ header .main-container {
 .search-container form {
   width: 100%;
   display: flex;
-  align-items: center;
 }
 
 .search-container input[type="text"] {
@@ -46,7 +43,7 @@ header .main-container {
   height: 40px;
   box-sizing: border-box;
   background-color: #ffffff;
-  width: 80%;
+  width: 60%;
   min-width: 250px;
   padding: 10px 10px;
   font-size: 18px;
@@ -95,14 +92,14 @@ header .main-container {
   cursor: pointer;
 }
 
-.main-container .nav-container {
+/* .main-container .nav-container {
   margin: 5px 10px 5px 10px;
   float: left;
   display: flex;
   text-align: center;
   text-decoration: none;
   border: none;
-}
+} */
 
 .main-container form {
   display: flex;
@@ -111,6 +108,7 @@ header .main-container {
 }
 
 .nav-container {
+  display: flex;
   background-color: none;
   color: #ffffff;
 }
