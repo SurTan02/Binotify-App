@@ -1,5 +1,6 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/app/database.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/config.php';
   
   // create user class
   class User{
@@ -65,9 +66,16 @@
         $this->db->bind(':username', $data['username']);
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':password', $data['password']);
-        $this->db->bind(':is_admin', $data['is_admin']);
-        $this->db->execute();
-        return true;         
+        $this->db->bind(':is_admin', false);
+
+        $id = $this->db->lastInsertId();
+        if(!empty($id)){
+          return $id;
+        }
+        else{
+          return false;
+        }
+
       }
       catch(PDOException $e){
         echo "Error register";

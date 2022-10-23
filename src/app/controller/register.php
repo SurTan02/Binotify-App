@@ -1,6 +1,5 @@
 <?php
-
-  require_once __DIR__ . "../model/User.php";
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/User.php';
 
   if (isset($_POST['register'])) {
     // get data from form
@@ -15,6 +14,11 @@
     $result = $user->registerUser($data);
     // check if user is registered
     if ($result) {
+      echo "User registered";
+      header("Location: ../view/index.php");
+    }
+    else {
+      echo "User not registered";
     }
   }
   

@@ -12,87 +12,93 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="../css/register.css" />
+    <link rel="stylesheet" href="register.css" />
     <link rel="stylesheet" href="{css2}" />
     <link rel="stylesheet" href="{css3}" />
     <link rel="stylesheet" href="{css4}" />
     <link rel="stylesheet" href="{css5}" />
     <title>{title}</title>
   </head>
-  <body></body>
+  <body>
+    <div class="main_container">
+      <div class="logo_container">
+        <img src="../view/assets/img/Icon.svg" id="logo" />
+      </div>
+      <div class="text_container">
+        <h1>
+          Sign up for free to <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;start listening.
+        </h1>
+      </div>
+      <div class="form_container">
+        <hr />
+        <form
+          action=""
+          method="POST"
+          id="register_form"
+          onsubmit="return validateInput()"
+        >
+          <div class="input_container">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" autocomplete="off" />
+            <div class="error" id="error_name"></div>
+          </div>
+
+          <div class="input_container">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              autocomplete="off"
+            />
+            <div class="error" id="error_username"></div>
+          </div>
+
+          <div class="input_container">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" autocomplete="off" />
+            <div class="error" id="error_email"></div>
+          </div>
+
+          <div class="input_container">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              autocomplete="off"
+            />
+            <div class="error" id="error_password"></div>
+          </div>
+
+          <div class="input_container">
+            <label for="password_confirm">Confirm Password</label>
+            <input
+              type="password"
+              name="password_confirm"
+              id="password_confirm"
+              autocomplete="off"
+            />
+            <div class="error" id="error_password_confirm"></div>
+          </div>
+
+          <div class="submit_container">
+            <input
+              type="submit"
+              value="Register"
+              name="register"
+              id="register_button"
+            />
+          </div>
+
+          <div class="login_container">
+            Already have an account?&nbsp;
+            <a href="login.html"> Log in</a>
+          </div>
+        </form>
+      </div>
+      <script src="../js/register.js"></script>
+    </div>
+  </body>
 </html>
-
-<div class="main_container">
-  <div class="logo_container">
-    <img src="../view/assets/img/Icon.svg" id="logo" />
-  </div>
-  <div class="text_container">
-    <h1>
-      Sign up for free to <br />
-      &nbsp;&nbsp;&nbsp;&nbsp;start listening.
-    </h1>
-  </div>
-  <div class="form_container">
-    <hr />
-    <form
-      action=""
-      method="POST"
-      id="register_form"
-      onsubmit="return validateInput()"
-    >
-      <div class="input_container">
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" autocomplete="off" />
-        <div class="error" id="error_name"></div>
-      </div>
-
-      <div class="input_container">
-        <label for="username">Username</label>
-        <input type="text" name="username" id="username" autocomplete="off" />
-        <div class="error" id="error_username"></div>
-      </div>
-
-      <div class="input_container">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" autocomplete="off" />
-        <div class="error" id="error_email"></div>
-      </div>
-
-      <div class="input_container">
-        <label for="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          autocomplete="off"
-        />
-        <div class="error" id="error_password"></div>
-      </div>
-
-      <div class="input_container">
-        <label for="password_confirm">Confirm Password</label>
-        <input
-          type="password"
-          name="password_confirm"
-          id="password_confirm"
-          autocomplete="off"
-        />
-        <div class="error" id="error_password_confirm"></div>
-      </div>
-
-      <div class="submit_container">
-        <input
-          type="submit"
-          value="Register"
-          name="register"
-          id="register_button"
-        />
-      </div>
-
-      <div class="login_container">
-        Already have an account?&nbsp;
-        <a href="login.html"> Log in</a>
-      </div>
-    </form>
-  </div>
-</div>
