@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "../../../app/model/User.php";
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/User.php';
 
 //ajax for username validation
 if(isset($_GET['username'])){

@@ -1,5 +1,5 @@
 <?php 
-require_once __DIR__ . "/cookies.php";
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/helper/session.php';
 
 // Set the login as true.
 function issueLoginSession() {

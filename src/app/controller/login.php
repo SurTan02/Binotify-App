@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . "/../helpers/cookies.php";
-require_once __DIR__ . "/../helpers/session.php";
-require_once __DIR__ . "/../models/User.php";
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/User.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/helper/cookies.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/helper/session.php';
 
 // Don't permit user that already login go here.
 if (validateLoginSession()) {

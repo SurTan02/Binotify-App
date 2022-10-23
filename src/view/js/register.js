@@ -1,9 +1,8 @@
 
-
-const inputValidationStatus = {
-  username: false,
-  email: false,
-  password: false,
+const isInputValid = {
+  "username": false,
+  "email": false,
+  "password": false,
 };
 
 // function to validate form input
@@ -23,32 +22,33 @@ let error_username = document.getElementById("error_username");
 input_username.addEventListener("change", function () {
   // using ajax to check if the username is already taken
   let xhr = new XMLHttpRequest();
-  xhr.open("GET", "./view/js/ajax/register.php?username=" + input_username.value, true);
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
       let response = xhr.responseText;
       // check username is valid using regex
-      if (input_username.value.match(/^[a-zA-Z0-9]+$/)) {
-        inputValidationStatus.username = true;
-        input_username.style.backgroundColor = "#00ff00";
+      let nameRegex = /^[a-zA-Z0-9_]+$/;
+      if (nameRegex.test(input_username.value)) {
+        isInputValid["username"] = true;
+        input_username.style.borderColor = "#00ff00";
         error_username.innerHTML = "";
       }
       else {
-        inputValidationStatus.username = false;
-        input_username.style.backgroundColor = "#ff0000";
+        isInputValid.username = false;
+        input_username.style.borderColor = "#ff0000";
         error_username.innerHTML = "Username must contain only letters and numbers";
       }
       if (response == "true") {
-        inputValidationStatus.username = true;
-        input_username.style.backgroundColor = "#00ff00";
+        isInputValid["username"] = true;
+        input_username.style.borderColor = "#00ff00";
         error_username.innerHTML = "";
       } else {
-        inputValidationStatus.username = false;
-        input_username.style.backgroundColor = "#ff0000";
+        isInputValid["username"] = false;
+        input_username.style.borderColor = "#ff0000";
         error_username.innerHTML = "Username already taken";
       }
     }
   }
+  xhr.open("GET", "./view/js/ajax/register.php?username=" + input_username.value, true);
   xhr.send();
 });
 
@@ -59,34 +59,22 @@ let error_email = document.getElementById("error_email");
 input_email.addEventListener("change", function () {
   // using ajax to check if the email is already taken
   let xhr = new XMLHttpRequest();
-  xhr.open("GET", "./view/js/ajax/register.php?email=" + input_email.value, true);
+
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
       let response = xhr.responseText;
       if (response == "true") {
-        inputValidationStatus.email = true;
-        input_email.style.backgroundColor = "#00ff00";
+        isInputValid["email"] = true;
+        input_email.style.borderColor = "#00ff00";
         error_email.innerHTML = "";
       } else {
-        inputValidationStatus.email = false;
-        input_email.style.backgroundColor = "#ff0000";
-        error_email.innerHTML = "Email already taken";
-      }
-
-      // check email is valid using regex
-      let regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-      if (regex.test(email)) {
-        inputValidationStatus.email = true;
-        input_email.style.backgroundColor = "#00ff00";
-        error_email.innerHTML = "";
-      }
-      else {
-        inputValidationStatus.email = false;
-        input_email.style.backgroundColor = "#ff0000";
-        error_email.innerHTML = "Email is invalid";
+        isInputValid["email"] = false;
+        input_email.style.borderColor = "#ff0000";
+        error_email.innerHTML = "Email is not valid.";
       }
     }
   }
+  xhr.open("GET", "./view/js/ajax/register.php?email=" + input_email.value, true);
   xhr.send();
 });
 
@@ -102,12 +90,12 @@ input_password.addEventListener("change", function () {
   let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
   if (regex.test(password)) {
     inputValidationStatus.password = true;
-    input_password.style.backgroundColor = "#00ff00";
+    input_password.style.borderColor = "#00ff00";
     error_password.innerHTML = "";
   }
   else {
     inputValidationStatus.password = false;
-    input_password.style.backgroundColor = "#ff0000";
+    input_password.style.borderColor = "#ff0000";
     error_password.innerHTML = "Password must be at least 8 characters long and contain at least 1 uppercase letter, 1 lowercase letter and 1 number";
   }
 
