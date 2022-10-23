@@ -4,7 +4,7 @@ require_once __DIR__ . "/../config/config.php";
 require_once __DIR__ . "/../models/User.php";
 
 // issueCookie
-function issueAuthCookie($user_id){
+function issueAuthCookie($id){
   $cookie_name = COOKIE_AUTH;
   $exp = time() + (60 * 60 * 24); // 1 days
   $cookie_value = $id . "-" . $exp;
