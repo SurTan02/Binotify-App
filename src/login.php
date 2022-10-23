@@ -12,6 +12,6 @@ $foot_html = file_get_contents('./view/html/templates/foot.html');
 // Echo the login page.
 echo $head_html;
 echo $login_html;
-echo '<script src="./js/login.js"></script>';
+echo '<script src="./view/js/login.js"></script>';
 echo $foot_html;
 ?>
