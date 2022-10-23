@@ -1,4 +1,9 @@
 <?php
+
+session_start();
+
+require_once './app/controller/login.php';
+
 $head_html = file_get_contents('./view/html/templates/head.html');
 
 // Replace any variables in the html files.
