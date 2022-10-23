@@ -1,0 +1,30 @@
+<div class="song-card">
+    <a href="./detail_lagu.php?song_id={song_id}">
+        <table>
+            <colgroup>
+                <col span="1" style="width: 10%;">
+                <col span="1" style="width: 22.5%;">
+                <col span="1" style="width: 22.5%;">
+                <col span="1" style="width: 15%;">
+                <col span="1" style="width: 15%;">
+                <col span="1" style="width: 15%;">
+             </colgroup>
+            <tr>
+                <td>01</td>
+                <td > <img src={img_path} alt={judul_lagu}/></td>
+                <td>
+                    <h5>
+                        {judul_lagu}
+                        <div class ="subtitle">{penyanyi}</div>
+                    </h5>
+                </td>
+                
+                <td>{tanggal_terbit}</td>
+                <td>{genre}</td>
+                <td>{durasi}</td>
+            </tr>
+        </table>
+        <hr>
+    </a>
+</div>
+
