@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 // Connect to backend.
 require_once './app/controller/register.php';
 

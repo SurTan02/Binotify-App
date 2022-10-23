@@ -1,24 +1,29 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/User.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/helper/cookies.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/helper/session.php';
 
+  if (validateLoginSession()) {
+    header("location: ./index.php");
+    exit; 
+  }
+  
+  
   if (isset($_POST['register'])) {
     // get data from form
-    $data = [
-      'username' => $_POST['username'],
-      'email' => $_POST['email'],
-      'password' => $_POST['password'],
-    ];
-    // create user object
-    $user = new User();
-    // register user
-    $result = $user->registerUser($data);
-    // check if user is registered
-    if ($result) {
-      echo "User registered";
-      header("Location: ../view/index.php");
-    }
-    else {
-      echo "User not registered";
+    $data = array(
+      "username"=>$_POST["username"],
+      "email"=>$_POST["email"],
+      "password"=>$_POST["password"]
+    );
+
+    if (is_numeric($res)) {
+      issueAuthCookie($res);
+      issueLoginSession();
+      header("Location: ./index.php");
+    } else {
+      $message = "Cannot register the user";
+      echo "<script type='text/javascript'>alert('$message');</script>";
     }
   }
   
