@@ -4,15 +4,15 @@
   
   // create user class
   class User{
-    private $db_connection;
+    private $db;
     private $table = DB_TABLE_USERS;
     private $query;
 
     // constructor
     public function __construct(){
       $this->db = new Database();
-      $this->table = "user";
-
+      
+      $this->table = "\"user\" ";
     }
 
     // get single user by user_id
@@ -21,7 +21,7 @@
         $this->query = "SELECT * FROM $this->table WHERE user_id = :user_id";
         $this->db->query($this->query);
         $this->db->bind(':user_id', $user_id);
-        $result = $this->db->single();
+        $result = $this->db->single_result();
         return $result;
       }
       catch(PDOException $e){
@@ -35,7 +35,7 @@
         $this->query = "SELECT * FROM $this->table WHERE username = :username";
         $this->db->query($this->query);
         $this->db->bind(':username', $username);
-        $result = $this->db->single();
+        $result = $this->db->single_result();
         return $result;
       }
       catch(PDOException $e){
@@ -91,7 +91,7 @@
         $this->query = "SELECT is_admin FROM $this->table WHERE user_id = :user_id";
         $this->db->query($this->query);
         $this->db->bind(':user_id', $user_id);
-        $result = $this->db->single();
+        $result = $this->db->single_result();
         return $result['is_admin'];
       }
       catch(PDOException $e){
@@ -108,7 +108,7 @@
           $this->query = "SELECT * FROM $this->table WHERE username = :username";
           $this->db->query($this->query);
           $this->db->bind(':username', $username);
-          $result = $this->db->single();
+          $result = $this->db->single_result();
           if($result){
             return false;
           }
@@ -133,7 +133,7 @@
           $this->query = "SELECT * FROM $this->table WHERE email = :email";
           $this->db->query($this->query);
           $this->db->bind(':email', $email);
-          $result = $this->db->single();
+          $result = $this->db->single_result();
           if($result){
             return false;
           }
@@ -162,6 +162,7 @@
 
       // check if user exists
       if ($user) {
+        
         // check if password is correct
         if (password_verify($data['password'], $user['password'])) {
           return $user['user_id'];

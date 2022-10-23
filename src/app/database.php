@@ -9,7 +9,7 @@
             $dbpass = "postgres";
             $port = "5432";
             $dbname = "database";
-
+            
             $this->db_connection = new PDO("pgsql:dbname=$dbname;host=$host", $dbuser, $dbpass);
         }
 
@@ -28,12 +28,12 @@
 
         public function multi_result() {
             $this->execute();
-            return $this->query->fetchAll(PDO::FETCH_ASSOC);
+            return $this->statement->fetchAll(PDO::FETCH_ASSOC);
         }
 
         public function single_result() {
             $this->execute();
-            return $this->query->fetch(PDO::FETCH_ASSOC);
+            return $this->statement->fetch(PDO::FETCH_ASSOC);
         }
 
         public function lastInsertId() {
@@ -46,5 +46,11 @@
             return $this->statement->fetchColumn();
         }
                 
+        // public function admin(){
+        //     $password = password_hash("sayaadmin", PASSWORD_DEFAULT);
+        //     $this->query("UPDATE \"user\"  SET password = '$password' ");
+        //     $this->execute();
+        // }
+        
     }
 ?>
