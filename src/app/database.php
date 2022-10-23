@@ -1,7 +1,7 @@
 <?php
     class Database {
         private $db_connection;
-        private $query;
+        private $statement;
 
         public function __construct() {
             $host = "db";
@@ -14,12 +14,16 @@
         }
 
         public function query($query) {
-            $this->query = $this->db_connection->prepare($query);
+            $this->statement = $this->db_connection->prepare($query);
         }
 
         public function execute() {
-            $res = $this->query->execute();
+            $res = $this->statement->execute();
             return $res;
+        }
+
+        public function bind($param, $value) {
+            $this->statement->bindValue($param, $value);
         }
 
         public function multi_result() {
@@ -30,6 +34,16 @@
         public function single_result() {
             $this->execute();
             return $this->query->fetch(PDO::FETCH_ASSOC);
+        }
+
+        public function lastInsertId() {
+            $this->execute();
+            return $this->db_connection->lastInsertId();
+        }
+
+        public function rowCount() {
+            $this->execute();
+            return $this->statement->fetchColumn();
         }
                 
     }
