@@ -10,12 +10,6 @@ if(isset($_GET['username'])){
   $user = new User();
   //check if username is available
   $result = $user->isValidUsername($username);
-  if($result){
-    echo "true";
-  }
-  else{
-    echo "false";
-  }
 }
 
 // ajax for email validation
@@ -26,12 +20,6 @@ if(isset($_GET['email'])){
   $user = new User();
   //check if email is available
   $result = $user->isValidEmail($email);
-  if($result){
-    echo "true";
-  }
-  else{
-    echo "false";
-  }
 }
 
 ?>

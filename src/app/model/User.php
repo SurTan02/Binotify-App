@@ -109,14 +109,14 @@
           $this->db->bind(':username', $username);
           $result = $this->db->single_result();
           if($result){
-            return false;
+            echo "taken";
           }
           else{
-            return true;
+            echo "available";
           }
         }
         else{
-          return false;
+          echo "invalid";
         }
       }
       catch(PDOException $e){
@@ -134,14 +134,14 @@
           $this->db->bind(':email', $email);
           $result = $this->db->single_result();
           if($result){
-            return false;
+            echo "taken";
           }
           else{
-            return true;
+            echo "available";
           }
         }
         else{
-          return false;
+          echo "invalid";
         }
       }
       catch(PDOException $e){
