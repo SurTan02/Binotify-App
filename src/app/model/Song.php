@@ -34,5 +34,19 @@
             }
             return $result;
         }
+
+        // get song by distinct genre
+        public function getSongByDistinctGenre() {
+            $result;
+            try {
+                $query = "SELECT genre, MIN(image_path) AS image_path FROM song GROUP BY genre";
+                $this->db->query($query);
+                $result = $this->db->multi_result();
+            } catch ( eror $e ) {
+                echo 'ERROR!';
+                $result = NULL;
+            }
+            return $result;
+        }
     }
 ?>
