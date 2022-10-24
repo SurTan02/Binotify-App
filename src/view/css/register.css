@@ -12,11 +12,11 @@
   margin-top: 100px;
 }
 
-.logo_container{
+.logo_container {
   margin: 20px;
 }
 
-.logo_container img{
+.logo_container img {
   width: 120px;
   height: 40px;
 }
@@ -37,6 +37,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .input_container {
@@ -66,9 +67,16 @@
 
 .input_container .error {
   color: red;
+  font-size: 9px;
+  margin: 0;
+  padding: 0px 0px 0px 0px;
+}
+
+.error {
+  color: red;
   font-size: 14px;
   margin: 0;
-  padding: 4px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
 }
 
 .submit_container {
@@ -106,7 +114,7 @@
   justify-content: center;
 }
 
-.login_container a{
-  color: #1DB954;
+.login_container a {
+  color: #1db954;
   margin-left: 5px;
 }

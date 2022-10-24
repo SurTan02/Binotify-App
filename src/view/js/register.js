@@ -7,8 +7,8 @@ const isInputValid = {
 
 // function to validate form input
 function validateInput() {
-  for (let key in inputValidationStatus) {
-    if (inputValidationStatus[key] === false) {
+  for (let key in isInputValid) {
+    if (isInputValid[key] === false) {
       return false;
     }
   }
@@ -26,6 +26,15 @@ input_username.addEventListener("change", function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
       let response = xhr.responseText;
       // check username is valid using regex
+      if (response == "true") {
+        isInputValid["username"] = true;
+        input_username.style.borderColor = "#00ff00";
+        error_username.innerHTML = "";
+      } else {
+        isInputValid["username"] = false;
+        input_username.style.borderColor = "#ff0000";
+        error_username.innerHTML = "Username already taken";
+      }
       let nameRegex = /^[a-zA-Z0-9_]+$/;
       if (nameRegex.test(input_username.value)) {
         isInputValid["username"] = true;
@@ -36,15 +45,9 @@ input_username.addEventListener("change", function () {
         isInputValid.username = false;
         input_username.style.borderColor = "#ff0000";
         error_username.innerHTML = "Username must contain only letters and numbers";
-      }
-      if (response == "true") {
-        isInputValid["username"] = true;
-        input_username.style.borderColor = "#00ff00";
-        error_username.innerHTML = "";
-      } else {
-        isInputValid["username"] = false;
-        input_username.style.borderColor = "#ff0000";
-        error_username.innerHTML = "Username already taken";
+        error_username.style.color = "#ff0000";
+        error_username.style.fontSize = "12px";
+        error_username.style.fontStyle = "oblique";
       }
     }
   }
@@ -71,6 +74,9 @@ input_email.addEventListener("change", function () {
         isInputValid["email"] = false;
         input_email.style.borderColor = "#ff0000";
         error_email.innerHTML = "Email is not valid.";
+        error_email.style.fontFamily = "inter";
+        error_email.style.fontSize = "12px";
+        error_email.style.fontStyle = "italic";
       }
     }
   }
@@ -80,45 +86,34 @@ input_email.addEventListener("change", function () {
 
 // add event listener to the password input to check if the password is valid and if the password and confirm password match
 let input_password = document.getElementById("password");
-let input_confirm_password = document.getElementById("password_confirm");
+let input_password_confirm = document.getElementById("password_confirm");
 let error_password = document.getElementById("error_password");
-let error_confirm_password = document.getElementById("error_password_confirm");
+let error_password_confirm = document.getElementById("error_password_confirm");
 
-input_password.addEventListener("change", function () {
-  // check password is valid using regex
-  let password = input_password.value;
-  let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
-  if (regex.test(password)) {
-    inputValidationStatus.password = true;
+input_password_confirm.addEventListener("change", function () {
+  ;
+
+
+  // Check if the input_password_confirm and input_password are the same.
+  let same = false;
+  if (input_password_confirm.value === input_password.value) {
+    same = true;
     input_password.style.borderColor = "#00ff00";
-    error_password.innerHTML = "";
+    input_password_confirm.style.borderColor = "#00ff00";
+    error_password_confirm.innerHTML = "";
+    isInputValid["password"] = true;
   }
   else {
-    inputValidationStatus.password = false;
     input_password.style.borderColor = "#ff0000";
-    error_password.innerHTML = "Password must be at least 8 characters long and contain at least 1 uppercase letter, 1 lowercase letter and 1 number";
+    input_password_confirm.style.borderColor = "#ff0000";
+    error_password_confirm.innerHTML = "Passwords do not match";
+    error_password_confirm.style.fontFamily = "Inter";
+    error_password_confirm.style.fontSize = "12px";
+    error_password_confirm.style.fontStyle = "oblique";
   }
 
-  // check if the password and confirm password match
-  if (password == input_confirm_password.value) {
-    inputValidationStatus.password = true;
-    input_password.style.borderColor = "#00ff00";
-    error_password.innerHTML = "";
-    input_confirm_password.style.borderColor = "#00ff00";
-    error_confirm_password.innerHTML = "";
-  }
-  else {
-    inputValidationStatus.password = false;
-    input_password.style.borderColor = "#ff0000";
-    error_password.innerHTML = "Passwords do not match";
-    error_password.style.fontFamily = "Inter";
-    error_password.style.fontSize = "12px";
-    error_password.style.fontStyle = "oblique";
-
-    input_confirm_password.style.borderColor = "#ff0000";
-    error_confirm_password.innerHTML = "Passwords do not match";
-    error_confirm_password.style.fontFamily = "Inter";
-    error_confirm_password.style.fontSize = "12px";
-    error_confirm_password.style.fontStyle = "oblique";
-  }
 });
+
+
+
+

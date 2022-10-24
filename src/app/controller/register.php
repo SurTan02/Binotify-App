@@ -17,6 +17,9 @@
       "password"=>$_POST["password"]
     );
 
+    $userDB = new User();
+    $res = $userDB->registerUser($data);
+
     if (is_numeric($res)) {
       issueAuthCookie($res);
       issueLoginSession();
