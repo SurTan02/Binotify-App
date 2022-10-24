@@ -25,33 +25,31 @@ input_username.addEventListener("change", function () {
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
       let response = xhr.responseText;
-      console.log(response);
-      if (response === "available") {
+      // check username is valid using regex
+      if (response == "true") {
+        isInputValid["username"] = true;
+        input_username.style.borderColor = "#00ff00";
+        error_username.innerHTML = "";
+      } else {
+        isInputValid["username"] = false;
+        input_username.style.borderColor = "#ff0000";
+        error_username.innerHTML = "Username already taken";
+      }
+      let nameRegex = /^[a-zA-Z0-9_]+$/;
+      if (nameRegex.test(input_username.value)) {
         isInputValid["username"] = true;
         input_username.style.borderColor = "#00ff00";
         error_username.innerHTML = "";
       }
-      else if (response === "taken") {
-        isInputValid["username"] = false;
+      else {
+        isInputValid.username = false;
         input_username.style.borderColor = "#ff0000";
-        error_username.innerHTML = "Username already taken";
+        error_username.innerHTML = "Username must contain only letters and numbers";
         error_username.style.color = "#ff0000";
-        error_username.style.fontSize = "12px";
         error_username.style.fontFamily = "inter";
+        error_username.style.fontSize = "12px";
         error_username.style.fontStyle = "oblique";
       }
-      else if (response === "invalid") {
-        isInputValid["username"] = false;
-        input_username.style.borderColor = "#ff0000";
-        error_username.innerHTML = "Username must be at least 5 characters and contain only letters and numbers";
-        error_username.style.color = "#ff0000";
-        error_username.style.fontSize = "12px";
-        error_username.style.fontFamily = "inter";
-        error_username.style.fontStyle = "oblique";
-      }
-    }
-    else {
-      console.log("gabisa masuk ajax");
     }
   }
   xhr.open("GET", "./view/js/ajax/register.php?username=" + input_username.value, true);
@@ -69,29 +67,17 @@ input_email.addEventListener("change", function () {
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
       let response = xhr.responseText;
-      console.log(response);
-      if (response === "available") {
+      if (response == "true") {
         isInputValid["email"] = true;
         input_email.style.borderColor = "#00ff00";
         error_email.innerHTML = "";
-      }
-      else if (response === "taken") {
+      } else {
         isInputValid["email"] = false;
         input_email.style.borderColor = "#ff0000";
-        error_email.innerHTML = "Email already taken";
-        error_email.style.color = "#ff0000";
-        error_email.style.fontSize = "12px";
+        error_email.innerHTML = "Email is not valid.";
         error_email.style.fontFamily = "inter";
-        error_email.style.fontStyle = "oblique";
-      }
-      else if (response === "invalid") {
-        isInputValid["email"] = false;
-        input_email.style.borderColor = "#ff0000";
-        error_email.innerHTML = "Email is invalid";
-        error_email.style.color = "#ff0000";
         error_email.style.fontSize = "12px";
-        error_email.style.fontFamily = "inter";
-        error_email.style.fontStyle = "oblique";
+        error_email.style.fontStyle = "italic";
       }
     }
   }
@@ -126,8 +112,5 @@ input_password_confirm.addEventListener("change", function () {
     error_password_confirm.style.fontSize = "12px";
     error_password_confirm.style.fontStyle = "oblique";
   }
+
 });
-
-
-
-

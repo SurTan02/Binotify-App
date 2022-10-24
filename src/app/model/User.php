@@ -50,6 +50,7 @@
         return false;
       }
 
+
       // Validate that username is unique and email is an email.
       if (!$this->isValidUsername($data['username']) || !$this->isValidEmail($data['email'])) {
         return false;
@@ -59,7 +60,6 @@
       $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
       // insert into database
-
       try{
         // TODO: masalah dia kalau pakai prepare gabisa
         $this->db->query("INSERT INTO $this->table (username, email, password) VALUES (:username, :email, :password)");
@@ -109,20 +109,21 @@
           $this->db->bind(':username', $username);
           $result = $this->db->single_result();
           if($result){
-            echo "taken";
+            return false;
           }
           else{
-            echo "available";
+            return true;
           }
         }
         else{
-          echo "invalid";
+          return false;
         }
       }
       catch(PDOException $e){
         echo "Error username gaada";
       }
     }
+
 
     public function isValidEmail($email){
       try{
@@ -134,20 +135,21 @@
           $this->db->bind(':email', $email);
           $result = $this->db->single_result();
           if($result){
-            echo "taken";
+            return false;
           }
           else{
-            echo "available";
+            return true;
           }
         }
         else{
-          echo "invalid";
+          return false;
         }
       }
       catch(PDOException $e){
         echo "Error email gaada";
       }
     }
+
 
     // check is login valid
     public function isLoginValid($data) {
