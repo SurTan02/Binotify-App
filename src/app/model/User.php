@@ -5,7 +5,7 @@
   // create user class
   class User{
     private $db;
-    private $table = DB_TABLE_USERS;
+    private $table;
     private $query;
 
     // constructor
@@ -61,15 +61,15 @@
 
       // insert into database
       try{
-        $this->query = "INSERT INTO ' . $this->table . ' (username, email, password, is_admin) VALUES (:username, :email, :password, :is_admin)";
+        $this->query = 'INSERT INTO ' . $this->table . ' (username, email, password, is_admin) 
+        VALUES (:username, :email, :password, :is_admin)';
         $this->db->query($this->query);
-
         $this->db->bind(':username', $data['username']);
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':password', $data['password']);
         $this->db->bind(':is_admin', false);
-
         $id = $this->db->lastInsertId();
+
         if(!empty($id)){
           return $id;
         }
