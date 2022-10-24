@@ -23,4 +23,5 @@
         }
     }
 
+    $song_results = $db->getSongByJudulPenyanyiTahun();
 ?>

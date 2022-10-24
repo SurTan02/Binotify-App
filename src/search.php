@@ -9,6 +9,7 @@
     $head_html = str_replace('{css1}', './view/css/components/header.css', $head_html);
     $head_html = str_replace('{css2}', './view/css/search.css', $head_html);
     $head_html = str_replace('{css3}', './view/css/components/card_filter_genre.css', $head_html);
+    $head_html = str_replace('{css4}', './view/css/components/card_song.css', $head_html);
 
     $search_html = file_get_contents('./view/html/search.html');
     
@@ -24,6 +25,24 @@
     }
 
     $search_html = str_replace('{genre_list}', $genre_list, $search_html);
+
+    $search_html = str_replace('{start}', 1, $search_html);
+    $search_html = str_replace('{stop}', min(10, $song_results['count']), $search_html);
+    $search_html = str_replace('{total}', $song_results['count'], $search_html);
+
+    $song_list = '';
+    foreach ($song_results['data'] as $key=>$song) {
+        $card_song_html = file_get_contents('./view/html/components/card_song.html');
+        $card_song_html = str_replace('{list-number}', $key+1, $card_song_html);
+        $card_song_html = str_replace('{song-image-path}', $song['image_path'], $card_song_html);
+        $card_song_html = str_replace('{song-title}', $song['judul'], $card_song_html);
+        $card_song_html = str_replace('{song-genre}', $song['genre'], $card_song_html);
+        $card_song_html = str_replace('{song-author}', $song['penyanyi'], $card_song_html);
+        $card_song_html = str_replace('{song-year}', mb_substr($song['tanggal_terbit'], 0, 4), $card_song_html);
+        $song_list = $song_list . $card_song_html;
+    }
+
+    $search_html = str_replace('{song_list}', $song_list, $search_html);
     // echo
     echo $head_html;
     // echo $header_html;
