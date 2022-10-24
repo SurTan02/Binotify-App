@@ -1,4 +1,6 @@
 <?php
+    require_once './app/controller/search.php'; // $genres
+    
     $header_html = file_get_contents('./view/html/components/header_admin.html');
     
     $head_html = file_get_contents('./view/html/templates/head.html');
@@ -9,34 +11,6 @@
     $head_html = str_replace('{css3}', './view/css/components/card_filter_genre.css', $head_html);
 
     $search_html = file_get_contents('./view/html/search.html');
-
-    $colors = array('rgba(39, 134, 107, 255)', 'rgb(32,52,100)', 'rgba(142,103,172,255)', 'rgba(233,16,91,255)', 'rgba(19,138,9,255)');
-    $genres = array((object) ['genre_title' => 'All', 
-                              'genre_background_color' => $colors[rand(0,count($colors)-1)],
-                              'genre' => 'genre_all', 
-                              'isChecked' => true, 
-                              'genre_img_path' => './view/assets/img/genre_placeholder.jpeg'], 
-                    (object) ['genre_title' => 'Pop', 
-                              'genre_background_color' => $colors[rand(0,count($colors)-1)],
-                              'genre' => 'genre_pop', 
-                              'isChecked' => false, 
-                              'genre_img_path' => './view/assets/img/genre_placeholder.jpeg'], 
-                    (object) ['genre_title' => 'Rock',
-                              'genre_background_color' => $colors[rand(0,count($colors)-1)],
-                              'genre' => 'genre_rock', 
-                              'isChecked' => false, 
-                              'genre_img_path' => './view/assets/img/genre_placeholder.jpeg'],
-                    (object) ['genre_title' => 'Indie',
-                              'genre_background_color' => $colors[rand(0,count($colors)-1)],
-                              'genre' => 'genre_indie', 
-                              'isChecked' => false, 
-                              'genre_img_path' => './view/assets/img/genre_placeholder.jpeg'],
-                    (object) ['genre_title' => 'Hip-hop',
-                              'genre_background_color' => $colors[rand(0,count($colors)-1)],
-                              'genre' => 'genre_hip-hop', 
-                              'isChecked' => false, 
-                              'genre_img_path' => './view/assets/img/genre_placeholder.jpeg']
-                );
     
     $genre_list = '';
     foreach ($genres as $genre) {
