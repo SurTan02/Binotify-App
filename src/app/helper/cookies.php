@@ -3,20 +3,29 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/User.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/config.php';
 
 // issueCookie
-function issueAuthCookie($id){
+function issueAuthCookie($id) {
+  // Set the cookie name for auth.
   $cookie_name = COOKIE_AUTH;
-  $exp = time() + (60 * 60 * 24); // 1 days
+
+  // Set the the cookie expire time.
+  $exp = time() + COOKIE_AUTH_TIME;
+
+  // Set the cookie value.
   $cookie_value = $id . "-" . $exp;
 
-  // encode the cookie by base 64
+  // Encode the cookie by base 64.
   $cookie_value_encoded = base64_encode($cookie_value);
-  // add secret 
-  $cookie_secret = $cookie_value . "-" . COOKIE_AUTH_SECRET;
-  // hash the cookie
-  $cookie_secret_hashed = hash("sha256", $cookie_secret);
 
-  // set the cookie
-  $cookie_value_secret = $cookie_value_encoded . "-" . $cookie_secret_hashed;
+  // Add the secret ingredients to the cookie.
+  $cookie_secret = $cookie_value . "-" . COOKIE_AUTH_SECRET;
+
+  // Hash the cookie secret.
+  $cookie_secret_hashed = hash('sha256', $cookie_secret);
+
+  // Set the cookie.
+  $cookie_value_secret = $cookie_value_encoded . "." . $cookie_secret_hashed;
+
+  // Set the cookie to the user.
   setcookie($cookie_name, $cookie_value_secret, $exp, "/");
 }
 
@@ -28,6 +37,8 @@ function validateAuthCookie($all_cookie){
 
   $cookie = $all_cookie[COOKIE_AUTH];
   $cookie_split = explode(".", $cookie);
+
+  // Get the value part and secret part.
   $cookie_value_encoded = $cookie_split[0];
   $cookie_secret_hashed = $cookie_split[1];
 

@@ -46,11 +46,11 @@
             return $this->statement->fetchColumn();
         }
                 
-        // public function admin(){
-        //     $password = password_hash("sayaadmin", PASSWORD_DEFAULT);
-        //     $this->query("UPDATE \"user\"  SET password = '$password' ");
-        //     $this->execute();
-        // }
+        public function admin(){
+            $password = password_hash("sayaadmin", PASSWORD_DEFAULT);
+            $this->query("UPDATE \"user\"  SET password = '$password' ");
+            $this->execute();
+        }
         
     }
 ?>
