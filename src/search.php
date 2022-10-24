@@ -43,7 +43,22 @@
     }
 
     $search_html = str_replace('{song_list}', $song_list, $search_html);
+    
+    $total_page = ceil($song_results['count']/10);
+    $pagination = '<li>←</li>';
+    $pagination = $pagination . '<li class="page-active">1</li>';
+    $pagination = $pagination . '<li onclick="loadSong(2)">2</li>';
+    $pagination = $pagination . '<li onclick="loadSong(3)">3</li>';
+    if ($total_page == 4) {
+        $pagination = $pagination . '<li onclick="loadSong(' . $total_page . ')">' . $total_page . '</li>';
+    }
+    if ($total_page > 4) {
+        $pagination = $pagination . '<li>...</li>';
+        $pagination = $pagination . '<li onclick="loadSong(' . $total_page . ')">' . $total_page . '</li>';
+    }
+    $pagination = $pagination . '<li onclick="loadSong(2)">→</li>';
 
+    $search_html = str_replace('{pagination}', $pagination, $search_html);
     // echo
     echo $head_html;
     // echo $header_html;

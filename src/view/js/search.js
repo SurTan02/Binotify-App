@@ -36,6 +36,30 @@ function loadSong(page = 1) {
         </li>`;
       });
       document.getElementById("songs-list").innerHTML = song_list;
+
+      let pagination = "";
+      const total_page = Math.ceil(response.count / 10);
+      if (page != 1) {
+        pagination += `<li onclick="loadSong(${page - 1})">←</li>`;
+      } else {
+        pagination += `<li>←</li>`;
+      }
+
+      for (let i = 1; i <= total_page; i++) {
+        if (page == i) {
+          pagination += `<li class="page-active" onclick="loadSong(${i})">${i}</li>`;
+        } else {
+          pagination += `<li onclick="loadSong(${i})">${i}</li>`;
+        }
+      }
+
+      if (page != total_page) {
+        pagination += `<li onclick="loadSong(${page + 1})">→</li>`;
+      } else {
+        pagination += `<li>→</li>`;
+      }
+
+      document.getElementById("songs-pagination-pages").innerHTML = pagination;
     }
   };
 
