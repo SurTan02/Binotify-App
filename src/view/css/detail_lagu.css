@@ -1,36 +1,52 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap");
 
-
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.container {
+    /* background-color: red; */
+    align-items: center;
+    background-color: rgb(25, 25, 25);
+    height: 100%;
 }
 
 .song-card{
-    background-color: black;
     display: flex;
     flex-direction: column;
-    width: 13rem;
-    border-radius: 0.3rem;
+    border-radius: 1rem;
     padding: 1rem;
     position: relative;
     transition: all 0.4s;
     cursor: pointer;
+    align-items: center;
 }
 
-img{
+.song-card img{
     width: 25%;
     height: 25%;
     object-fit: cover;
-    border-radius: 0.3rem;
-    
+    padding: 1rem;
+    /* background-color: red; */
+    border-radius: 3rem;
 }
 
 .desc{
-    margin-top: 1rem;
+    margin: 1rem;
     line-height: 1;
-    color: grey;
-    background-color: red;
+    /* background-color: yellow; */
 }
+
+.desc h4{
+    font-size: 3em;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.desc h5{
+    font-size: 1.5em;
+    color: #b3b3b3;
+    text-align: center;
+}
+
+.desc p{
+    font-size: 1em;
+}
+
+
