@@ -3,6 +3,7 @@
   require_once $_SERVER['DOCUMENT_ROOT'].'/app/helper/cookies.php';
   require_once $_SERVER['DOCUMENT_ROOT'].'/app/helper/session.php';
 
+  // Don't permit user that already login go here.
   if (validateLoginSession()) {
     header("location: ./index.php");
     exit; 
@@ -10,7 +11,6 @@
   
   
   if (isset($_POST['register'])) {
-    // get data from form
     $data = array(
       "username"=>$_POST["username"],
       "email"=>$_POST["email"],

@@ -1,11 +1,19 @@
-
+/**
+ * init isInputValid object
+ * 
+ */
 const isInputValid = {
   "username": false,
   "email": false,
   "password": false,
 };
 
-// function to validate form input
+
+/**
+ * validateInpit is a function that validates the input of the user is valid
+ * 
+ * @returns {boolean} true if all inputs are valid
+ */
 function validateInput() {
   for (let key in isInputValid) {
     if (isInputValid[key] === false) {
@@ -15,17 +23,17 @@ function validateInput() {
   return true;
 }
 
-// add event listener to the username input
+/**
+ * using ajax to send the data to the server to validate is the username is valid and manipulate the DOM
+ */
+
 let input_username = document.getElementById("username");
 let error_username = document.getElementById("error_username");
-
 input_username.addEventListener("change", function () {
-  // using ajax to check if the username is already taken
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
       let response = xhr.responseText;
-      // check username is valid using regex
       if (response == "true") {
         isInputValid["username"] = true;
         input_username.style.borderColor = "#00ff00";
@@ -56,14 +64,14 @@ input_username.addEventListener("change", function () {
   xhr.send();
 });
 
-// add event listener to the email input
+/**
+ * using ajax to send the data to the server to validate is the email is valid and manipulate the DOM
+ *  
+ */
 let input_email = document.getElementById("email");
 let error_email = document.getElementById("error_email");
-
 input_email.addEventListener("change", function () {
-  // using ajax to check if the email is already taken
   let xhr = new XMLHttpRequest();
-
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
       let response = xhr.responseText;
@@ -85,17 +93,15 @@ input_email.addEventListener("change", function () {
   xhr.send();
 });
 
-// add event listener to the password input to check if the password is valid and if the password and confirm password match
+/**
+ * validate is the password same as the confirm password and manipulate the DOM
+ * 
+ */
 let input_password = document.getElementById("password");
 let input_password_confirm = document.getElementById("password_confirm");
 let error_password = document.getElementById("error_password");
 let error_password_confirm = document.getElementById("error_password_confirm");
-
 input_password_confirm.addEventListener("change", function () {
-  ;
-
-
-  // Check if the input_password_confirm and input_password are the same.
   let same = false;
   if (input_password_confirm.value === input_password.value) {
     same = true;
@@ -112,5 +118,4 @@ input_password_confirm.addEventListener("change", function () {
     error_password_confirm.style.fontSize = "12px";
     error_password_confirm.style.fontStyle = "oblique";
   }
-
 });
