@@ -51,54 +51,8 @@ body {
     display: none;
 }
 
-.filter-container>li {
-    display: inline-block;
-    margin-right: 16px;
-    height: 104px;
-    width: 208px;
-    background-color: rgba(39, 134, 107, 255);
-    color: white;
-    flex-shrink: 0;
-    border-radius: 8px;
-    font-size: 24px;
-}
-
 .filter-container>li:last-child {
     margin-right: 104px;
-}
-
-.filter-container>li>label {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    /* padding: 16px 0px 0px 12px; */
-    overflow: hidden;
-}
-
-.filter-container>li>label>span {
-    display: block;
-    position: relative;
-    margin-top: 16px;
-    margin-left: 12px;
-}
-
-.filter-container>li>label>input {
-    visibility: hidden;
-}
-
-.filter-container>li:has(input:checked) {
-    font-weight: bolder;
-}
-
-.filter-container>li>label>img {
-    position: absolute;
-    transform: rotate(30deg);
-    height: 72px;
-    width: 72px;
-    bottom: -8px;
-    right: -8px;
 }
 
 .songs {
