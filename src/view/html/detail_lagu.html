@@ -1,21 +1,19 @@
 <div class="container">
     <div class="song-card">
-        <div class="img-holder">
-            <img src={image_path} alt={judul_lagu}> 
-        </div>
+        <img src={image_path} alt={judul_lagu}> 
+        
         <div class="desc">
-            <p name="judul_lagu" > {judul_lagu} </p>
-            <p name="penyanyi"> {penyanyi} </p>
+            <h4 name="judul_lagu" > {judul_lagu} </h4>
+            <h5 name="penyanyi"> {penyanyi} </h5>
+            <h5 name="genre"> {genre} </h5>
             <p name="tanggal_terbit"> {tanggal_terbit} </p>
-            <p name="genre"> {genre} </p>
-            <p name="durasi"> {durasi} </p>
         </div>
-    </div>
 
-    <audio controls>
-        <source src="{audio_path}" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+        <audio controls>
+            <source src="{audio_path}" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>        
+    </div>    
 </div>
     
 	
