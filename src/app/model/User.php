@@ -11,7 +11,6 @@
     // constructor
     public function __construct(){
       $this->db = new Database();
-      $this->db->admin();
       
       $this->table = "\"user\" ";
     }
@@ -60,23 +59,22 @@
       $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
       // insert into database
+
       try{
-        $this->query = 'INSERT INTO ' . $this->table . ' (username, email, password, is_admin) 
-        VALUES (:username, :email, :password, :is_admin)';
-        $this->db->query($this->query);
+        // TODO: masalah dia kalau pakai prepare gabisa
+        $this->db->query("INSERT INTO $this->table (username, email, password) VALUES (:username, :email, :password)");
         $this->db->bind(':username', $data['username']);
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':password', $data['password']);
-        $this->db->bind(':is_admin', false);
+        // $this->db->bind(':isAdmin', false);
         $id = $this->db->lastInsertId();
-
+        return $id;
         if(!empty($id)){
           return $id;
         }
         else{
           return false;
         }
-
       }
       catch(PDOException $e){
         echo "Error register";
@@ -89,11 +87,11 @@
     // get role by user_id
     public function getRoleById($user_id){
       try{
-        $this->query = "SELECT is_admin FROM $this->table WHERE user_id = :user_id";
+        $this->query = "SELECT isAdmin FROM $this->table WHERE user_id = :user_id";
         $this->db->query($this->query);
         $this->db->bind(':user_id', $user_id);
         $result = $this->db->single_result();
-        return $result['is_admin'];
+        return $result['isAdmin'];
       }
       catch(PDOException $e){
         echo "Error role gaada";
@@ -153,23 +151,25 @@
 
     // check is login valid
     public function isLoginValid($data) {
-      // validate the data is not empty
+      // Validate that the data is not empty.
       if (!isset($data['username']) || !isset($data['password'])) {
         return false;
       }
-
-      // get user by username
-      $user = $this->getUserByUsername($data['username']);
-
-      // check if user exists
-      if ($user) {
-        
-        // check if password is correct
-        if (password_verify($data['password'], $user['password'])) {
-          return $user['user_id'];
+  
+      // get user data from DB
+      $userToLogin = $this->getUserByUsername($data['username']);
+      if (!$userToLogin) {
+        return false;
+      }
+      else {
+        //check if hashedPW === hashed password in the database
+        if (password_verify($data['password'], $userToLogin['password'])) {
+          return $userToLogin['user_id'];
+        }
+        else {
+          return false;
         }
       }
-      return false;
     }
   }
   
