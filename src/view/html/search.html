@@ -10,7 +10,10 @@
   <div class="songs">
     <h2 class="songs-header">Songs</h2>
     <div class="songs-pagination">
-      <span class="songs-pagination-information">
+      <span
+        class="songs-pagination-information"
+        id="songs-pagination-information"
+      >
         Showing results <b>{start}-{stop}</b> of <b>{total}</b>
       </span>
       <div class="songs-pagination-sort">
@@ -18,7 +21,7 @@
         <button><img src="./view/assets/img/tahun_asc.png" /></button>
       </div>
     </div>
-    <ol class="songs-list">
+    <ol class="songs-list" id="songs-list">
       {song_list}
     </ol>
     <ol class="songs-pagination-pages">

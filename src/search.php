@@ -26,7 +26,7 @@
 
     $search_html = str_replace('{genre_list}', $genre_list, $search_html);
 
-    $search_html = str_replace('{start}', 1, $search_html);
+    $search_html = str_replace('{start}', min(1, $song_results['count']), $search_html);
     $search_html = str_replace('{stop}', min(10, $song_results['count']), $search_html);
     $search_html = str_replace('{total}', $song_results['count'], $search_html);
 
@@ -43,8 +43,10 @@
     }
 
     $search_html = str_replace('{song_list}', $song_list, $search_html);
+
     // echo
     echo $head_html;
     // echo $header_html;
     echo $search_html;
+    echo '<script src="./view/js/search.js"></script>';
 ?>

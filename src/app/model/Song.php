@@ -49,38 +49,48 @@
             return $result;
         }
 
-        public function getSongByJudulPenyanyiTahun() {
+        public function getSongByJudulPenyanyiTahun($user_query, $page, $genre) {
             $result;
             try {
-                if (isset($_GET['query'])) {
-                    $user_query = $_GET['query'];
-                    $user_query = filter_var($user_query, FILTER_SANITIZE_URL);
-                    $query = "SELECT COUNT(song_id) FROM song 
-                              WHERE 
-                                LOWER(judul) LIKE CONCAT('%', LOWER(:user_query), '%')
-                                OR
-                                LOWER(penyanyi) LIKE CONCAT('%', LOWER(:user_query), '%')
-                                OR
-                                EXTRACT(YEAR FROM tanggal_terbit) = :user_query_number";
-                    $this->db->query($query);
-                    $this->db->bind(':user_query', $user_query);
-                    $this->db->bind(':user_query_number', (int) preg_replace('/\D/', '', $user_query));
-                    $result['count'] = $this->db->single_result()['count'];
-
-                    $query = "SELECT * FROM song 
-                              WHERE 
-                                LOWER(judul) LIKE CONCAT('%', LOWER(:user_query), '%')
-                                OR
-                                LOWER(penyanyi) LIKE CONCAT('%', LOWER(:user_query), '%')
-                                OR
-                                EXTRACT(YEAR FROM tanggal_terbit) = :user_query_number
-                              ORDER BY judul 
-                              ASC LIMIT 10";
-                    $this->db->query($query);
-                    $this->db->bind(':user_query', $user_query);
-                    $this->db->bind(':user_query_number', (int) preg_replace('/\D/', '', $user_query));
-                    $result['data'] = $this->db->multi_result();
+                $query = "SELECT COUNT(song_id) FROM song WHERE ";
+                if ($genre != '') {
+                    $query = $query . "LOWER(genre) = :genre AND ";
                 }
+                $query =  $query . 
+                "(LOWER(judul) LIKE CONCAT('%', LOWER(:user_query), '%')
+                OR
+                LOWER(penyanyi) LIKE CONCAT('%', LOWER(:user_query), '%')
+                OR
+                EXTRACT(YEAR FROM tanggal_terbit) = :user_query_number)";
+                $this->db->query($query);
+                $this->db->bind(':user_query', $user_query);
+                $this->db->bind(':user_query_number', (int) preg_replace('/\D/', '', $user_query));
+                if ($genre != '') {
+                    $this->db->bind(':genre', $genre);    
+                }
+                $result['count'] = $this->db->single_result()['count'];
+                
+                $query = "SELECT * FROM song WHERE ";
+                if ($genre != '') {
+                    $query = $query . "LOWER(genre) = :genre AND ";
+                    $this->db->bind(':genre', $genre);
+                }
+                $query =  $query . 
+                "(LOWER(judul) LIKE CONCAT('%', LOWER(:user_query), '%')
+                OR
+                LOWER(penyanyi) LIKE CONCAT('%', LOWER(:user_query), '%')
+                OR
+                EXTRACT(YEAR FROM tanggal_terbit) = :user_query_number)
+                ORDER BY judul ASC 
+                OFFSET :page LIMIT 10";
+                $this->db->query($query);
+                $this->db->bind(':user_query', $user_query);
+                $this->db->bind(':user_query_number', (int) preg_replace('/\D/', '', $user_query));
+                $this->db->bind(':page', ($page - 1) * 10);
+                if ($genre != '') {
+                    $this->db->bind(':genre', $genre);    
+                }
+                $result['data'] = $this->db->multi_result();
             } catch ( error $e ) {
                 echo 'ERROR!';
                 $result = NULL;
