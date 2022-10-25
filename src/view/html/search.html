@@ -17,8 +17,12 @@
         Showing results <b>{start}-{stop}</b> of <b>{total}</b>
       </span>
       <div class="songs-pagination-sort">
-        <button><img src="./view/assets/img/judul_desc.png" /></button>
-        <button><img src="./view/assets/img/tahun_asc.png" /></button>
+        <button id="sort_judul" value="ASC" onclick="updateSortJudul()">
+          <img id="sort_judul_img" src="./view/assets/img/judul_asc.png" />
+        </button>
+        <button id="sort_tahun" value="" onclick="updateSortTahun()">
+          <img id="sort_tahun_img" src="./view/assets/img/tahun.png" />
+        </button>
       </div>
     </div>
     <ol class="songs-list" id="songs-list">
