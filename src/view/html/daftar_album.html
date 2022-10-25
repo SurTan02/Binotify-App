@@ -1,0 +1,19 @@
+<body>
+  <div class="songs">
+    <h2 class="songs-header">Albums</h2>
+    <div class="songs-pagination">
+      <span
+        class="songs-pagination-information"
+        id="songs-pagination-information"
+      >
+        Showing results <b>{start}-{stop}</b> of <b>{total}</b>
+      </span>
+    </div>
+    <ol class="songs-list" id="songs-list">
+      {song_list}
+    </ol>
+    <ol class="songs-pagination-pages" id="songs-pagination-pages">
+      {pagination}
+    </ol>
+  </div>
+</body>
