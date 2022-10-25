@@ -22,9 +22,5 @@
                                   'genre_img_path' => $genre_result['image_path']];
         }
     }
-
-    $user_query = $_GET['query'];
-    $user_query = filter_var($user_query, FILTER_SANITIZE_URL);
-
-    $song_results = $db->getSongByJudulPenyanyiTahun($user_query, 1, "");
+    
 ?>

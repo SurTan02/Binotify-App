@@ -49,9 +49,11 @@
             return $result;
         }
 
-        public function getSongByJudulPenyanyiTahun($user_query, $page, $genre) {
+        public function getSongByJudulPenyanyiTahun($user_query, $page, $genre, $judul, $tahun) {
             $result;
             try {
+                $user_query = filter_var($user_query, FILTER_SANITIZE_URL);
+
                 $query = "SELECT COUNT(song_id) FROM song WHERE ";
                 if ($genre != '') {
                     $query = $query . "LOWER(genre) = :genre AND ";
@@ -75,14 +77,17 @@
                     $query = $query . "LOWER(genre) = :genre AND ";
                     $this->db->bind(':genre', $genre);
                 }
-                $query =  $query . 
+                $query = $query . 
                 "(LOWER(judul) LIKE CONCAT('%', LOWER(:user_query), '%')
                 OR
                 LOWER(penyanyi) LIKE CONCAT('%', LOWER(:user_query), '%')
                 OR
                 EXTRACT(YEAR FROM tanggal_terbit) = :user_query_number)
-                ORDER BY judul ASC 
-                OFFSET :page LIMIT 10";
+                ORDER BY judul " . $judul . " ";
+                if ($tahun != '') {
+                    $query = $query . ", tanggal_terbit " . $tahun . " ";
+                }
+                $query = $query . "OFFSET :page LIMIT 10";
                 $this->db->query($query);
                 $this->db->bind(':user_query', $user_query);
                 $this->db->bind(':user_query_number', (int) preg_replace('/\D/', '', $user_query));
@@ -92,7 +97,7 @@
                 }
                 $result['data'] = $this->db->multi_result();
             } catch ( error $e ) {
-                echo 'ERROR!';
+                echo $e;
                 $result = NULL;
             }
             return $result;

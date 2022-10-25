@@ -37,9 +37,11 @@ const __pagination = (page, total) => {
   return arr;
 };
 
-function loadSong(page = 1) {
+async function loadSong(page = 1) {
   const query = location.search.split("query=")[1];
   const genre = document.querySelector('input[name="genre"]:checked').value;
+  const judul = document.getElementById("sort_judul").value;
+  const tahun = document.getElementById("sort_tahun").value;
 
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {
@@ -86,8 +88,6 @@ function loadSong(page = 1) {
         pagination += `<li>←</li>`;
       }
 
-      console.log(pages);
-
       for (let i = 0; i < pages.length; i++) {
         if (pages[i] === "") {
         } else if (pages[i] === page) {
@@ -111,7 +111,56 @@ function loadSong(page = 1) {
 
   xhr.open("POST", "./view/js/ajax/search.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhr.send("query=" + query + "&genre=" + genre + "&page=" + page);
+  xhr.send(
+    "query=" +
+      query +
+      "&genre=" +
+      genre +
+      "&page=" +
+      page +
+      "&judul=" +
+      judul +
+      "&tahun=" +
+      tahun
+  );
 }
+
+const updateSortJudul = async () => {
+  try {
+    await loadSong();
+
+    const judul = document.getElementById("sort_judul").value;
+
+    if (judul === "ASC") {
+      document.getElementById("sort_judul_img").src =
+        "./view/assets/img/judul_desc.png";
+      document.getElementById("sort_judul").value = "DESC";
+    } else {
+      document.getElementById("sort_judul_img").src =
+        "./view/assets/img/judul_asc.png";
+      document.getElementById("sort_judul").value = "ASC";
+    }
+  } catch (e) {}
+};
+
+const updateSortTahun = async () => {
+  loadSong().then(() => {
+    const tahun = document.getElementById("sort_tahun").value;
+
+    if (tahun === "") {
+      document.getElementById("sort_tahun_img").src =
+        "./view/assets/img/tahun_asc.png";
+      document.getElementById("sort_tahun").value = "ASC";
+    } else if (tahun === "ASC") {
+      document.getElementById("sort_tahun_img").src =
+        "./view/assets/img/tahun_desc.png";
+      document.getElementById("sort_tahun").value = "DESC";
+    } else if (tahun === "DESC") {
+      document.getElementById("sort_tahun_img").src =
+        "./view/assets/img/tahun.png";
+      document.getElementById("sort_tahun").value = "";
+    }
+  });
+};
 
 document.onload = loadSong();
