@@ -1,9 +1,32 @@
 <?php
+session_start();
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/Song.php';
+require_once $_SERVER['DOCUMENT_ROOT'] .'/app/model/User.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/helper/cookies.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/helper/session.php';
 
-  require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/Song.php';
+// Get the user's id.
+$idUser = validateAuthCookie($_COOKIE);
 
+$user = new User();
+$isAdmin = $user->getRoleById($idUser);
+
+// if session["login"] is not set, use guest header
+if (!isset($_SESSION["login"]) || !$_SESSION["login"]) {
+ $header_html = file_get_contents('./view/html/components/header_guest.html');
+} 
+
+if ($isAdmin) {
+  echo "You are admin";
   $header_html = file_get_contents('./view/html/components/header_admin.html');
-    
+}
+// else if not admin but l
+else if ($isAdmin == false && isset($_SESSION["login"])) {
+  echo "You are not admin";
+  $header_html = file_get_contents('./view/html/components/header_user.html');
+}
+
+
   $head_html = file_get_contents('./view/html/templates/head.html');
   $home_html = file_get_contents("view/html/home.html");
   $foot_html = file_get_contents('./view/html/templates/foot.html');
