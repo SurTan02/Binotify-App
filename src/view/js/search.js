@@ -130,7 +130,7 @@ const updateSortJudul = () => {
 
   if (judul === "ASC") {
     document.getElementById("sort_judul_img").src =
-      "./view/assets/img/judul_desc.png";
+      "./view/assets/img/judul.png";
     document.getElementById("sort_judul").value = "DESC";
   } else {
     document.getElementById("sort_judul_img").src =
