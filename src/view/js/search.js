@@ -1,3 +1,42 @@
+const __pagination = (page, total) => {
+  let arr = Array.from({ length: total }, (_, i) => i + 1);
+  if (total < 8) {
+    // Do Nothing
+  } else {
+    const n = page - 1;
+    if (n < 2) {
+      arr[5] = "...";
+      for (let i = 6; i < total - 1; i++) {
+        arr[i] = "";
+      }
+    } else if (total - n <= 2) {
+      arr[total - 6] = "...";
+      for (let i = 1; i < total - 6; i++) {
+        arr[i] = "";
+      }
+    } else {
+      for (let i = 1; i < total - 1; i++) {
+        if (
+          n - 2 === i ||
+          n - 1 === i ||
+          n === i ||
+          n + 1 === i ||
+          n + 2 === i
+        ) {
+          // Do Nothing
+        } else if (n - 3 === i && i >= 1) {
+          arr[i] = "...";
+        } else if (n + 3 === i && i <= total - 1) {
+          arr[i] = "...";
+        } else {
+          arr[i] = "";
+        }
+      }
+    }
+  }
+  return arr;
+};
+
 function loadSong(page = 1) {
   const query = location.search.split("query=")[1];
   const genre = document.querySelector('input[name="genre"]:checked').value;
@@ -39,17 +78,24 @@ function loadSong(page = 1) {
 
       let pagination = "";
       const total_page = Math.ceil(response.count / 10);
+      const pages = __pagination(page, total_page);
+
       if (page != 1) {
         pagination += `<li onclick="loadSong(${page - 1})">←</li>`;
       } else {
         pagination += `<li>←</li>`;
       }
 
-      for (let i = 1; i <= total_page; i++) {
-        if (page == i) {
-          pagination += `<li class="page-active" onclick="loadSong(${i})">${i}</li>`;
+      console.log(pages);
+
+      for (let i = 0; i < pages.length; i++) {
+        if (pages[i] === "") {
+        } else if (pages[i] === page) {
+          pagination += `<li class="page-active">${pages[i]}</li>`;
+        } else if (pages[i] === "...") {
+          pagination += `<li>...</li>`;
         } else {
-          pagination += `<li onclick="loadSong(${i})">${i}</li>`;
+          pagination += `<li onclick="loadSong(${pages[i]})">${pages[i]}</li>`;
         }
       }
 
@@ -67,3 +113,5 @@ function loadSong(page = 1) {
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.send("query=" + query + "&genre=" + genre + "&page=" + page);
 }
+
+document.onload = loadSong();
