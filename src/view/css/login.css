@@ -25,7 +25,7 @@
   width: 100%;
   border: none;
 
-  background-color: #CCCCCC;
+  background-color: #cccccc;
   height: 2px;
   border-radius: 30%;
 
@@ -122,4 +122,18 @@
 .register_container a {
   color: #1db954;
   margin-left: 5px;
+}
+
+.guest_container {
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-style: oblique;
+  font-weight: 500;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.guest_container a {
+  color: #1db954;
 }
