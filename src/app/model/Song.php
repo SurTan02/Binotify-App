@@ -42,7 +42,7 @@
                 $query = "SELECT genre, MIN(image_path) AS image_path FROM song GROUP BY genre";
                 $this->db->query($query);
                 $result = $this->db->multi_result();
-            } catch ( eror $e ) {
+            } catch ( error $e ) {
                 echo 'ERROR!';
                 $result = NULL;
             }
