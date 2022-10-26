@@ -78,6 +78,33 @@
             }
             return $result;
         }
+
+        public function addAlbum($data){
+            
+            // Must have component
+            if (!isset($data['title']) || !isset($data['tanggal'])  ||
+                !isset($data['penyanyi'])  ||
+                !isset($data['genre']) || !isset($data['image_path'])) {
+                return false;
+            } 
+
+            try {
+                $this->db->query("INSERT INTO $this->table (judul, penyanyi, genre, tanggal_terbit, image_path, total_duration)
+                                  VALUES (:judul, :penyanyi, :genre, :tanggal_terbit, :image_path, :duration)");
+                $this->db->bind(':judul', $data['title']);
+                $this->db->bind(':penyanyi', $data['penyanyi']);
+                $this->db->bind(':genre', $data['genre']);
+                $this->db->bind(':tanggal_terbit', $data['tanggal']);
+                $this->db->bind(':image_path', $data['image_path']);
+                $this->db->bind(':duration', 0);
+                
+                $this->db->execute();
+                return true;
+            } catch (error $e) {
+                //throw $th;
+                return false;
+            }
+        }
     }
 
 ?>
