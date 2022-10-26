@@ -88,6 +88,25 @@
       }
     }
 
+    // get all user for pagination
+    public function getAllUser($page){
+      $result;
+      try {
+        $query = "SELECT COUNT(user_id) FROM $this->table";
+        $this->db->query($query);
+        $result['count'] = $this->db->single_result()['count'];
+
+        $query = "SELECT * FROM $this->table ORDER BY user_id ASC OFFSET :page LIMIT 10";
+        $this->db->query($query);
+        $this->db->bind(':page', ($page - 1) * 10);
+        $result['data'] = $this->db->multi_result();
+      }
+      catch(PDOException $e){
+        echo "Error get all user";
+        $result = NULL;
+      }
+      return $result;
+    }
     public function isValidUsername($username){
       try{
         if(preg_match('/^[a-zA-Z0-9]{5,}$/', $username)){

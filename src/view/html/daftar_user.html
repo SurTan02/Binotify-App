@@ -11,7 +11,8 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/daftar_user.css" />
+
+    <link rel="stylesheet" href="./daftar_user.css" />
     <link rel="stylesheet" href="{css2}" />
     <link rel="stylesheet" href="{css3}" />
     <link rel="stylesheet" href="{css4}" />
@@ -21,41 +22,29 @@
   <body></body>
 </html>
 <body>
-  <table>
-    <thead>
-      <tr>
-        <th>N</th>
-        <th>The Laid Back</th>
-        <th>The Worker Bee</th>
-        <th>The Chair 4/2</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <th>Width</th>
-        <td>80 cm</td>
-        <td>60 cm</td>
-        <td>220 cm</td>
-      </tr>
-      <tr>
-        <th>Height</th>
-        <td>100 cm</td>
-        <td>110 cm</td>
-        <td>90 cm</td>
-      </tr>
-      <tr>
-        <th>Depth</th>
-        <td>70 cm</td>
-        <td>65 cm</td>
-        <td>80 cm</td>
-      </tr>
-      <tr>
-        <th>Weight</th>
-        <td>16 kg</td>
-        <td>22 kg</td>
-        <td>80 kg</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="main-container">
+    <div class="header-container">
+      <div class="horizontal-line"></div>
+      <div class="title-container">
+        <h1>Daftar User</h1>
+      </div>
+      <div class="users">
+        <div class="users-pagination">
+          <span
+            class="users-pagination-information"
+            id="users-pagination-information"
+          >
+            Showing results <b>{start}-{stop}</b> of <b>{total}</b>
+          </span>
+        </div>
+        <ol class="users-list" id="users-list">
+          {user_list}
+        </ol>
+        <ol class="users-pagination-pages" id="users-pagination-pages">
+          {pagination}
+        </ol>
+      </div>
+    </div>
+  </div>
 </body>
+<script src="./daftar_user.js"></script>
