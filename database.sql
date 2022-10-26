@@ -117,7 +117,7 @@ ALTER TABLE ONLY public.user
 --
 
 ALTER TABLE ONLY public.Song
-    ADD CONSTRAINT fk_album_id FOREIGN KEY (album_id) REFERENCES public.Album(album_id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_album_id FOREIGN KEY (album_id) REFERENCES public.Album(album_id) ON DELETE SET NULL;
 
 
 --
