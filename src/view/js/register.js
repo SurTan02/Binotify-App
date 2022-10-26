@@ -52,7 +52,7 @@ input_username.addEventListener("change", function () {
       else {
         isInputValid.username = false;
         input_username.style.borderColor = "#ff0000";
-        error_username.innerHTML = "Username must contain only letters and numbers";
+        error_username.innerHTML = "Username must contain only letters, numbers and underscore";
         error_username.style.color = "#ff0000";
         error_username.style.fontFamily = "inter";
         error_username.style.fontSize = "12px";
