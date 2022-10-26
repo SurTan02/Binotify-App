@@ -3,23 +3,21 @@
     class Song {
         private $table; 
         private $db; 
-        private $song_id; 
 
-        public function __construct($song_id) {
+        public function __construct() {
             $this->table = "song";
             $this->db = new Database();
-            $this->song_id = $song_id;
         }
 
-        public function getSongById() {
+        public function getSongById($songId) {
             try{
-                $query = $this->db->query("SELECT * FROM $this->table WHERE song_id = '$this->song_id'");
+                $query = $this->db->query("SELECT * FROM $this->table WHERE song_id = '$songId'");
                 $result = $this->db->single_result();
                 
                 if ($result["album_id"]){
                     $query = $this->db->query("SELECT * FROM $this->table LEFT JOIN (
                         SELECT album_id, judul as judul_album from album
-                    )as A USING(album_id) WHERE song_id = '$this->song_id'");
+                    )as A USING(album_id) WHERE song_id = '$songId'");
                     $result = $this->db->single_result();
                 }
             } catch ( error $e ) {
