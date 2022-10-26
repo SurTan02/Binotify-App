@@ -111,19 +111,13 @@
         }
 
         public function editLagu($data){
-            if (!isset($data['edit_title']) || !isset($data['edit_penyanyi']) || 
-                !isset($data['edit_genre']) || !isset($data['edit_tanggal'])  ||
-                !isset($data['edit_album']) || !isset($data['edit_audio_path']) ||
-                !isset($data['edit_image_path'])) {
-                
-                return false;
-            }
+            
 
             try{
                 $this->db->query("UPDATE song set   title = :title, penyanyi=:penyanyi, genre=:genre
                                                     tanggal=:tanggal, album=:album, audio_path=:audio_path
                                                     image_path=:image_path
-                                  WHERE song_id = $this->song_id");
+                                  WHERE song_id = $songId");
                 $this->db->bind(':title', $data['edit_title']);
                 $this->db->bind(':penyanyi', $data['edit_penyanyi']);
                 $this->db->bind(':genre', $data['edit_genre']);
@@ -167,5 +161,34 @@
             }
             return $result;
         }
+
+        public function addSong($data){
+            
+            // Must have component
+            if (!isset($data['title']) || !isset($data['tanggal'])  ||
+                !isset($data['duration']) || !isset($data['audio_path'])) {
+                return false;
+            } 
+
+            try {
+                $this->db->query("INSERT INTO $this->table (judul, penyanyi, genre, tanggal_terbit, audio_path, image_path, duration)
+                                  VALUES (:judul, :penyanyi, :genre, :tanggal_terbit, :audio_path, :image_path, :duration)");
+                $this->db->bind(':judul', $data['title']);
+                $this->db->bind(':penyanyi', $data['penyanyi']);
+                $this->db->bind(':genre', $data['genre']);
+                $this->db->bind(':tanggal_terbit', $data['tanggal']);
+                $this->db->bind(':album', $data['album']);
+                $this->db->bind(':audio_path', $data['audio_path']);
+                $this->db->bind(':image_path', $data['image_path']);
+                $this->db->bind(':duration', $data['duration']);
+                
+                $this->db->execute();
+                return true;
+            } catch (error $e) {
+                //throw $th;
+                return false;
+            }
+        }
+
     }
 ?>
