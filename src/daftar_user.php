@@ -3,20 +3,24 @@ session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] .'/app/model/User.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/helper/cookies.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/helper/session.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/app/middlewares/auth_middleware.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/handlers/header_handler.php';
 
 
-// $idUser = validateAuthCookie();
+$idUser = validateAuthCookie($_COOKIE);
 
-$userDB = new User();
-// $isAdmin = $user->getRoleById($idUser);
 
-// if ($isAdmin != 1) {
-//   header("location: ./index.php");
-//   exit;
-// }
+$user = new User();
+$isAdmin = $user->getRoleById($idUser);
+$username = $user->getUsernameById($idUser);
 
-$header_html = file_get_contents('./view/html/components/header_admin.html');
+if ($isAdmin != 1) {
+  header("location: ./index.php");
+  exit;
+}
+
+// if session["login"] is not set, use guest header
+$isSetSession = isset($_SESSION["login"]);
+$header_html = getHeader($isAdmin, $isSetSession, $username);
 
 $head_html = file_get_contents('./view/html/templates/head.html');
 

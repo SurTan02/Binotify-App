@@ -3,17 +3,20 @@
     require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/Song.php';
     require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/User.php';
     require_once $_SERVER['DOCUMENT_ROOT'].'/app/helper/cookies.php';
-    require_once $_SERVER['DOCUMENT_ROOT'].'/app/middlewares/auth_middleware.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/app/handlers/header_handler.php';
     $idUser = validateAuthCookie($_COOKIE);
     $user = new User();
     $isAdmin = $user->getRoleById($idUser);
+    $username = $user->getUsernameById($idUser);
     
     // if session["login"] is not set, use guest header
     $isSetSession = isset($_SESSION["login"]);
-    $header_html = authUser($isAdmin, $isSetSession);
+    $header_html = getHeader($isAdmin, $isSetSession, $username);
 
-    $header_html = str_replace('{css1}', '/view/css/components/header.css', $header_html);
-    $header_html = str_replace('{css2}', '/view/css/detail_lagu.css', $header_html);
+    $head_html = file_get_contents('./view/html/templates/head.html');
+
+    $head_html = str_replace('{css1}', '/view/css/components/header.css', $head_html);    
+    $head_html = str_replace('{css2}', '/view/css/detail_lagu.css', $head_html);
     
     // BODY HTML 
     $detail_lagu_html = file_get_contents('./view/html/detail_lagu.html');
@@ -57,7 +60,8 @@
             $header_html = str_replace('{title}', "404", $header_html);
             $content_page_html =  "404";
         }
-        echo $header_html; 
+        echo $head_html;
+        echo $header_html;
         echo $content_page_html; 
         echo $foot_html;
 ?>

@@ -25,7 +25,19 @@
         return $result;
       }
       catch(PDOException $e){
-        echo "Error user id gaada";
+      }
+    }
+
+    // get username by user_id
+    public function getUsernameById($user_id){
+      try{
+        $this->query = "SELECT username FROM $this->table WHERE user_id = :user_id";
+        $this->db->query($this->query);
+        $this->db->bind(':user_id', $user_id);
+        $result = $this->db->single_result();
+        return $result['username'];
+      }
+      catch(PDOException $e){
       }
     }
 
