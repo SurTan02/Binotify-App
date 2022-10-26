@@ -112,25 +112,44 @@
 
         public function editLagu($data){
             
+            // Must have component
+            if (!isset($data['title']) || !isset($data['tanggal'])) {
+                return false;
+            }
+            
+            $data_before = $this->getSongById($data['song_id']);
+            // Set unchanged attributes
+            if (!isset($data['image_path']) || ($data['image_path']) == ''){
+                $data['image_path'] = $data_before['image_path'];
+            }
+            if (!isset($data['audio_path']) || ($data['audio_path']) == ''){
+                $data['audio_path'] = $data_before['audio_path'];
+            }
+            if (($data['duration'] == 0)){
+                $data['duration'] = $data_before['duration'];
+            }
 
             try{
-                $this->db->query("UPDATE song set   title = :title, penyanyi=:penyanyi, genre=:genre
-                                                    tanggal=:tanggal, album=:album, audio_path=:audio_path
-                                                    image_path=:image_path
-                                  WHERE song_id = $songId");
-                $this->db->bind(':title', $data['edit_title']);
-                $this->db->bind(':penyanyi', $data['edit_penyanyi']);
-                $this->db->bind(':genre', $data['edit_genre']);
-                $this->db->bind(':tanggal', $data['edit_tanggal']);
-                $this->db->bind(':album', $data['edit_album']);
-                $this->db->bind(':audio_path', $data['edit_audio_path']);
-                $this->db->bind(':image_path', $data['edit_image_path']);
+                $this->db->query("UPDATE song set   judul = :title, genre=:genre, 
+                                                    tanggal_terbit=:tanggal, album_id=:album, audio_path=:audio_path, 
+                                                    image_path=:image_path, duration =:duration
+                                  WHERE song_id = :song_id");
+
+                $this->db->bind(':title', $data['title']);
+                $this->db->bind(':genre', $data['genre']);
+                $this->db->bind(':tanggal', $data['tanggal']);
+                $this->db->bind(':album', $data['album']);
+                $this->db->bind(':audio_path', $data['audio_path']);
+                $this->db->bind(':image_path', $data['image_path']);
+                $this->db->bind(':duration', $data['duration']);
+                $this->db->bind(':song_id', $data['song_id']);
                 $this->db->execute();
-                
+                return true;
                 // $result = $this->db->single_result();
                 // return $result;
             }catch(Error $e){
                 echo $e;
+                return false;
             }
         }
 
@@ -171,8 +190,8 @@
             } 
 
             try {
-                $this->db->query("INSERT INTO $this->table (judul, penyanyi, genre, tanggal_terbit, audio_path, image_path, duration)
-                                  VALUES (:judul, :penyanyi, :genre, :tanggal_terbit, :audio_path, :image_path, :duration)");
+                $this->db->query("INSERT INTO $this->table (judul, penyanyi, genre, tanggal_terbit, album_id, audio_path, image_path, duration)
+                                  VALUES (:judul, :penyanyi, :genre, :tanggal_terbit, :album, :audio_path, :image_path, :duration)");
                 $this->db->bind(':judul', $data['title']);
                 $this->db->bind(':penyanyi', $data['penyanyi']);
                 $this->db->bind(':genre', $data['genre']);

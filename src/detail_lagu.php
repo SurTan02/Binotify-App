@@ -33,8 +33,9 @@
                 $detail_lagu_html = str_replace('{penyanyi}', $result['penyanyi'], $detail_lagu_html);
                 $detail_lagu_html = str_replace('{tanggal_terbit}', $result['tanggal_terbit'], $detail_lagu_html);
                 $detail_lagu_html = str_replace('{genre}', $result['genre'], $detail_lagu_html);
+                $detail_lagu_html = str_replace('{album}', $result['album_id'], $detail_lagu_html);
                 $detail_lagu_html = str_replace('{audio_path}',  $result['audio_path'] , $detail_lagu_html);
-                $detail_lagu_html = str_replace('{image_path}',  "/". $result['image_path'] , $detail_lagu_html);
+                $detail_lagu_html = str_replace('{image_path}',  $result['image_path'] , $detail_lagu_html);
 
                 if ($result['album_id']){
                     $detail_lagu_html = str_replace('{judul_album}',  $result['judul_album'] , $detail_lagu_html);
