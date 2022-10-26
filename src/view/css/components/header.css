@@ -50,7 +50,7 @@ header .main-container {
   padding: 10px 10px;
   font-size: 18px;
   margin-left: 50px;
-  border-radius: 50px 0px 0px 50px;
+  border-radius: 50px 50px 50px 50px;
 }
 
 .search-container input[type="text"]::placeholder {
@@ -72,6 +72,7 @@ header .main-container {
 }
 
 .search-container input[type="button"] {
+  display: none;
   font-family: "Inter", sans-serif;
   color: #ffffff;
   float: left;
@@ -169,4 +170,12 @@ header .main-container {
   cursor: pointer;
   box-shadow: 0px 4px 20px 0px rgba(255, 255, 255, 0.2);
   transform: scale(1.1);
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  font-family: inter;
+  font-weight: bold;
 }

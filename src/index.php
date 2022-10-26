@@ -4,17 +4,18 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/Song.php';
 require_once $_SERVER['DOCUMENT_ROOT'] .'/app/model/User.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/helper/cookies.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/helper/session.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/app/middlewares/auth_middleware.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/handlers/header_handler.php';
 
 // Get the user's id.
 $idUser = validateAuthCookie($_COOKIE);
 
 $user = new User();
 $isAdmin = $user->getRoleById($idUser);
+$username = $user->getUsernameById($idUser);
 
 // if session["login"] is not set, use guest header
 $isSetSession = isset($_SESSION["login"]);
-$header_html = authUser($isAdmin, $isSetSession);
+$header_html = getHeader($isAdmin, $isSetSession, $username);
 
 
 $head_html = file_get_contents('./view/html/templates/head.html');

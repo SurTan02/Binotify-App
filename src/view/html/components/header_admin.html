@@ -24,7 +24,9 @@
 <header>
   <div class="main-container">
     <div class="logo-container">
-      <img src="../view/assets/img/Icon_white.svg" id="logo" />
+      <a href="index.php">
+        <img src="../view/assets/img/Icon_white.svg" id="logo"
+      /></a>
       <!-- <img src="../../assets/img/Icon_white.svg" id="logo" /> -->
     </div>
     <div class="search-container">
@@ -45,18 +47,22 @@
       </form>
     </div>
     <div class="nav-container">
-      <a href="">
+      <a href="daftar_user.php">
+        <div class="nav-button">List User</div>
+      </a>
+      <a href="tambah_lagu.php">
         <div class="nav-button">Add Song</div>
       </a>
       <a href="">
         <div class="nav-button">Add Album</div>
       </a>
-      <a href="">
+      <a href="daftar_album.php">
         <div class="nav-button">List Album</div>
       </a>
       <a href="./logout.php">
         <button class="logout-button">Logout</button>
       </a>
+      <div class="profile">{username}</div>
     </div>
   </div>
 </header>
