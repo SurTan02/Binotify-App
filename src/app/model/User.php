@@ -109,21 +109,17 @@
     }
     public function isValidUsername($username){
       try{
-        if(preg_match('/^[a-zA-Z0-9]{5,}$/', $username)){
-          $this->query = "SELECT * FROM $this->table WHERE username = :username";
-          $this->db->query($this->query);
-          $this->db->bind(':username', $username);
-          $result = $this->db->single_result();
-          if($result){
-            return false;
-          }
-          else{
-            return true;
-          }
-        }
-        else{
+        $this->query = "SELECT * FROM $this->table WHERE username = :username";
+        $this->db->query($this->query);
+        $this->db->bind(':username', $username);
+        $result = $this->db->single_result();
+        if($result){
           return false;
         }
+        else{
+          return true;
+        }
+      
       }
       catch(PDOException $e){
         echo "Error username gaada";

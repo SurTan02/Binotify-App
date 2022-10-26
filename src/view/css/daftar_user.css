@@ -42,6 +42,7 @@ body {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+  gap: 10px;
   color: white;
   font-family: "Inter", sans-serif;
 }
@@ -50,22 +51,39 @@ body {
   list-style-type: none;
 }
 
-.user {
-  display: flex;
-  flex-direction: row;
-  gap: 16px;
-  align-items: center;
+.table-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  text-align: center;
+  font-weight: bold;
 }
 
 .user-information {
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  margin-top: 8px;
 }
 
+.user-information > span {
+  font-weight: bold;
+  text-align: center;
+}
+
+.user-information > div {
+  text-align: center;
+}
 .users-pagination-pages {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  gap: 8px;
+  font-weight: bold;
   margin-top: 20px;
+}
+
+.users-pagination-pages li:hover {
+  cursor: pointer;
+  color: rgba(30, 215, 97, 255);
+  background-color: rgb(255, 255, 255);
+  border-radius: 100%;
 }

@@ -55,7 +55,6 @@ function loadUsers(page = 1) {
           role = "Admin";
         }
         user_list += `<li class="list-user">
-          <div class="user" >
             <div class="user-information">
               <span>${start + idx}</span>
               <div class="user-id">${user.user_id}</div>
@@ -63,7 +62,6 @@ function loadUsers(page = 1) {
               <div class="user-email">${user.email}</div>
               <div class="user-role">${role}</div>
             </div>
-          </div>
         </li > `;
       });
       document.getElementById("users-list").innerHTML = user_list;
@@ -73,9 +71,8 @@ function loadUsers(page = 1) {
       const pages = __pagination(page, total_page);
 
       if (page != 1) {
-        pagination += `< li onclick = "loadUsers(${page - 1})" ><< /li>`;
-      }
-      else {
+        pagination += `<li onclick="loadUsers(${page - 1})">←</li>`;
+      } else {
         pagination += `<li>←</li>`;
       }
 
@@ -95,7 +92,7 @@ function loadUsers(page = 1) {
       }
 
       if (page != total_page) {
-        pagination += `<li onclick="loadUsers(${page + 1})">></li>`;
+        pagination += `<li onclick="loadUsers(${page + 1})">→</li>`;
       }
       else {
         pagination += `<li>→</li>`;

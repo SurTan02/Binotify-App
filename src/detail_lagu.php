@@ -29,7 +29,7 @@
             $songId = $_GET['song_id'];
 
             // Get Song with id - song_id
-            $lagu = new Song($songId);
+            $lagu = new Song();
             $result = $lagu->getSongById($songId);
 
             if($result){
@@ -39,7 +39,7 @@
                 $detail_lagu_html = str_replace('{tanggal_terbit}', $result['tanggal_terbit'], $detail_lagu_html);
                 $detail_lagu_html = str_replace('{genre}', $result['genre'], $detail_lagu_html);
                 $detail_lagu_html = str_replace('{audio_path}',  $result['audio_path'] , $detail_lagu_html);
-                $detail_lagu_html = str_replace('{image_path}',  $result['image_path'] , $detail_lagu_html);
+                $detail_lagu_html = str_replace('{image_path}',  "/". $result['image_path'] , $detail_lagu_html);
 
                 if ($result['album_id']){
                     $detail_lagu_html = str_replace('{judul_album}',  $result['judul_album'] , $detail_lagu_html);
