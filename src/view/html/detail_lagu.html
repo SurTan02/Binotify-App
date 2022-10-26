@@ -31,39 +31,41 @@
                     <form id="edit_form">
 
                         <div class="input_container">
-                            <label for="edit_title">Judul Lagu</label>
-                            <input type="text" id="edit_title" value={judul_lagu} />
+                            <label for="title">Judul Lagu</label>
+                            <input type="text" id="title" value={judul_lagu} />
                             <div class="error" id="error_title"></div>
                         </div>
 
+                        
+
                         <div class="input_container">
-                            <label for="edit_penyanyi">Penyanyi</label>
-                            <input type="text" id="edit_penyanyi" value={penyanyi} />
-                            <div class="error" id="error_edit_penyanyi"></div>
+                            <label for="genre">Genre</label>
+                            <input type="text" id="genre" value={genre} />
+                            <div class="error" id="error_genre"></div>
                         </div>
 
                         <div class="input_container">
-                            <label for="edit_genre">Genre</label>
-                            <input type="text" id="edit_genre" value={genre} />
-                            <div class="error" id="error_edit_genre"></div>
+                            <label for="album">Album</label>
+                            <input type="text" id="album" value={album} />
+                            <div class="error" id="error_album"></div>
                         </div>
 
                         <div class="input_container">
-                            <label for="edit_tanggal">Tanggal Terbit</label>
-                            <input type="text" id="edit_tanggal" value={tanggal_terbit} />
-                            <div class="error" id="error_edit_tanggal"></div>
+                            <label for="tanggal">Tanggal Terbit</label>
+                            <input type="date" id="tanggal" value={tanggal_terbit} />
+                            <div class="error" id="error_tanggal"></div>
                         </div>
 
                         <div class="input_container">
-                            <label for="edit_audio_path">Audio</label>
-                            <input type="file" id="edit_audio_path"/>
-                            <div class="error" id="error_edit_audio_path"></div>
+                            <label for="audio_path">Audio</label>
+                            <input type="file" id="audio_path"/>
+                            <div class="error" id="error_audio_path"></div>
                         </div>
 
                         <div class="input_container">
-                            <label for="edit_image_path">Song Image</label>
-                            <input type="file" id="edit_image_path"/>
-                            <div class="error" id="error_edit_image_path"></div>
+                            <label for="image_path">Song Image</label>
+                            <input type="file" id="image_path"/>
+                            <div class="error" id="error_image_path"></div>
                         </div>
 
                         <button name="edit_lagu" type="submit">Submit</button>
