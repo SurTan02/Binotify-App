@@ -5,31 +5,6 @@ for (var i=0;i<elems.length;i+=1){
     elems[i].style.display = 'block';
 }
 
-const element = document.getElementById('edit_form');
-element.addEventListener('submit', event => {
-  event.preventDefault();
-  // actual logic, e.g. validate the form
-  let name = uploadHandler("image");
-  // uploadHandler("image");
-  let input_title = document.getElementById("edit_title");
-  let input_penyanyi = document.getElementById("edit_penyanyi");
-  let input_genre = document.getElementById("edit_genre");
-  let input_tanggal = document.getElementById("edit_tanggal");
-  let input_audio = document.getElementById("edit_audio_path");
-  let input_image = document.getElementById("edit_image_path");
-
-  // input_audio.value = "tes";
-  console.log("iki", name);
-  alert(name);
-  
-});
-
-function editLagu(e){
-  e.preventDefault();
-  
-}
-
-
 // Get the modal
 var modal = document.getElementById("myModal");
 var btn = document.getElementById("myBtn");
@@ -45,5 +20,112 @@ span.onclick = function() {
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
+  }
+}
+
+
+const element = document.getElementById('edit_form');
+element.addEventListener('submit', async event => {
+  event.preventDefault();
+  
+  let title = document.getElementById("title");
+  let error_title = document.getElementById("error_title");
+  error_title.innerHTML="";
+
+  let tanggal = document.getElementById("tanggal");
+  let error_tanggal = document.getElementById("error_tanggal");
+  error_tanggal.innerHTML="";
+
+  let audio_path = document.getElementById("audio_path");
+  let error_audio_path = document.getElementById("error_audio_path");
+  error_audio_path.innerHTML="";
+
+  let image_path = document.getElementById("image_path");
+  let error_image_path = document.getElementById("error_image_path");
+  error_image_path.innerHTML="";
+
+  var isSafe = true;
+  if (title.value === ''){
+      error_title.innerHTML="Judul Lagu tidak boleh kosong";
+      isSafe = false;
+  }
+  if (tanggal.value === ''){
+    error_tanggal.innerHTML="Tanggal tidak boleh kosong";
+    isSafe = false;
+  }
+
+  if (isSafe){
+    var audio_response = 0;
+    if (audio_path.files.length > 0){
+      audio_response = await uploadHandler("audio");
+    }
+    var image_response = 0;
+    if (image_path.files.length > 0){
+      image_response = await uploadHandler("image");
+      console.log("ahghagah" , image_response)
+    }
+
+    if (audio_response == 1){
+      var au = document.createElement('audio');
+      au.src = "/view/assets/song/" + audio_path.files[0].name;
+      au.addEventListener('loadedmetadata', function(){
+        editSong(parseInt(au.duration), audio_response, image_response);
+      });
+    } 
+    
+    else{
+      editSong(0, 0 , image_response);
+    }
+    
+  }
+    
+});
+
+
+function editSong(duration = 0, audio_response = 0, image_response = 0){
+  const song_id = location.search.split("song_id=")[1];
+  const title = document.getElementById("title").value;
+  const genre = document.getElementById("genre").value;
+  const album = document.getElementById("album").value;
+  const tanggal = document.getElementById("tanggal").value;
+  let audio_path ="";
+  let image_path ="";
+
+  if (audio_response == 1){
+    audio_path = "/view/assets/song/" + document.getElementById("audio_path").files[0].name;
+    console.log("audio_path")
+  }
+  if (image_response == 1){
+    image_path = "/view/assets/img/" + document.getElementById("image_path").files[0].name;
+  }
+  
+  // console.log(duration, title,penyanyi,genre,album,tanggal,audio_path,image_path);
+
+  if (title !== '' && tanggal !== ''){
+      let xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200){
+          const response = xhr.responseText;
+          // const response = 0;
+          console.log(response);
+          if (response == 1){
+            alert("Lagu berhasil diedit");
+          } else{
+            alert("Lagu gagal diedit");
+          }
+        }
+      }
+      xhr.open("POST", "./view/js/ajax/edit_lagu.php", true);
+      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhr.send(
+      "title=" + title +
+          "&genre=" + genre +
+          "&album=" + album +
+          "&tanggal=" + tanggal +
+          "&audio_path=" + audio_path +
+          "&image_path=" + image_path +
+          "&song_id=" + song_id +
+          "&duration=" + duration
+      );
   }
 }

@@ -1,4 +1,5 @@
-export function uploadHandler(type) {
+export async function uploadHandler(type) {
+  return new Promise((resolve, reject) =>{
     if (type === "image"){
       var error_path = document.getElementById("error_image_path");
       var files = document.getElementById("image_path").files;
@@ -10,6 +11,7 @@ export function uploadHandler(type) {
     }
   
     if(files.length > 0 ){
+        
        var formData = new FormData();
        formData.append("file", files[0]);
   
@@ -24,7 +26,9 @@ export function uploadHandler(type) {
             response = this.responseText;
             error_path.innerHTML="";
             if(response == 1){
+              
               // alert("Upload successfully.");
+              resolve(response);
             } else if(response == 2){
               if (type === "image"){
                 error_path.innerHTML="JPG, JPEG, PNG ONLY";
@@ -34,33 +38,12 @@ export function uploadHandler(type) {
             } else{
               // alert("File not uploaded.");
             }
+            
+            return  response;
           }
        };
        // Send request with data
        xhttp.send(formData);
     }
-  
-}
-
-export function getDuration(src){
-  // Create a non-dom allocated Audio element
-  var au = document.createElement('audio');
-
-  // Define the URL of the MP3 audio file
-  au.src = "/view/assets/song/" + src;
-
-  // Once the metadata has been loaded, display the duration in the console
-  au.addEventListener('loadedmetadata', function(){
-      // Obtain the duration in seconds of the audio file (with milliseconds as well, a float value)
-      var duration = au.duration;
-
-      // example 12.3234 seconds
-
-      // alert("The duration of the song is of: " + duration + " seconds");
-      console.log("GAGAGAA");
-      return duration;
-      // Alternatively, just display the integer value with
-      // parseInt(duration)
-      // 12 seconds
-  },false); 
+  })
 }
