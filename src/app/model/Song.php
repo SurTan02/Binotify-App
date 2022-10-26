@@ -141,5 +141,33 @@
                 echo $e;
             }
         }
+
+        public function getSongsByAlbumID($album_id) {
+            $result;
+            try {
+                $query = "SELECT * FROM song WHERE album_id = :album_id";
+                $this->db->query($query);
+                $this->db->bind(':album_id', $album_id);
+                $result = $this->db->multi_result();
+            } catch ( error ) {
+                echo 'ERROR!';
+                $result = NULL;
+            }
+            return $result;
+        }
+
+        public function setAlbumIDtoNull($id) {
+            $result;
+            try {
+                $query = "UPDATE song SET album_id = NULL WHERE song_id = :id";
+                $this->db->query($query);
+                $this->db->bind(':id', $id);
+                $result = $this->db->single_result();
+            } catch ( error $e ) {
+                echo $e;
+                $result = NULL;
+            }
+            return $result;
+        }
     }
 ?>
