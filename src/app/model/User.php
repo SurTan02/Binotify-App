@@ -25,7 +25,6 @@
         return $result;
       }
       catch(PDOException $e){
-        echo "Error user id gaada";
       }
     }
 
@@ -39,7 +38,6 @@
         return $result['username'];
       }
       catch(PDOException $e){
-        echo "Error user id gaada";
       }
     }
 
