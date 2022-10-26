@@ -1,21 +1,16 @@
 <?php
-    require_once $_SERVER['DOCUMENT_ROOT'].'/app/database.php';
+    session_start();
     require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/Song.php';
     require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/User.php';
     require_once $_SERVER['DOCUMENT_ROOT'].'/app/helper/cookies.php';
-
-    session_start();
-    // Get the user's id.
+    require_once $_SERVER['DOCUMENT_ROOT'].'/app/middlewares/auth_middleware.php';
     $idUser = validateAuthCookie($_COOKIE);
-
     $user = new User();
     $isAdmin = $user->getRoleById($idUser);
-    if ($isAdmin) {
-        $header_html = file_get_contents('./view/html/components/header_admin.html');
-    }
-    else {
-        $header_html = file_get_contents('./view/html/components/header_user.html');
-    }
+    
+    // if session["login"] is not set, use guest header
+    $isSetSession = isset($_SESSION["login"]);
+    $header_html = authUser($isAdmin, $isSetSession);
 
     $header_html = str_replace('{css1}', '/view/css/components/header.css', $header_html);
     $header_html = str_replace('{css2}', '/view/css/detail_lagu.css', $header_html);
