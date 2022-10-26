@@ -1,7 +1,7 @@
 import {uploadHandler} from './uploader.js';
 
 const element = document.getElementById('edit_form');
-element.addEventListener('submit', event => {
+element.addEventListener('submit', async event => {
   event.preventDefault();
   
   let title = document.getElementById("title");
@@ -40,13 +40,15 @@ element.addEventListener('submit', event => {
   } 
 
   if (isSafe){
-    uploadHandler("image");
-    uploadHandler("audio");
-    var au = document.createElement('audio');
-    au.src = "/view/assets/song/" + audio_path.files[0].name;
-    au.addEventListener('loadedmetadata', function(){
-        addSong(parseInt(au.duration));
-    });
+    let image_response = await uploadHandler("image");
+    let audio_response = await uploadHandler("audio");
+    if (image_response == 1 && audio_response == 1){
+      var au = document.createElement('audio');
+      au.src = "/view/assets/song/" + audio_path.files[0].name;
+      au.addEventListener('loadedmetadata', function(){
+          addSong(parseInt(au.duration));
+      });
+    }
   }
     
 });
