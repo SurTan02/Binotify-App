@@ -42,23 +42,24 @@
             return $result;
         }
 
-        public function updateAlbum($id, $judul, $penyanyi, $image_path, $tanggal_terbit, $genre) {
+        public function updateAlbum($id, $judul, $image_path, $tanggal_terbit, $genre) {
             $result;
             try {
                 $query = "UPDATE album 
-                          SET   ( judul,  penyanyi,  image_path,  tanggal_terbit,  genre) 
-                          VALUE (:judul, :penyanyi, :image_path, :tanggal_terbit, :genre) 
+                          SET judul = :judul,  
+                              image_path = :image_path,
+                              tanggal_terbit = :tanggal_terbit,
+                              genre = :genre
                           WHERE album_id = :album_id";
                 $this->db->query($query);
                 $this->db->bind(':judul', $judul);
-                $this->db->bind(':penyanyi', $penyanyi);
                 $this->db->bind(':image_path', $image_path);
                 $this->db->bind(':tanggal_terbit', $tanggal_terbit);
                 $this->db->bind(':genre', $genre);
-                $this->db->bind(':album_id');
+                $this->db->bind(':album_id', $id);
                 $result = $this->db->single_result();
             } catch ( error $e ) {
-                echo 'ERROR!';
+                echo $e;
                 $result = NULL;
             }
             return $result;
