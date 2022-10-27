@@ -31,15 +31,21 @@ header .main-container {
 a {
   text-decoration: none;
 }
+
+#logo {
+  width: 140px;
+  height: 45px;
+  margin-left: 20px;
+}
 .search-container {
   width: 90%;
   height: 56px;
   min-width: 180px;
+  display: flex;
 }
 
 .search-container form {
   width: 100%;
-  display: flex;
 }
 
 .search-container input[type="text"] {

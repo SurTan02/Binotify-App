@@ -42,17 +42,26 @@ body {
 .input_container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   margin: 10px;
   width: 284px;
+  margin-top: 20px;
 }
 
 .input_container title {
   font-size: 20px;
 }
 
+label {
+  align-self: flex-start;
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+  color: #e5e5e5;
+  font-size: 15px;
+}
+
 input#title {
-  margin-top: 10px;
+  margin-top: 5px;
   width: 100%;
   height: 30px;
   border-radius: 5px;
@@ -62,7 +71,7 @@ input#title {
 }
 
 input#penyanyi {
-  margin-top: 10px;
+  margin-top: 5px;
   width: 100%;
   height: 30px;
   border-radius: 5px;
@@ -72,7 +81,7 @@ input#penyanyi {
 }
 
 input#genre {
-  margin-top: 10px;
+  margin-top: 5px;
   width: 100%;
   height: 30px;
   border-radius: 5px;
@@ -82,7 +91,7 @@ input#genre {
 }
 
 input#album {
-  margin-top: 10px;
+  margin-top: 5px;
   width: 100%;
   height: 30px;
   border-radius: 5px;
@@ -103,22 +112,23 @@ input#album {
 
 #input-container-audio {
   display: flex;
-  align-items: center;
   margin: 10px;
 }
 
+input#tanggal {
+  margin-top: 5px;
+}
+
 input#audio_path {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-left: 170px;
+  margin-top: 5px;
 }
 
 input#image_path {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 170px;
+  margin-left: 0px;
+  margin-top: 5px;
 }
 .submit-lagu-container {
   display: flex;

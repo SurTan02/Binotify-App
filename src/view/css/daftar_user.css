@@ -6,13 +6,14 @@
 }
 
 body {
-  background-color: rgba(18, 18, 18, 1);
-  margin-top: 10px;
-  overflow-x: hidden;
-}
-
-.logo-container img {
-  width: 200px;
+  background: rgb(5, 36, 153);
+  background: linear-gradient(
+      180deg,
+      rgba(5, 36, 153, 1) 0%,
+      rgba(11, 28, 90, 1) 24%,
+      rgba(18, 18, 18, 1) 100%
+    )
+    fixed;
 }
 
 .main-container {
@@ -34,7 +35,6 @@ body {
   background-color: #cccccc;
   height: 2px;
   border-radius: 30%;
-  margin-top: 15px;
   align-self: stretch;
 }
 
