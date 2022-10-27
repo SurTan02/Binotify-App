@@ -1,31 +1,22 @@
 .wrapper {
-	margin-top: 50px;
+	margin-top: 0;
 	color: #fff;
+    background-color: rgba(25, 25, 25, 1);
 }
 .wrapper h1 {
 	color: #fff;
 	text-align: center;
 	font-weight: bold;
 }
-.wrapper table {
-	width: 100%;
-	border: none;
-	table-layout: fixed;
+.songs {
+    position: relative;
 }
 
-
-/* .wrapper .title{
-	text-align: left;
-} */
-  
-.wrapper th, td {
-    border-collapse: collapse;
-	width: 100px;
-	overflow: hidden;
+.cards {
+	height: 100%;
+    display: grid;
+    position: relative;
+    grid-auto-flow: row;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
-
-/* .cards {
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: row;
-} */
