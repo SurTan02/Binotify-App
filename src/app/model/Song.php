@@ -46,7 +46,7 @@
         public function getSongByDistinctGenre() {
             $result;
             try {
-                $query = "SELECT genre, MIN(image_path) AS image_path FROM song GROUP BY genre";
+                $query = "SELECT genre, MIN(image_path) AS image_path FROM song WHERE genre IS NOT NULL AND genre != '' GROUP BY genre";
                 $this->db->query($query);
                 $result = $this->db->multi_result();
             } catch ( error $e ) {
