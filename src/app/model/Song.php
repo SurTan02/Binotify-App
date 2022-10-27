@@ -190,6 +190,10 @@
                 !isset($data['duration']) || !isset($data['audio_path'])) {
                 return false;
             } 
+            
+            if (($data['album'] == '')){
+                $data['album'] = NULL;
+            }
 
             try {
                 $this->db->query("INSERT INTO $this->table (judul, penyanyi, genre, tanggal_terbit, album_id, audio_path, image_path, duration)

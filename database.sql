@@ -21,35 +21,108 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: Album; Type: TABLE; Schema: public; Owner: postgres
+-- Name: on_song_delete(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.Album (
+CREATE FUNCTION public.on_song_delete() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+    BEGIN
+		IF OLD.album_id IS NOT NULL THEN
+			UPDATE album
+			SET total_duration = total_duration - OLD.duration
+			WHERE album.album_id = OLD.album_id;
+		END IF;
+        
+        RETURN NULL;
+    END;
+$$;
+
+
+ALTER FUNCTION public.on_song_delete() OWNER TO postgres;
+
+--
+-- Name: on_song_insert(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.on_song_insert() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+    BEGIN
+        IF NEW.album_id IS NOT NULL THEN
+			UPDATE album
+			SET total_duration = total_duration + NEW.duration
+			WHERE album.album_id = NEW.album_id;
+		END IF;
+
+        RETURN NULL;
+    END;
+$$;
+
+
+ALTER FUNCTION public.on_song_insert() OWNER TO postgres;
+
+--
+-- Name: on_song_update(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.on_song_update() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+    BEGIN
+		IF OLD.album_id IS NOT NULL THEN
+			UPDATE album
+			SET total_duration = total_duration - OLD.duration
+			WHERE album.album_id = OLD.album_id;
+		END IF;
+		
+		IF NEW.album_id IS NOT NULL THEN
+			UPDATE album
+			SET total_duration = total_duration + NEW.duration
+			WHERE album.album_id = NEW.album_id;
+		END IF;
+
+        RETURN NULL;
+    END;
+$$;
+
+
+ALTER FUNCTION public.on_song_update() OWNER TO postgres;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: album; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.album (
     album_id SERIAL NOT NULL,
-    Judul character varying(64) NOT NULL,
-    Penyanyi character varying(128) NOT NULL,
-    Total_duration integer NOT NULL,
-    Image_path character varying(256) NOT NULL,
-    Tanggal_Terbit date NOT NULL,
-    Genre character varying(64)
+    judul character varying(64) NOT NULL,
+    penyanyi character varying(128) NOT NULL,
+    total_duration integer NOT NULL DEFAULT 0,
+    image_path character varying(256) NOT NULL,
+    tanggal_terbit date NOT NULL,
+    genre character varying(64)
 );
 
 
 ALTER TABLE public.Album OWNER TO postgres;
 
 --
--- Name: Song; Type: TABLE; Schema: public; Owner: postgres
+-- Name: song; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.Song (
+CREATE TABLE public.song (
     song_id SERIAL NOT NULL,
-    Judul character varying(64) NOT NULL,
-    Penyanyi character varying(128),
-    Tanggal_terbit date NOT NULL,
-    Genre character varying(64),
-    Duration integer NOT NULL,
-    Audio_path character varying(256) NOT NULL,
-    Image_path character varying(256) NOT NULL,
+    judul character varying(64) NOT NULL,
+    penyanyi character varying(128),
+    tanggal_terbit date NOT NULL,
+    genre character varying(64),
+    duration integer NOT NULL,
+    audio_path character varying(256) NOT NULL,
+    image_path character varying(256) NOT NULL,
     album_id integer
 );
 
@@ -72,14 +145,10 @@ CREATE TABLE public.user (
 ALTER TABLE public.user OWNER TO postgres;
 
 --
--- Data for Name: Album; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Name: album Album_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
---
--- Name: Album Album_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.Album
+ALTER TABLE ONLY public.album
     ADD CONSTRAINT "Album_pkey" PRIMARY KEY (album_id);
 
 
@@ -90,61 +159,47 @@ ALTER TABLE ONLY public.Album
 ALTER TABLE ONLY public.user
     ADD CONSTRAINT "User_pkey" PRIMARY KEY (user_id);
 
+ALTER TABLE ONLY public.user
+    ADD CONSTRAINT "User_unique" UNIQUE (username);
+    
+--
+-- Name: song fk_album_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.song
+    ADD CONSTRAINT "Song_pkey" PRIMARY KEY (song_id);
 
 --
--- Name: Song fk_album_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: song on_song_delete; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER on_song_delete AFTER DELETE ON public.song FOR EACH ROW EXECUTE FUNCTION public.on_song_delete();
+
+
+--
+-- Name: song on_song_insert; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER on_song_insert AFTER INSERT ON public.song FOR EACH ROW EXECUTE FUNCTION public.on_song_insert();
+
+
+--
+-- Name: song on_song_update; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER on_song_update AFTER UPDATE ON public.song FOR EACH ROW EXECUTE FUNCTION public.on_song_update();
+
+
+
+--
+-- Name: song fk_album_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.Song
     ADD CONSTRAINT fk_album_id FOREIGN KEY (album_id) REFERENCES public.Album(album_id) ON DELETE SET NULL;
 
 INSERT INTO public.user (username, email, password, isAdmin) VALUES ('admin', 'admin@brisic.com', '$2y$10$Ak.28BnV7LurDwQ6znkHI.wNxDn.x1V8wFK84BWZpEoqXYoXe9uU2', true);
+
 --
 -- PostgreSQL database dump complete
 --
-CREATE OR REPLACE FUNCTION on_song_update() RETURNS TRIGGER AS $song_update$
-    BEGIN
-		IF OLD.album_id IS NOT NULL THEN
-			UPDATE album
-			SET total_duration = total_duration - OLD.duration
-			WHERE album.album_id = OLD.album_id;
-		END IF;
-		
-		IF NEW.album_id IS NOT NULL THEN
-			UPDATE album
-			SET total_duration = total_duration + NEW.duration
-			WHERE album.album_id = NEW.album_id;
-		END IF;
-    END;
-$song_update$ LANGUAGE plpgsql;
-
-
-CREATE OR REPLACE TRIGGER on_song_update AFTER UPDATE ON song
-FOR EACH ROW EXECUTE FUNCTION on_song_update();
-
-CREATE OR REPLACE FUNCTION on_song_insert() RETURNS TRIGGER AS $song_update$
-    BEGIN
-        IF NEW.album_id IS NOT NULL THEN
-			UPDATE album
-			SET total_duration = total_duration + NEW.duration
-			WHERE album.album_id = NEW.album_id;
-		END IF;
-    END;
-$song_update$ LANGUAGE plpgsql;
-
-
-CREATE OR REPLACE TRIGGER on_song_insert AFTER INSERT ON song
-FOR EACH ROW EXECUTE FUNCTION on_song_insert();
-
-CREATE OR REPLACE FUNCTION on_song_delete() RETURNS TRIGGER AS $song_update$
-    BEGIN
-		IF OLD.album_id IS NOT NULL THEN
-			UPDATE album
-			SET total_duration = total_duration - OLD.duration
-			WHERE album.album_id = OLD.album_id;
-		END IF;
-    END;
-$song_update$ LANGUAGE plpgsql;
-
-CREATE OR REPLACE TRIGGER on_song_delete AFTER DELETE ON song
-FOR EACH ROW EXECUTE FUNCTION on_song_delete();

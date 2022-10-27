@@ -12,6 +12,7 @@ var edit_btn = document.getElementById("edit_button");
 var delete_btn = document.getElementById("delete_button");
 var no_delete = document.getElementById("no_delete");
 var span = document.getElementsByClassName("close")[0];
+var span_delete = document.getElementsByClassName("close")[1];
 
 
 edit_btn.onclick = function() {
@@ -29,6 +30,11 @@ span.onclick = function() {
   edit_modal.style.display = "none";
   delete_modal.style.display = "none";
 }
+
+span_delete.onclick = function() {
+  delete_modal.style.display = "none";
+}
+
 window.onclick = function(event) {
   if (event.target == delete_modal || event.target == edit_modal) {
     edit_modal.style.display = "none";
@@ -46,6 +52,7 @@ element.addEventListener('submit', async event => {
   error_title.innerHTML="";
 
   let tanggal = document.getElementById("tanggal");
+  
   let error_tanggal = document.getElementById("error_tanggal");
   error_tanggal.innerHTML="";
 
@@ -66,7 +73,8 @@ element.addEventListener('submit', async event => {
     error_tanggal.innerHTML="Tanggal tidak boleh kosong";
     isSafe = false;
   }
-
+  let album = document.getElementById("album");
+  
   if (isSafe){
     var audio_response = 0;
     if (audio_path.files.length > 0){
@@ -75,7 +83,7 @@ element.addEventListener('submit', async event => {
     var image_response = 0;
     if (image_path.files.length > 0){
       image_response = await uploadHandler("image");
-      console.log("ahghagah" , image_response)
+      // console.log("ahghagah" , image_response)
     }
 
     if (audio_response == 1){
