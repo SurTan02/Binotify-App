@@ -9,18 +9,21 @@
             ) {
 
             $response = 200;
-
+                
             $image_path;
             if (isset($_FILES['file'])) {
                 if ( 0 < $_FILES['file']['error']  && 4 != $_FILES['file']['error']) {
                     $response = 502;
                     die($response);
                 } else {
-                    $image_path = 'view/assets/img/' . $_FILES['file']['name'];
+                    $file_extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+                    $file_extension = strtolower($file_extension);
+
+                    $image_path = 'view/assets/img/album_' .  $_POST["id"] .".". $file_extension;
                     move_uploaded_file($_FILES['file']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/'.$image_path);
                 }
             } 
-
+                
             $id = $_POST["id"];
             $judul = $_POST["judul"];
             $genre = $_POST["genre"];
