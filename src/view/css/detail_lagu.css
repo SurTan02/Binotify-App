@@ -85,7 +85,7 @@ audio#playmusic {
 .button-container {
   display: flex;
   flex-direction: row;
-  gap: 50px;
+  gap: 20px;
   margin-top: 80px;
   justify-content: center;
 }
