@@ -244,7 +244,70 @@ a {
   background-color: #1db954;
 }
 
+@media screen and (max-width: 600px) {
+  .search-container input[type="text"] {
+    width: 100%;
+    min-width: 100px;
+  }
+  .search-container input[type="text"] {
+    border-radius: 50px 0px 0px 50px;
+  }
+  .nav-button {
+    display: none;
+  }
+  .dropbtn {
+    display: block;
+  }
+  .profile {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 800px) {
+  .search-container input[type="text"] {
+    width: 100%;
+    min-width: 100px;
+  }
+  .search-container input[type="text"] {
+    border-radius: 50px 50px 50px 50px;
+  }
+  .search-container {
+    width: 100%;
+  }
+  .nav-button {
+    display: none;
+  }
+  .logout-button {
+    display: none;
+  }
+  .dropbtn {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .search-container input[type="text"] {
+    width: 100%;
+    min-width: 100px;
+  }
+  .search-container input[type="text"] {
+    border-radius: 50px 50px 50px 50px;
+  }
+  .search-container {
+    width: 100%;
+  }
+  .nav-button {
+    display: none;
+  }
+  .logout-button {
+    display: none;
+  }
+  .dropbtn {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 1200px) {
   .search-container input[type="text"] {
     width: 100%;
     min-width: 100px;
