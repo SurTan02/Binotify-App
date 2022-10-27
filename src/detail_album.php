@@ -47,8 +47,8 @@
             $admin_control = "";
             if ($isAdmin) {
                  $admin_control = $admin_control . '<div class="detail_album-action">
-                                                        <button onclick="save()">SAVE CHANGES</button>
-                                                        <button onclick="deleteAlbum()">DELETE ALBUM</button>
+                                                        <button onclick="save()">💾</button>
+                                                        <button onclick="deleteAlbum()">🗑</button>
                                                         <input
                                                         type="file"
                                                         id="image-input"
