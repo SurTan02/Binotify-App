@@ -58,12 +58,7 @@ function save() {
     .getElementById("album__tanggal-terbit")
     .innerHTML.trim();
   const img = document.getElementById("image-input").files;
-  console.log(id);
-  console.log(judul);
-  console.log(genre);
-  console.log(tanggal);
 
-  console.log(img);
   const deletedSongsId = [];
 
   const deletedSongs = document.getElementsByClassName("deleted");
@@ -75,9 +70,19 @@ function save() {
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {
     if (xhr.readyState == 4 && xhr.status == 200) {
-      console.log(xhr.responseText);
-    } else {
-      console.log(xhr.responseText);
+      if (xhr.responseText == 200) {
+        // Success
+        location.reload();
+      } else {
+        // Failed
+        // alert("Save album failed!");
+        alert(xhr.responseText);
+      }
+      // Success
+    } else if (xhr.readyState == 4 && xhr.status != 200) {
+      // Failed
+      alert(xhr.status);
+      // alert("Save album failed!");
     }
   };
 
@@ -91,6 +96,33 @@ function save() {
   formData.append("deleteIds", JSON.stringify(deletedSongsId));
 
   xhr.open("POST", "./view/js/ajax/save_album.php", true);
-  //   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.send(formData);
+}
+
+function deleteAlbum() {
+  const id = location.search.split("album_id=")[1];
+
+  let xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      const response = JSON.parse(xhr.responseText);
+      if (xhr.responseText == 200) {
+        // Success
+        location.replace("http://localhost:8008/index.php");
+      } else {
+        // Failed
+        alert("Delete album failed!");
+      }
+    } else if (xhr.readyState == 4 && xhr.status != 200) {
+      // Failed
+      alert("Delete album failed!");
+    }
+  };
+
+  const formData = new FormData();
+
+  formData.append("id", id);
+
+  xhr.open("POST", "./view/js/ajax/delete_album.php", true);
   xhr.send(formData);
 }
