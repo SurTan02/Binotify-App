@@ -48,6 +48,7 @@ echo $foot_html;
 
 function generateSongCard($song, $number) {
   $song_card_html = file_get_contents($_SERVER['DOCUMENT_ROOT']. "/view/html/components/card_song.html");
+  $song_card_html = str_replace('{song_id}', $song['song_id'], $song_card_html);
   $song_card_html = str_replace('{song-title}', $song['judul'], $song_card_html);
   $song_card_html = str_replace('{song-author}', $song['penyanyi'], $song_card_html);
   $song_card_html = str_replace('{song-year}', $song['tahun'], $song_card_html);

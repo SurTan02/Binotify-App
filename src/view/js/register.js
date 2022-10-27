@@ -46,20 +46,24 @@ input_username.addEventListener("keyup", debounce(function () {
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
       let response = xhr.responseText;
-      if (response == "true") {
-        isInputValid["username"] = true;
-        input_username.style.borderColor = "#00ff00";
-        error_username.innerHTML = "";
-      } else {
-        isInputValid["username"] = false;
-        input_username.style.borderColor = "#ff0000";
-        error_username.innerHTML = "Username already taken";
-      }
       let nameRegex = /^[a-zA-Z0-9_]+$/;
       if (nameRegex.test(input_username.value)) {
         isInputValid["username"] = true;
         input_username.style.borderColor = "#00ff00";
         error_username.innerHTML = "";
+        if (response == "true") {
+          isInputValid["username"] = true;
+          input_username.style.borderColor = "#00ff00";
+          error_username.innerHTML = "";
+        } else {
+          isInputValid["username"] = false;
+          input_username.style.borderColor = "#ff0000";
+          error_username.innerHTML = "Username already taken";
+          error_username.style.color = "#ff0000";
+          error_username.style.fontFamily = "inter";
+          error_username.style.fontSize = "12px";
+          error_username.style.fontStyle = "oblique";
+        }
       }
       else {
         isInputValid.username = false;
@@ -88,11 +92,25 @@ input_email.addEventListener("keyup", debounce(function () {
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
       let response = xhr.responseText;
-      if (response == "true") {
+      let emailRegex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+      if (emailRegex.test(input_email.value)) {
         isInputValid["email"] = true;
         input_email.style.borderColor = "#00ff00";
         error_email.innerHTML = "";
-      } else {
+        if (response == "true") {
+          isInputValid["email"] = true;
+          input_email.style.borderColor = "#00ff00";
+          error_email.innerHTML = "";
+        } else {
+          isInputValid["email"] = false;
+          input_email.style.borderColor = "#ff0000";
+          error_email.innerHTML = "Email already taken.";
+          error_email.style.fontFamily = "inter";
+          error_email.style.fontSize = "12px";
+          error_email.style.fontStyle = "italic";
+        }
+      }
+      else {
         isInputValid["email"] = false;
         input_email.style.borderColor = "#ff0000";
         error_email.innerHTML = "Email is not valid.";
