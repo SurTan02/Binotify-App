@@ -41,11 +41,11 @@ a {
   width: 90%;
   height: 56px;
   min-width: 180px;
+  display: flex;
 }
 
 .search-container form {
   width: 100%;
-  display: flex;
 }
 
 .search-container input[type="text"] {
