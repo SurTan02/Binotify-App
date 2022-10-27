@@ -1,9 +1,11 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/helper/session.php';
 
 function getHeader($isAdmin, $isSetSession, $username){
   if (!$isSetSession) {
     $header_html = file_get_contents('./view/html/components/header_guest.html');
     $header_html = str_replace('{username}', $username, $header_html);
+    issueGuestSession();
     return $header_html;
   } 
   else if ($isAdmin) {
