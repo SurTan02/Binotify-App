@@ -75,27 +75,6 @@ ALTER TABLE public.user OWNER TO postgres;
 -- Data for Name: Album; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.Album (album_id, Judul, Penyanyi, Total_duration, Image_path, Tanggal_Terbit, Genre) FROM stdin;
-\.
-
-
---
--- Data for Name: Song; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.Song (song_id, Judul, Penyanyi, Tanggal_terbit, Genre, Duration, Audio_path, Image_path, album_id) FROM stdin;
-\.
-
-
---
--- Data for Name: user; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.user (user_id, email, password, username, isAdmin) FROM stdin;
-1	admin@gmail.com	sayaadmin	admin	t
-\.
-
-
 --
 -- Name: Album Album_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
@@ -119,7 +98,7 @@ ALTER TABLE ONLY public.user
 ALTER TABLE ONLY public.Song
     ADD CONSTRAINT fk_album_id FOREIGN KEY (album_id) REFERENCES public.Album(album_id) ON DELETE SET NULL;
 
-
+INSERT INTO public.user (username, email, password, isAdmin) VALUES ('admin', 'admin@brisic.com', '$2y$10$Ak.28BnV7LurDwQ6znkHI.wNxDn.x1V8wFK84BWZpEoqXYoXe9uU2', true);
 --
 -- PostgreSQL database dump complete
 --
