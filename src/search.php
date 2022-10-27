@@ -1,7 +1,22 @@
 <?php
+    session_start();
+    require_once $_SERVER['DOCUMENT_ROOT'] .'/app/model/User.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/app/helper/cookies.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/app/helper/session.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/app/handlers/header_handler.php';
+
+    // Get the user's id.
+    $idUser = validateAuthCookie($_COOKIE);
+
+    $user = new User();
+    $isAdmin = $user->getRoleById($idUser);
+    $username = $user->getUsernameById($idUser);
+
+    // if session["login"] is not set, use guest header
+    $isSetSession = isset($_SESSION["login"]);
+    $header_html = getHeader($isAdmin, $isSetSession, $username);
+
     require_once './app/controller/search.php'; // $genres
-    
-    $header_html = file_get_contents('./view/html/components/header_admin.html');
     
     $head_html = file_get_contents('./view/html/templates/head.html');
     // Replace any variables in the html files.
@@ -27,7 +42,7 @@
     $search_html = str_replace('{genre_list}', $genre_list, $search_html);
     
     echo $head_html;
-    // echo $header_html;
+    echo $header_html;
     echo $search_html;
     echo '<script src="./view/js/search.js"></script>';
 ?>
