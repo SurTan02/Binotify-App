@@ -28,6 +28,9 @@ header .main-container {
   margin-left: 20px;
 }
 
+a {
+  text-decoration: none;
+}
 .search-container {
   width: 90%;
   height: 56px;
@@ -178,4 +181,78 @@ header .main-container {
   margin-left: 20px;
   font-family: inter;
   font-weight: bold;
+}
+
+/* Dropdown Button */
+.dropbtn {
+  display: none;
+  background-color: #1dc758;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-left: 20px;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  right: 0px;
+  margin-top: 10px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-family: "Inter", sans-serif;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #04aa6d;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #1db954;
+}
+
+@media screen and (max-width: 800px) {
+  .search-container input[type="text"] {
+    width: 100%;
+    min-width: 100px;
+  }
+  .search-container input[type="text"] {
+    border-radius: 50px 50px 50px 50px;
+  }
+  .search-container {
+    width: 100%;
+  }
+  .nav-button {
+    display: none;
+  }
+  .logout-button {
+    display: none;
+  }
+  .dropbtn {
+    display: block;
+  }
 }

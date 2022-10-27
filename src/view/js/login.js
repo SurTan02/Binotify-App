@@ -12,12 +12,12 @@ let error_password = document.getElementById("error_password");
 input_username.addEventListener("focusout", function () {
   //check if username label leave empty
   if (input_username.value == '') {
-    input_username.style.backgroundColor = "#FFB4C7";
+    input_username.style.borderColor = "#ff0000";
     error_username.innerHTML = "Username must not be empty";
     isInputValid["username"] = false;
   }
   else {
-    input_username.style.backgroundColor = "#A5FFD4";
+    input_username.style.borderColor = "#00ff00";
     error_username.innerHTML = "";
     isInputValid["username"] = true;
   }
@@ -26,12 +26,12 @@ input_username.addEventListener("focusout", function () {
 input_password.addEventListener("focusout", function () {
   //check if username label leave empty
   if (input_password.value == '') {
-    input_password.style.backgroundColor = "#FFB4C7";
+    input_password.style.borderColor = "#ff0000";
     error_password.innerHTML = "Password must not be empty";
     isInputValid["password"] = false;
   }
   else {
-    input_password.style.backgroundColor = "#A5FFD4";
+    input_password.style.borderColor = "#00ff00";
     error_password.innerHTML = "";
     isInputValid["password"] = true;
   }

@@ -41,7 +41,7 @@ function validateInput() {
 
 let input_username = document.getElementById("username");
 let error_username = document.getElementById("error_username");
-input_username.addEventListener("change", debounce(function () {
+input_username.addEventListener("keyup", debounce(function () {
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -83,7 +83,7 @@ input_username.addEventListener("change", debounce(function () {
  */
 let input_email = document.getElementById("email");
 let error_email = document.getElementById("error_email");
-input_email.addEventListener("change", debounce(function () {
+input_email.addEventListener("keyup", debounce(function () {
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -114,7 +114,7 @@ let input_password = document.getElementById("password");
 let input_password_confirm = document.getElementById("password_confirm");
 let error_password = document.getElementById("error_password");
 let error_password_confirm = document.getElementById("error_password_confirm");
-input_password_confirm.addEventListener("change", debounce(function () {
+input_password_confirm.addEventListener("keyup", debounce(function () {
   let same = false;
   if (input_password_confirm.value === input_password.value) {
     same = true;
