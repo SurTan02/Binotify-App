@@ -104,9 +104,11 @@
             echo '<script src="./view/js/detail_album.js"></script>';
         } else {
             // load page not found
+            $head_html = str_replace('{css2}', './view/css/not_found.css', $head_html);
+            $not_found_html = file_get_contents('./view/html/not_found.html');
             echo $head_html;
             echo $header_html;
-            echo 404;
+            echo $not_found_html;
         }
     }
 
