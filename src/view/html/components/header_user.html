@@ -11,7 +11,7 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="view/css/components/header.css" />
+    <link rel="stylesheet" href="/view/css/components/header.css" />
     <link rel="stylesheet" href="{css2}" />
     <link rel="stylesheet" href="{css3}" />
     <link rel="stylesheet" href="{css4}" />
@@ -24,9 +24,17 @@
 <header>
   <div class="main-container">
     <div class="logo-container">
+<<<<<<< HEAD
       <a href="index.php">
         <img src="../view/assets/img/Icon_white.svg" id="logo"
       /></a>
+=======
+      <img
+        src="/view/assets/img/Icon_white.svg"
+        id="logo"
+        onclick="index.php"
+      />
+>>>>>>> 481d17cca9314dd6933eb25442b99b96cad7354b
       <!-- <img src="../../assets/img/Icon_white.svg" id="logo" /> -->
     </div>
     <div class="search-container">
@@ -52,18 +60,18 @@
       </form>
     </div>
     <div class="nav-container">
-      <a href="./daftar_album.php">
+      <a href="/daftar_album.php">
         <div class="nav-button">List Album</div>
       </a>
-      <a href="./logout.php">
+      <a href="/logout.php">
         <button class="logout-button">Logout</button>
       </a>
       <div class="profile">{username}</div>
       <div class="dropdown">
         <button class="dropbtn">≡</button>
         <div class="dropdown-content">
-          <a href="./daftar_album.php">List Album</a>
-          <a href="./logout.php">Logout</a>
+          <a href="/daftar_album.php">List Album</a>
+          <a href="/logout.php">Logout</a>
         </div>
       </div>
     </div>

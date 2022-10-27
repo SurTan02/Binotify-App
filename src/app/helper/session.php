@@ -1,10 +1,11 @@
 <?php 
-  require_once $_SERVER['DOCUMENT_ROOT'].'/app/helper/session.php';
+  // require_once $_SERVER['DOCUMENT_ROOT'].'/app/helper/session.php';
 
 /**
  * This function is used to issue login session.
  */
- function issueLoginSession() {
+function issueLoginSession() {
+  // if (isset($_SESSION["number"])) unset($_SESSION["number"]);
   $_SESSION["login"] = true;
 }
 
@@ -23,4 +24,16 @@ function validateLoginSession() {
   }
   return true;
 }
+
+function issueGuestSession(){
+  if (!isset($_SESSION["number"])){
+    $_SESSION["number"] = 0;
+    $_SESSION['CREATED'] = time();
+    $_SESSION['song_id'] = 0;
+
+  }else if(time() - $_SESSION['CREATED'] > 60*60*24){
+    session_unset();
+  }
+}
+
 ?>

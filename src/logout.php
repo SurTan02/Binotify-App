@@ -1,8 +1,9 @@
 <?php 
   session_start();
 
-  session_destroy();
-  session_unset();
+  // session_destroy();
+  // session_unset();
+  unset($_SESSION['login']);
 
   // Import cookies module.
   require_once './app/helper/cookies.php';

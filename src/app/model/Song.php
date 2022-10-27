@@ -14,7 +14,7 @@
                 $query = $this->db->query("SELECT * FROM $this->table WHERE song_id = '$songId'");
                 $result = $this->db->single_result();
                 
-                if ($result["album_id"]){
+                if ($result && $result["album_id"] != NULL){
                     $query = $this->db->query("SELECT * FROM $this->table LEFT JOIN (
                         SELECT album_id, judul as judul_album from album
                     )as A USING(album_id) WHERE song_id = '$songId'");
@@ -127,6 +127,9 @@
             }
             if (($data['duration'] == 0)){
                 $data['duration'] = $data_before['duration'];
+            }
+            if (($data['album'] == '')){
+                $data['album'] = NULL;
             }
 
             try{

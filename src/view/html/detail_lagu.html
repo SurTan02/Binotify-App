@@ -9,7 +9,7 @@
             <h5 name="album"> {judul_album} </h5>
             <p name="tanggal_terbit"> {tanggal_terbit} </p>
         </div>
-        <audio controls>
+        <audio controls id="playmusic">
             <source src="{audio_path}" type="audio/mp3">
             <source src="{audio_path}" type="audio/wav">
             Your browser does not support the audio element.
@@ -32,37 +32,37 @@
 
                         <div class="input_container">
                             <label for="title">Judul Lagu</label>
-                            <input type="text" id="title" value={judul_lagu} />
+                            <input type="text" id="title" value={judul_lagu}>
                             <div class="error" id="error_title"></div>
                         </div>  
 
                         <div class="input_container">
                             <label for="genre">Genre</label>
-                            <input type="text" id="genre" value={genre} />
+                            <input type="text" id="genre" value={genre}>
                             <div class="error" id="error_genre"></div>
                         </div>
 
                         <div class="input_container">
                             <label for="album">Album</label>
-                            <input type="text" id="album" value={album} />
+                            <input type="text" id="album" value={album}>
                             <div class="error" id="error_album"></div>
                         </div>
 
                         <div class="input_container">
                             <label for="tanggal">Tanggal Terbit</label>
-                            <input type="date" id="tanggal" value={tanggal_terbit} />
+                            <input type="date" id="tanggal" value={tanggal_terbit}>
                             <div class="error" id="error_tanggal"></div>
                         </div>
 
                         <div class="input_container">
                             <label for="audio_path">Audio</label>
-                            <input type="file" id="audio_path"/>
+                            <input type="file" id="audio_path">
                             <div class="error" id="error_audio_path"></div>
                         </div>
 
                         <div class="input_container">
                             <label for="image_path">Song Image</label>
-                            <input type="file" id="image_path"/>
+                            <input type="file" id="image_path">
                             <div class="error" id="error_image_path"></div>
                         </div>
 
