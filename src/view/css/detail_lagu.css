@@ -85,7 +85,7 @@ audio#playmusic {
 .button-container {
   display: flex;
   flex-direction: row;
-  gap: 50px;
+  gap: 20px;
   margin-top: 80px;
   justify-content: center;
 }
@@ -289,7 +289,7 @@ select#album {
 }
 
 /* audio#playmusic */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   audio#playmusic {
     position: absolute;
     width: 300px;
@@ -299,31 +299,33 @@ select#album {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .section-2 {
     flex-direction: column;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .button-container {
-    flex-direction: column;
+    flex-direction: row;
+    gap: 0;
+    margin-top: 10px;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .modal-content {
     width: 90%;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .modal-body {
     margin: 0;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .modal-body form {
     align-self: center;
     display: flex;
@@ -337,7 +339,7 @@ select#album {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .input_container label {
     align-self: flex-start;
     font-family: "Inter", sans-serif;
@@ -347,7 +349,7 @@ select#album {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .input_container input {
     display: block;
     align-self: flex-start;
@@ -361,13 +363,13 @@ select#album {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   select#album {
     width: 100%;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .input_container .error {
     color: red;
     font-size: 0.8em;
@@ -376,7 +378,7 @@ select#album {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .input_container select {
     display: block;
     align-self: flex-start;
@@ -389,7 +391,7 @@ select#album {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .modal-body button {
     background-color: #1db954;
     width: 120px;
@@ -404,7 +406,7 @@ select#album {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .modal-body button:hover {
     background-color: white;
     color: #1db954;
@@ -412,7 +414,7 @@ select#album {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   #edit_button {
     background-color: #1db954;
     width: 120px;
@@ -423,11 +425,10 @@ select#album {
     font-size: 20px;
     border: none;
     color: white;
-    margin: 20px auto;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   #edit_button:hover {
     background-color: white;
     color: #1db954;
@@ -435,7 +436,7 @@ select#album {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   #delete_button,
   #no_delete {
     background-color: red;
@@ -451,7 +452,7 @@ select#album {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   #delete_button:hover,
   #no_delete:hover {
     background-color: white;
@@ -460,7 +461,7 @@ select#album {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .modal-body button {
     background-color: #1db954;
     width: 120px;
@@ -475,7 +476,7 @@ select#album {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .modal-body button:hover {
     background-color: white;
     color: #1db954;
@@ -483,7 +484,7 @@ select#album {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   #edit_button {
     background-color: #1db954;
     width: 120px;
@@ -494,11 +495,10 @@ select#album {
     font-size: 20px;
     border: none;
     color: white;
-    margin: 20px auto;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   #edit_button:hover {
     background-color: white;
     color: #1db954;
