@@ -42,11 +42,15 @@
             $detail_album_html = str_replace('{album_penyanyi}', $album_result['penyanyi'], $detail_album_html);
             $detail_album_html = str_replace('{total_durasi}', gmdate('H:i:s', $album_result['total_duration']), $detail_album_html);
             $detail_album_html = str_replace('{album_genre}', $album_result['genre'], $detail_album_html);
-            $detail_album_html = str_replace('{album_tanggal-terbit}', $album_result['tanggal_terbit'], $detail_album_html);
             
             $admin_control = "";
             if ($isAdmin) {
-                 $admin_control = $admin_control . '<div class="detail_album-action">
+                $detail_album_html = str_replace('{album_tanggal-terbit}', '<input
+                    style="font-size: small; outline: none !important"
+                    id="album__tanggal-terbit"
+                    type="date"
+                    value="'.$album_result['tanggal_terbit'].'"/>', $detail_album_html);
+                $admin_control = $admin_control . '<div class="detail_album-action">
                                                         <button onclick="save()">💾</button>
                                                         <button onclick="deleteAlbum()">🗑</button>
                                                         <input
@@ -56,6 +60,8 @@
                                                         />
                                                     </div>';
             } else {
+                $detail_album_html = str_replace('{album_tanggal-terbit}', 
+                    '<span style="font-size: small; outline: none !important">'.$album_result['tanggal_terbit'].'</span>', $detail_album_html);
                 $detail_album_html = str_replace('<a onclick="edit(this)">✎</a>', "", $detail_album_html);
             }
 

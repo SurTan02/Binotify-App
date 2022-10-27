@@ -53,9 +53,7 @@ function save() {
   const id = location.search.split("album_id=")[1];
   const judul = document.getElementById("album__judul").innerHTML.trim();
   const genre = document.getElementById("album__genre").innerHTML.trim();
-  const tanggal = document
-    .getElementById("album__tanggal-terbit")
-    .innerHTML.trim();
+  const tanggal = document.getElementById("album__tanggal-terbit").value;
   const img = document.getElementById("image-input").files;
 
   const deletedSongsId = [];
