@@ -9,51 +9,71 @@
 
 .song-card{
     display: flex;
+    /* flex-direction: row; */
     flex-direction: column;
     border-radius: 1rem;
     padding: 1rem;
-    position: relative;
-    transition: all 0.4s;
-    cursor: pointer;
     align-items: center;
 }
 
-.song-card img{
-    width: 25%;
-    height: 25%;
-    object-fit: cover;
-    padding: 1rem;
-    /* background-color: red; */
-    border-radius: 3rem;
+.section-1{
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+}
+
+.section-1 img{
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+  border-radius: 2rem;
+  align-self: center;
 }
 
 .desc{
     margin: 1rem;
     line-height: 1;
     text-align: center;
+    float: right;
     /* background-color: yellow; */
 }
 
-.desc h4{
-    font-size: 3em;
-    color: #FFFFFF;
+.desc .judul_lagu{
+    font-size: 3.5em;
+    color: #bfbfbf;
+    padding: 10px;
 }
 
-.desc h5{
-    font-size: 1.5em;
+.desc .penyanyi{
+    font-size: 2em;
     color: #b3b3b3;
 }
 
-.desc p{
-    font-size: 1em;
+.desc .genre{
+    font-size: 2em;
     color: #b3b3b3;
-    /* background-color: red; */
+}
+
+.desc .album{
+  font-size: 2em;
+  color: #b3b3b3;
+}
+
+.desc .album:hover{
+  color: #1db954;
+  cursor: pointer;
+  
+}
+
+.desc .tanggal{
+  font-size: 1.5em;
+  color: #b3b3b3;
 }
 
 .admin-only{
     color: #b3b3b3;
-    /* display: none; */
-    /* background-color: red; */
+
+    text-align: center;
 }
 
 /* The Modal (background) */
@@ -81,24 +101,27 @@
   
 /* The Close Button */
 .close {
-    color: #aaa;
+    color: white;
     float: right;
     font-size: 28px;
     font-weight: bold;
+    margin-top: -4px;
+    
 }
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: red;
     text-decoration: none;
     cursor: pointer;
 }
 
   /* Modal Header */
 .modal-header {
-    padding: 2px 16px;
+    padding: 8px 16px;
     background-color: #1db954;
     color: white;
+    text-align: center;
 }
   
 /* Modal Body */
@@ -127,8 +150,8 @@
   background-color: rgb(25, 25, 25);
   margin: auto;
   padding: 0;
-  border: 1px solid #888;
-  width: 50%;
+  align-items: center;
+  width: 30%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
   animation-name: animatetop;
   animation-duration: 0.4s
@@ -140,10 +163,8 @@
   to {top: 0; opacity: 1}
 }
 
+
 .input_container {
-  /* display: flex;
-  flex-direction: column; */
-  /* align-items: center; */
   margin: 10px auto;
 }
 
@@ -164,12 +185,80 @@
   border: 1px solid #e5e5e5;
   padding: 5px;
   border-radius: 3px;
+  margin-top: 5px;
 }
 
 .input_container .error {
   color: red;
-  font-size: 9px;
+  font-size: 0.8em;
   margin: 0;
   padding: 0px 0px 0px 0px;
 }
   
+.input_container select{
+  display: block;
+  align-self: flex-start;
+  box-sizing: border-box;
+  width: 21em;
+  height: 30px;
+  border: 1px solid #e5e5e5;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.modal-body button{
+  background-color: #1db954;
+  width: 120px;
+  height: 40px;
+  border-radius: 50px;
+  font-family: "inter", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  border: none;
+  color: white;
+  margin: 20px auto;
+}
+
+.modal-body button:hover {
+  background-color: white;
+  color: #1db954;
+  cursor: pointer;
+}
+
+#edit_button{
+  background-color: #1db954;
+  width: 120px;
+  height: 40px;
+  border-radius: 50px;
+  font-family: "inter", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  border: none;
+  color: white;
+  margin: 20px auto;
+}
+
+#edit_button:hover {
+  background-color: white;
+  color: #1db954;
+  cursor: pointer;
+}
+
+#delete_button , #no_delete{
+  background-color: red;
+  width: 120px;
+  height: 40px;
+  border-radius: 50px;
+  font-family: "inter", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  border: none;
+  color: white;
+  margin: 20px auto;
+}
+
+#delete_button:hover, #no_delete:hover {
+  background-color: white;
+  color: red;
+  cursor: pointer;
+}

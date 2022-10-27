@@ -1,6 +1,7 @@
 <?php
     session_start();
     require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/Song.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/Album.php';
     require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/User.php';
     require_once $_SERVER['DOCUMENT_ROOT'].'/app/helper/cookies.php';
     
@@ -27,6 +28,7 @@
 
         // Get Song with id - song_id
         $lagu = new Song();
+        $album = new Album();
         $result = $lagu->getSongById($songId);
 
         if($result){
@@ -38,7 +40,9 @@
             $detail_lagu_html = str_replace('{album}', $result['album_id'], $detail_lagu_html);
             $detail_lagu_html = str_replace('{audio_path}',  $result['audio_path'] , $detail_lagu_html);
 
-            $result['image_path'] == ''? $img = "view/assets/img/default.png" : $img = $result['image_path'];
+            $daftar_album = ($album->getAlbumByPenyanyi($result['penyanyi']));
+
+            $result['image_path'] == '' ? $img = "view/assets/img/default.png" : $img = $result['image_path'];
             $detail_lagu_html = str_replace('{image_path}',  $img , $detail_lagu_html);
 
             if ($result['album_id']){
@@ -47,14 +51,24 @@
                 $detail_lagu_html = str_replace('{judul_album}',  '' , $detail_lagu_html);
             }
             // Edit Config
+            $daftar_album = ($album->getAlbumByPenyanyi($result['penyanyi']));
+            // var_dump($daftar_album);
             if ($isAdmin){
+                $option = '<option value="">-</option>';
+                foreach($daftar_album as $album){
+                    if ($result['album_id'] == $album['album_id']){
+                        $temp = '<option value= '.$album['album_id'].'>'  .$album['judul']. '</option>' . $option;
+                        $option = $temp;
+                    }
+                    $option .= '<option value= '.$album['album_id'].'>'  .$album['judul']. '</option>';
+                }
+                $detail_lagu_html = str_replace('{option}',  $option , $detail_lagu_html);
                 $foot_html = str_replace('{js1}', '/view/js/edit_lagu.js', $foot_html);
             } else{
                 
                 
                 
                 if(isset($_SESSION["number"]) && !$isSetSession){
-                    echo("==>". $_SESSION['number']);
                     if ($_SESSION['number'] >= 3){
                         $js_script =  '/view/js/cant_lagu.js' ;
                     } else{

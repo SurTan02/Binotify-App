@@ -1,19 +1,26 @@
 <div class="container">
     <div class="song-card">
-        <img src={image_path} alt={judul_lagu}> 
-        
-        <div class="desc">
-            <h4 name="judul_lagu" > {judul_lagu} </h4>
-            <h5 name="penyanyi"> {penyanyi} </h5>
-            <h5 name="genre"> {genre} </h5>
-            <h5 name="album"> {judul_album} </h5>
-            <p name="tanggal_terbit"> {tanggal_terbit} </p>
+        <div class="section-1">
+            <img src={image_path} alt={judul_lagu}> 
+            
+            <div class="desc">
+                <p name="judul_lagu" class="judul_lagu"> {judul_lagu} </p>
+                <p name="penyanyi" class="penyanyi"> {penyanyi} </p>
+                <p name="genre" class="genre"> {genre} </p>
+                <p name="album" class="album" onclick="window.location='/detail_album.php?album_id={album}'"> {judul_album} </p>
+                <p name="tanggal_terbit" class="tanggal"> {tanggal_terbit} </p>
+            </div>
+            
+            
         </div>
-        <audio controls id="playmusic">
-            <source src="{audio_path}" type="audio/mp3">
-            <source src="{audio_path}" type="audio/wav">
-            Your browser does not support the audio element.
-        </audio>        
+        <div class="section-2">
+            <audio controls id="playmusic">
+                <source src="{audio_path}" type="audio/mp3">
+                <source src="{audio_path}" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>   
+        </div>
+             
     </div>
 
     <div class="admin-only"  style="display:none">
@@ -44,8 +51,9 @@
 
                         <div class="input_container">
                             <label for="album">Album</label>
-                            <input type="text" id="album" value={album}>
-                            <div class="error" id="error_album"></div>
+                            <select name="album" id="album">
+                                {option}
+                            </select>
                         </div>
 
                         <div class="input_container">
@@ -88,6 +96,6 @@
                 <button id ="no_delete">Cancel</button>
             </div>
         </div>
-    </div>
+        </div>
     </div>
 </div>
