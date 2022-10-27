@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once $_SERVER['DOCUMENT_ROOT'].'/app//Song.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/Song.php';
     require_once $_SERVER['DOCUMENT_ROOT'] .'/app/model/User.php';
     require_once $_SERVER['DOCUMENT_ROOT'].'/app/helper/cookies.php';
     require_once $_SERVER['DOCUMENT_ROOT'].'/app/helper/session.php';
