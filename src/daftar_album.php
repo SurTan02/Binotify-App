@@ -1,11 +1,9 @@
 <?php
     session_start();
-    require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/Song.php';
     require_once $_SERVER['DOCUMENT_ROOT'] .'/app/model/User.php';
     require_once $_SERVER['DOCUMENT_ROOT'].'/app/helper/cookies.php';
     require_once $_SERVER['DOCUMENT_ROOT'].'/app/helper/session.php';
     require_once $_SERVER['DOCUMENT_ROOT'].'/app/handlers/header_handler.php';
-    $header_html = file_get_contents('./view/html/components/header_admin.html');
     
     $head_html = file_get_contents('./view/html/templates/head.html');
     // Replace any variables in the html files.

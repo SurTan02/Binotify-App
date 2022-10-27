@@ -52,18 +52,20 @@ function loadAlbum(page = 1) {
       )}</b> of <b>${response.count}</b>`;
 
       let song_list = "";
-      response.data.forEach((song, idx) => {
-        song_list += `<li class="list-song">
+      response.data.forEach((album, idx) => {
+        song_list += `<li class="list-song" onclick="window.location='/detail_album.php?album_id=${
+          album.album_id
+        }'">
           <div class="song">
             <span>${start + idx}</span>
-            <img class="song-image" src="${song.image_path}" />
+            <img class="song-image" src="${album.image_path}" />
             <div class="song-information1">
-              <span class="song-title">${song.judul}</span>
-              <span class="song-genre">${song.genre}</span>
+              <span class="song-title">${album.judul}</span>
+              <span class="song-genre">${album.genre}</span>
             </div>
             <div class="song-information2">
-              <span class="song-author">${song.penyanyi}</span>
-              <span class="song-year">${song.tanggal_terbit.substring(
+              <span class="song-author">${album.penyanyi}</span>
+              <span class="song-year">${album.tanggal_terbit.substring(
                 0,
                 4
               )}</span>

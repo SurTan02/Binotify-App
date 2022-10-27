@@ -43,7 +43,6 @@
         }
 
         public function updateAlbum($id, $judul, $image_path, $tanggal_terbit, $genre) {
-            $result;
             try {
                 $query = "UPDATE album 
                           SET judul = :judul,  
@@ -57,27 +56,46 @@
                 $this->db->bind(':tanggal_terbit', $tanggal_terbit);
                 $this->db->bind(':genre', $genre);
                 $this->db->bind(':album_id', $id);
-                $result = $this->db->single_result();
+                $this->db->execute();
+
+                return true;
             } catch ( error $e ) {
-                echo $e;
-                $result = NULL;
+                return false;
             }
-            return $result;
+        }
+
+        public function updateAlbumWithoutImage($id, $judul, $tanggal_terbit, $genre) {
+            try {
+                $query = "UPDATE album 
+                          SET judul = :judul,
+                              tanggal_terbit = :tanggal_terbit,
+                              genre = :genre
+                          WHERE album_id = :album_id";
+                $this->db->query($query);
+                $this->db->bind(':judul', $judul);
+                $this->db->bind(':tanggal_terbit', $tanggal_terbit);
+                $this->db->bind(':genre', $genre);
+                $this->db->bind(':album_id', $id);
+                $this->db->execute();
+
+                return true;
+            } catch ( error $e ) {
+                return false;
+            }
         }
         
         public function deleteAlbum($id) {
-            $result;
             try {
                 $query = "DELETE FROM album 
                           WHERE album_id = :album_id";
                 $this->db->query($query);
-                $this->db->bind(':album_id');
-                $result = $this->db->single_result();
+                $this->db->bind(':album_id', $id);
+                $this->db->execute();
+
+                return true;
             } catch ( error $e ) {
-                echo 'ERROR!';
-                $result = NULL;
+                return false;
             }
-            return $result;
         }
 
         public function addAlbum($data){

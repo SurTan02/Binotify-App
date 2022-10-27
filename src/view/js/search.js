@@ -58,7 +58,9 @@ function loadSong(page = 1) {
 
       let song_list = "";
       response.data.forEach((song, idx) => {
-        song_list += `<li class="list-song">
+        song_list += `<li class="list-song" onclick="window.location='/detail_lagu.php?song_id=${
+          song.song_id
+        }'">
           <div class="song">
             <span>${start + idx}</span>
             <img class="song-image" src="${song.image_path}" />

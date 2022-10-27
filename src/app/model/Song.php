@@ -168,17 +168,16 @@
         }
 
         public function setAlbumIDtoNull($id) {
-            $result;
             try {
                 $query = "UPDATE song SET album_id = NULL WHERE song_id = :id";
                 $this->db->query($query);
                 $this->db->bind(':id', $id);
-                $result = $this->db->single_result();
+                $this->db->execute();
+
+                return true;
             } catch ( error $e ) {
-                echo $e;
-                $result = NULL;
+                return false;
             }
-            return $result;
         }
 
         public function addSong($data){
@@ -218,10 +217,8 @@
                 $this->db->execute();
                 return true;
             } catch ( error $e ) {
-                echo 'ERROR!';
                 return false;
             }
         }
-
     }
 ?>
