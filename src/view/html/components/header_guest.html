@@ -11,7 +11,7 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="../../css/components/header.css" />
+    <link rel="stylesheet" href="view/css/components/header.css" />
     <link rel="stylesheet" href="{css2}" />
     <link rel="stylesheet" href="{css3}" />
     <link rel="stylesheet" href="{css4}" />
@@ -28,12 +28,12 @@
       <!-- <img src="../../assets/img/Icon_white.svg" id="logo" /> -->
     </div>
     <div class="search-container">
-      <form action method="get" name="searchProduct" id="searchProduct">
+      <form action="/search.php"> method="get" name="searchProduct" id="searchProduct">
         <input
           class="search-field"
           type="text"
           placeholder="What are you looking for?"
-          name="search_query"
+          name="query"
           id="search-Query"
         />
         <input

@@ -13,10 +13,10 @@
     $isSetSession = isset($_SESSION["login"]);
     $header_html = getHeader($isAdmin, $isSetSession, $username);
 
-    $head_html = file_get_contents('./view/html/templates/head.html');
+    // $head_html = file_get_contents('./view/html/templates/head.html');
 
-    $head_html = str_replace('{css1}', '/view/css/components/header.css', $head_html);    
-    $head_html = str_replace('{css2}', '/view/css/detail_lagu.css', $head_html);
+    // $head_html = str_replace('{css1}', '/view/css/components/header.css', $head_html);    
+    $header_html = str_replace('{css2}', '/view/css/detail_lagu.css', $header_html);
     
     // BODY HTML 
     $detail_lagu_html = file_get_contents('./view/html/detail_lagu.html');
@@ -38,7 +38,9 @@
                 $detail_lagu_html = str_replace('{genre}', $result['genre'], $detail_lagu_html);
                 $detail_lagu_html = str_replace('{album}', $result['album_id'], $detail_lagu_html);
                 $detail_lagu_html = str_replace('{audio_path}',  $result['audio_path'] , $detail_lagu_html);
-                $detail_lagu_html = str_replace('{image_path}',  $result['image_path'] , $detail_lagu_html);
+
+                $result['image_path'] == ''? $img = "view/assets/img/default.png" : $img = $result['image_path'];
+                $detail_lagu_html = str_replace('{image_path}',  $img , $detail_lagu_html);
 
                 if ($result['album_id']){
                     $detail_lagu_html = str_replace('{judul_album}',  $result['judul_album'] , $detail_lagu_html);
@@ -60,7 +62,6 @@
             $header_html = str_replace('{title}', "404", $header_html);
             $content_page_html =  "404";
         }
-        echo $head_html;
         echo $header_html;
         echo $content_page_html; 
         echo $foot_html;

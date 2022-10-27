@@ -209,5 +209,19 @@
             }
         }
 
+        public function deleteSong($song_id){
+            try {
+                $query = "DELETE FROM $this->table 
+                          WHERE song_id = :song_id";
+                $this->db->query($query);
+                $this->db->bind(':song_id', $song_id);
+                $this->db->execute();
+                return true;
+            } catch ( error $e ) {
+                echo 'ERROR!';
+                return false;
+            }
+        }
+
     }
 ?>

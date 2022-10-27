@@ -6,20 +6,33 @@ for (var i=0;i<elems.length;i+=1){
 }
 
 // Get the modal
-var modal = document.getElementById("myModal");
-var btn = document.getElementById("myBtn");
+var edit_modal = document.getElementById("edit_modal");
+var delete_modal = document.getElementById("delete_modal");
+var edit_btn = document.getElementById("edit_button");
+var delete_btn = document.getElementById("delete_button");
+var no_delete = document.getElementById("no_delete");
 var span = document.getElementsByClassName("close")[0];
 
 
-btn.onclick = function() {
-  modal.style.display = "block";
+edit_btn.onclick = function() {
+  edit_modal.style.display = "block";
+}
+
+delete_btn.onclick = function() {
+  delete_modal.style.display = "block";
+}
+
+no_delete.onclick = function() {
+  delete_modal.style.display = "none";
 }
 span.onclick = function() {
-  modal.style.display = "none";
+  edit_modal.style.display = "none";
+  delete_modal.style.display = "none";
 }
 window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  if (event.target == delete_modal || event.target == edit_modal) {
+    edit_modal.style.display = "none";
+    delete_modal.style.display = "none";
   }
 }
 
@@ -110,6 +123,7 @@ function editSong(duration = 0, audio_response = 0, image_response = 0){
           console.log(response);
           if (response == 1){
             alert("Lagu berhasil diedit");
+            document.location.reload(true);
           } else{
             alert("Lagu gagal diedit");
           }
@@ -129,3 +143,25 @@ function editSong(duration = 0, audio_response = 0, image_response = 0){
       );
   }
 }
+
+const delete_button = document.getElementById('yes_delete');
+delete_button.addEventListener('click', function(){
+  const song_id = location.search.split("song_id=")[1];
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200){
+        const response = xhr.responseText;
+        if (response == 1){
+          alert("Lagu berhasil dihapus");
+          document.location.reload(true);
+          location.href = 'http://localhost:8008/';
+        } else{
+          alert("Lagu gagal dihapus");
+        }
+      }
+    }
+    xhr.open("POST", "./view/js/ajax/delete_lagu.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send("&song_id=" + song_id);
+})
+
