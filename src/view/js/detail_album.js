@@ -71,17 +71,16 @@ function save() {
     if (xhr.readyState == 4 && xhr.status == 200) {
       if (xhr.responseText == 200) {
         // Success
+        alert("Save album success!");
         location.reload();
       } else {
         // Failed
-        // alert("Save album failed!");
-        alert(xhr.responseText);
+        alert("Save album fail!");
       }
       // Success
     } else if (xhr.readyState == 4 && xhr.status != 200) {
       // Failed
-      alert(xhr.status);
-      // alert("Save album failed!");
+      alert("Save album fail!");
     }
   };
 
@@ -107,14 +106,15 @@ function deleteAlbum() {
       const response = JSON.parse(xhr.responseText);
       if (xhr.responseText == 200) {
         // Success
+        alert("Delete album success!");
         location.replace("http://localhost:8008/index.php");
       } else {
         // Failed
-        alert("Delete album failed!");
+        alert("Delete album fail!");
       }
     } else if (xhr.readyState == 4 && xhr.status != 200) {
       // Failed
-      alert("Delete album failed!");
+      alert("Delete album fail!");
     }
   };
 
