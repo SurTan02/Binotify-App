@@ -102,4 +102,49 @@ INSERT INTO public.user (username, email, password, isAdmin) VALUES ('admin', 'a
 --
 -- PostgreSQL database dump complete
 --
+CREATE OR REPLACE FUNCTION on_song_update() RETURNS TRIGGER AS $song_update$
+    BEGIN
+		IF OLD.album_id IS NOT NULL THEN
+			UPDATE album
+			SET total_duration = total_duration - OLD.duration
+			WHERE album.album_id = OLD.album_id;
+		END IF;
+		
+		IF NEW.album_id IS NOT NULL THEN
+			UPDATE album
+			SET total_duration = total_duration + NEW.duration
+			WHERE album.album_id = NEW.album_id;
+		END IF;
+    END;
+$song_update$ LANGUAGE plpgsql;
 
+
+CREATE OR REPLACE TRIGGER on_song_update AFTER UPDATE ON song
+FOR EACH ROW EXECUTE FUNCTION on_song_update();
+
+CREATE OR REPLACE FUNCTION on_song_insert() RETURNS TRIGGER AS $song_update$
+    BEGIN
+        IF NEW.album_id IS NOT NULL THEN
+			UPDATE album
+			SET total_duration = total_duration + NEW.duration
+			WHERE album.album_id = NEW.album_id;
+		END IF;
+    END;
+$song_update$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE TRIGGER on_song_insert AFTER INSERT ON song
+FOR EACH ROW EXECUTE FUNCTION on_song_insert();
+
+CREATE OR REPLACE FUNCTION on_song_delete() RETURNS TRIGGER AS $song_update$
+    BEGIN
+		IF OLD.album_id IS NOT NULL THEN
+			UPDATE album
+			SET total_duration = total_duration - OLD.duration
+			WHERE album.album_id = OLD.album_id;
+		END IF;
+    END;
+$song_update$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER on_song_delete AFTER DELETE ON song
+FOR EACH ROW EXECUTE FUNCTION on_song_delete();
