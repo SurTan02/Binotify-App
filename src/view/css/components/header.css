@@ -31,6 +31,12 @@ header .main-container {
 a {
   text-decoration: none;
 }
+
+#logo {
+  width: 140px;
+  height: 45px;
+  margin-left: 20px;
+}
 .search-container {
   width: 90%;
   height: 56px;
