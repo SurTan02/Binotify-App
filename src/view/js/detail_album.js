@@ -1,6 +1,5 @@
 document.onkeydown = function (event) {
   if (event.key === "Enter") {
-    event.preventDefault();
     try {
       const element = document.querySelector("[contenteditable]");
       element.blur();
