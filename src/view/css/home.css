@@ -1,22 +1,27 @@
 .wrapper {
-	margin-top: 0;
-	color: #fff;
     background-color: rgba(25, 25, 25, 1);
+    margin-top: 0;
+    color: #fff;
+    padding: 0px 16px;
 }
+
 .wrapper h1 {
-	color: #fff;
-	text-align: center;
-	font-weight: bold;
-}
-.songs {
-    position: relative;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
 }
 
 .cards {
-	height: 100%;
-    display: grid;
-    position: relative;
-    grid-auto-flow: row;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 32px 0px;
+}
+
+@media only screen and (min-width: 800px) {
+    .cards {
+        gap: 32px;
+        padding: 32px 184px;
+    }
+
 }
