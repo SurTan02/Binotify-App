@@ -106,14 +106,11 @@ function editSong(duration = 0, audio_response = 0, image_response = 0){
 
   if (audio_response == 1){
     audio_path = "/view/assets/song/" + document.getElementById("audio_path").files[0].name;
-    console.log("audio_path")
   }
   if (image_response == 1){
     image_path = "/view/assets/img/" + document.getElementById("image_path").files[0].name;
   }
-  
-  // console.log(duration, title,penyanyi,genre,album,tanggal,audio_path,image_path);
-
+  console.log("response");
   if (title !== '' && tanggal !== ''){
       let xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
@@ -129,7 +126,7 @@ function editSong(duration = 0, audio_response = 0, image_response = 0){
           }
         }
       }
-      xhr.open("POST", "./view/js/ajax/edit_lagu.php", true);
+      xhr.open("POST", "/view/js/ajax/edit_lagu.php", true);
       xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xhr.send(
       "title=" + title +
