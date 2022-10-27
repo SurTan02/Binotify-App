@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  background: rgb(5, 36, 153);
+  background: linear-gradient(
+      180deg,
+      rgba(5, 36, 153, 1) 0%,
+      rgba(11, 28, 90, 1) 24%,
+      rgba(18, 18, 18, 1) 100%
+    )
+    fixed;
+}
+
+.tambah-lagu-container {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  align-items: center;
+  margin-left: 10px;
+  margin-top: 20px;
+}
+
+.title-container {
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: 40px;
+}
+
+.form-container {
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+}
+
+.input_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  width: 284px;
+}
+
+.input_container title {
+  font-size: 20px;
+}
+
+input#title {
+  margin-top: 10px;
+  width: 100%;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+input#penyanyi {
+  margin-top: 10px;
+  width: 100%;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+input#genre {
+  margin-top: 10px;
+  width: 100%;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+input#album {
+  margin-top: 10px;
+  width: 100%;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+.error {
+  color: red;
+  font-size: 9px;
+  font-style: oblique;
+}
+
+.input_container text {
+  width: 100%;
+}
+
+#input-container-audio {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+
+input#audio_path {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 170px;
+}
+
+input#image_path {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 170px;
+}
+.submit-lagu-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+input.submit-lagu-button {
+  background-color: #1db954;
+  width: 120px;
+  height: 40px;
+  border-radius: 50px;
+  font-family: "inter", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  border: none;
+  color: white;
+  margin-top: 20px;
+}
+
+input.submit-lagu-button:hover {
+  background-color: white;
+  color: #1db954;
+  cursor: pointer;
+}
