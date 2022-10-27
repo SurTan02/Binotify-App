@@ -38,14 +38,26 @@ const __pagination = (page, total) => {
 };
 
 function loadSong(page = 1) {
-  const query = location.search.split("query=")[1];
+  const urlParams = new URLSearchParams(window.location.search);
+
+  const query = urlParams.get("query");
+  const judul = urlParams.get("judul") ? urlParams.get("judul") : "";
+  const tahun = urlParams.get("tahun") ? urlParams.get("tahun") : "";
   const genre = document.querySelector('input[name="genre"]:checked').value;
-  const judul = document.getElementById("sort_judul").value;
-  const tahun = document.getElementById("sort_tahun").value;
+
+  let entries = urlParams.entries();
+  let first = "";
+
+  for (const [index, entry] of [...entries].entries()) {
+    if (index === 1) {
+      first = entry[0];
+    }
+  }
 
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {
     if (xhr.readyState == 4 && xhr.status == 200) {
+      console.log(xhr.responseText);
       const response = JSON.parse(xhr.responseText);
 
       const start = Math.min((page - 1) * 10 + 1, response.count);
@@ -123,44 +135,68 @@ function loadSong(page = 1) {
       "&judul=" +
       judul +
       "&tahun=" +
-      tahun
+      tahun +
+      "&first=" +
+      first
   );
 }
 
 const updateSortJudul = () => {
   const judul = document.getElementById("sort_judul").value;
+  const url = new URL(window.location);
 
-  if (judul === "ASC") {
-    document.getElementById("sort_judul_img").src =
-      "./view/assets/img/judul.png";
-    document.getElementById("sort_judul").value = "DESC";
-  } else {
+  if (judul === "") {
     document.getElementById("sort_judul_img").src =
       "./view/assets/img/judul_asc.png";
     document.getElementById("sort_judul").value = "ASC";
+    url.searchParams.append("judul", "ASC");
+  } else if (judul === "ASC") {
+    document.getElementById("sort_judul_img").src =
+      "./view/assets/img/judul_desc.png";
+    document.getElementById("sort_judul").value = "DESC";
+    url.searchParams.set("judul", "DESC");
+  } else {
+    document.getElementById("sort_judul_img").src =
+      "./view/assets/img/judul.png";
+    document.getElementById("sort_judul").value = "";
+    url.searchParams.delete("judul");
   }
+
+  window.history.replaceState({}, "", url);
 
   loadSong();
 };
 
 const updateSortTahun = () => {
   const tahun = document.getElementById("sort_tahun").value;
+  const url = new URL(window.location);
 
   if (tahun === "") {
     document.getElementById("sort_tahun_img").src =
       "./view/assets/img/tahun_asc.png";
     document.getElementById("sort_tahun").value = "ASC";
+    url.searchParams.append("tahun", "ASC");
   } else if (tahun === "ASC") {
     document.getElementById("sort_tahun_img").src =
       "./view/assets/img/tahun_desc.png";
     document.getElementById("sort_tahun").value = "DESC";
+    url.searchParams.set("tahun", "DESC");
   } else if (tahun === "DESC") {
     document.getElementById("sort_tahun_img").src =
       "./view/assets/img/tahun.png";
     document.getElementById("sort_tahun").value = "";
+    url.searchParams.delete("tahun");
   }
+
+  window.history.replaceState({}, "", url);
 
   loadSong();
 };
 
 document.onload = loadSong();
+
+const url = new URL(window.location);
+url.searchParams.delete("judul");
+url.searchParams.delete("tahun");
+url.searchParams.set("judul", "ASC");
+window.history.replaceState({}, "", url);

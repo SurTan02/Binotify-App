@@ -56,27 +56,32 @@
             return $result;
         }
 
-        public function getSongByJudulPenyanyiTahun($user_query, $page, $genre, $judul, $tahun) {
+        public function getSongByJudulPenyanyiTahun($user_query, $page, $genre, $judul, $tahun, $first) {
             $result;
             try {
                 $user_query = filter_var($user_query, FILTER_SANITIZE_URL);
 
                 $query = "SELECT COUNT(song_id) FROM song WHERE ";
+
                 if ($genre != '') {
                     $query = $query . "LOWER(genre) = :genre AND ";
                 }
+
                 $query =  $query . 
-                "(LOWER(judul) LIKE CONCAT('%', LOWER(:user_query), '%')
-                OR
-                LOWER(penyanyi) LIKE CONCAT('%', LOWER(:user_query), '%')
-                OR
-                EXTRACT(YEAR FROM tanggal_terbit) = :user_query_number)";
+                            "(LOWER(judul) LIKE CONCAT('%', LOWER(:user_query), '%')
+                             OR
+                             LOWER(penyanyi) LIKE CONCAT('%', LOWER(:user_query), '%')
+                             OR
+                             EXTRACT(YEAR FROM tanggal_terbit) = :user_query_number)";
+
                 $this->db->query($query);
                 $this->db->bind(':user_query', $user_query);
                 $this->db->bind(':user_query_number', (int) preg_replace('/\D/', '', $user_query));
+
                 if ($genre != '') {
                     $this->db->bind(':genre', $genre);    
                 }
+
                 $result['count'] = $this->db->single_result()['count'];
                 
                 $query = "SELECT * FROM song WHERE ";
@@ -84,16 +89,36 @@
                     $query = $query . "LOWER(genre) = :genre AND ";
                     $this->db->bind(':genre', $genre);
                 }
+
                 $query = $query . 
-                "(LOWER(judul) LIKE CONCAT('%', LOWER(:user_query), '%')
-                OR
-                LOWER(penyanyi) LIKE CONCAT('%', LOWER(:user_query), '%')
-                OR
-                EXTRACT(YEAR FROM tanggal_terbit) = :user_query_number)
-                ORDER BY judul " . $judul . " ";
-                if ($tahun != '') {
-                    $query = $query . ", tanggal_terbit " . $tahun . " ";
+                    "(LOWER(judul) LIKE CONCAT('%', LOWER(:user_query), '%')
+                    OR
+                    LOWER(penyanyi) LIKE CONCAT('%', LOWER(:user_query), '%')
+                    OR
+                    EXTRACT(YEAR FROM tanggal_terbit) = :user_query_number) ";
+
+                // echo $first;
+                
+                if ($first != "") {
+                    $query = $query . "ORDER BY ";
+                } 
+                
+                if ($first == "judul") {
+                    $query = $query . "judul " . $judul . " ";
+                        
+                    if ($tahun != '') {
+                        $query = $query . ", tanggal_terbit " . $tahun . " ";
+                    }
                 }
+
+                if ($first == "tahun") {
+                    $query = $query . "tanggal_terbit " . $tahun . " ";
+
+                    if ($judul != '') {
+                        $query = $query . ", judul " . $judul . " ";
+                    }    
+                }
+
                 $query = $query . "OFFSET :page LIMIT 10";
                 $this->db->query($query);
                 $this->db->bind(':user_query', $user_query);
@@ -103,6 +128,7 @@
                     $this->db->bind(':genre', $genre);    
                 }
                 $result['data'] = $this->db->multi_result();
+                $result['first'] = $first;
             } catch ( error $e ) {
                 echo $e;
                 $result = NULL;
