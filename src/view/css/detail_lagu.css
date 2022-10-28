@@ -82,8 +82,9 @@
   color:white;
 }
 
-.section-2 .guest_warn{
+#guest_warn{
   display: none;
+  text-align: center;
 }
 
 
