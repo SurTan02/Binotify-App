@@ -1,7 +1,7 @@
-import { uploadHandler } from './uploader.js';
+import { uploadHandler } from "./uploader.js";
 
-const element = document.getElementById('edit_form');
-element.addEventListener('submit', async event => {
+const element = document.getElementById("edit_form");
+element.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   let title = document.getElementById("title");
@@ -21,11 +21,11 @@ element.addEventListener('submit', async event => {
   error_image_path.innerHTML = "";
 
   var isSafe = true;
-  if (title.value === '') {
+  if (title.value === "") {
     error_title.innerHTML = "Judul Lagu tidak boleh kosong";
     isSafe = false;
   }
-  if (tanggal.value === '') {
+  if (tanggal.value === "") {
     error_tanggal.innerHTML = "Tanggal tidak boleh kosong";
     isSafe = false;
   }
@@ -46,14 +46,13 @@ element.addEventListener('submit', async event => {
     }
     let audio_response = await uploadHandler("audio");
     if (image_response == 1 && audio_response == 1) {
-      var au = document.createElement('audio');
+      var au = document.createElement("audio");
       au.src = "/view/assets/song/" + audio_path.files[0].name;
       au.addEventListener('loadedmetadata', function () {
         addSong(parseInt(au.duration), has_image);
       });
     }
   }
-
 });
 
 function addSong(duration, has_image) {
@@ -69,7 +68,7 @@ function addSong(duration, has_image) {
 
   // console.log(duration, title,penyanyi,genre,album,tanggal,audio_path,image_path);
 
-  if (title !== '' && tanggal !== '' && duration !== '' && audio_path !== '') {
+  if (title !== "" && tanggal !== "" && duration !== "" && audio_path !== "") {
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
@@ -83,19 +82,24 @@ function addSong(duration, has_image) {
           alert("Lagu gagal ditambahkan");
         }
       }
-    }
+    };
     xhr.open("POST", "./view/js/ajax/tambah_lagu.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send(
-      "title=" + title +
-      "&penyanyi=" + penyanyi +
-      "&genre=" + genre +
-      "&tanggal=" + tanggal +
-      "&audio_path=" + audio_path +
-      "&image_path=" + image_path +
-      "&duration=" + duration
+      "title=" +
+        title +
+        "&penyanyi=" +
+        penyanyi +
+        "&genre=" +
+        genre +
+        "&tanggal=" +
+        tanggal +
+        "&audio_path=" +
+        audio_path +
+        "&image_path=" +
+        image_path +
+        "&duration=" +
+        duration
     );
   }
-
-
 }
