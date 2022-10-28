@@ -231,6 +231,21 @@ INSERT INTO public.album (judul, penyanyi, image_path, tanggal_terbit, genre)
 INSERT INTO public.album (judul, penyanyi, image_path, tanggal_terbit, genre) 
     VALUES ('Rubik', 'Dere', '/view/assets/img/album_rubik.jpeg', '2022-09-10', 'Hip-hop');
 
+INSERT INTO public.song (Judul, Penyanyi, Tanggal_terbit, duration, album_id, Genre, Audio_path, Image_path) VALUES (
+'Diri', 'Tulus', '2015-09-10', 244, 1, 'Pop', '/view/assets/song/diri.mp3', '/view/assets/img/album_manusia.jpeg');
+
+INSERT INTO public.song (Judul, Penyanyi, Tanggal_terbit, duration, album_id, Genre, Audio_path, Image_path) VALUES (
+'Hati Hati Di Jalan', 'Tulus', '2019-09-10', 344, 1, 'Pop', '/view/assets/song/Hati Hati di Jalan.mp3', '/view/assets/img/album_manusia.jpeg');
+
+INSERT INTO public.song (Judul, Penyanyi, Tanggal_terbit, duration,  Genre, Audio_path, Image_path) VALUES (
+'Satu Kali', 'Tulus', '2021-09-10', 232,  'Dangdut', '/view/assets/song/Satu Kali.mp3', '/view/assets/img/album_manusia.jpeg');
+
+INSERT INTO public.song (Judul, Penyanyi, Tanggal_terbit, duration, album_id, Genre, Audio_path, Image_path) VALUES (
+'Dont Stop Me Now', 'Queen', '1990-09-10', 340, 2, 'Metal', '/view/assets/song/Dont Stop Me Now.mp3', '/view/assets/img/album_bohemian-rhapsody.jpeg');
+
+INSERT INTO public.song (Judul, Penyanyi, Tanggal_terbit, duration, Genre, Audio_path, Image_path) VALUES (
+'Bohemian Rhapsody', 'Queen', '1985-09-10', 360, 'Metal', '/view/assets/song/Bohemian Rhapsody.mp3', '/view/assets/img/album_bohemian-rhapsody.jpeg');
+
 --
 -- PostgreSQL database dump complete
 --
