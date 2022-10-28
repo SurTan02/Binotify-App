@@ -131,6 +131,12 @@
             echo $header_html;
             echo $not_found_html;
         }
+    } else {
+        $head_html = str_replace('{css2}', './view/css/not_found.css', $head_html);
+        $not_found_html = file_get_contents('./view/html/not_found.html');
+        echo $head_html;
+        echo $header_html;
+        echo $not_found_html;
     }
 
 ?>
