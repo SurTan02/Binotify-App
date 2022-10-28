@@ -79,14 +79,13 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  color:white;
+  color: white;
 }
 
-#guest_warn{
+#guest_warn {
   display: none;
   text-align: center;
 }
-
 
 audio#playmusic {
   position: absolute;
@@ -117,7 +116,7 @@ audio#playmusic {
   height: 100%;
   overflow: auto;
   background-color: rgba(25, 25, 25, 0.4);
-  padding-top: 7em;
+  padding-top: 2em;
   /* margin: 2em; */
 }
 
@@ -253,6 +252,7 @@ select#album {
   font-size: 20px;
   border: none;
   color: white;
+  margin-top: 20px;
 }
 
 .modal-body button:hover {
