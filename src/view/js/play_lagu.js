@@ -12,10 +12,8 @@ music.onplay = function(){
         const response = JSON.parse(xhr.responseText);
         // const response = 0;
         console.log(response);
-        if (response > 3){
-            // alert("Album berhasil ditambahkan");
-        } else{
-            // alert("Album gagal ditambahkan");
+        if (response >= 3){
+            music.controls = false; 
         }
         }
     }
