@@ -2,6 +2,7 @@
 const music = document.getElementById("playmusic");
 music.volume = 0.1;
 const song_id = location.search.split("song_id=")[1];
+const guest = document.getElementById("guest_warn");
 
 music.onplay = function(){
     // Lagu yg diputar
@@ -32,6 +33,7 @@ music.onended = function(){
         
         if (response >= 3){
             music.remove();
+            guest.style.display = "block";
         } 
         }
     }

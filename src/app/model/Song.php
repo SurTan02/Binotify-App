@@ -59,8 +59,8 @@
         public function getSongByJudulPenyanyiTahun($user_query, $page, $genre, $judul, $tahun, $first) {
             $result;
             try {
-                $user_query = filter_var($user_query, FILTER_SANITIZE_URL);
-
+                // $user_query = filter_var($user_query, FILTER_SANITIZE_URL);
+                // die($user_query);
                 $query = "SELECT COUNT(song_id) FROM song WHERE ";
 
                 if ($genre != '') {
