@@ -47,6 +47,11 @@ function removeSong(song_id) {
   } else {
     element.classList.add("deleted");
   }
+  event.stopPropagation();
+}
+
+function redirectSong(song_id) {
+  window.location = `/detail_lagu.php?song_id=${song_id}`;
 }
 
 function save() {

@@ -69,8 +69,9 @@
             $song_list = '';
     
             foreach ($songs_result as $idx=>$song) {
+                $song_id = $song['song_id'];
                 $song_list = $song_list . 
-                '<tr id="song_'. $song['song_id'] .'">
+                '<tr id="song_'. $song_id .'" onclick="redirectSong('. $song_id .')" style="cursor: pointer">
                     <td style="text-align: center" class="number-container">';
                 
                 if ($isAdmin) {
