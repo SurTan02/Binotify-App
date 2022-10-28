@@ -108,6 +108,10 @@ body {
   color: white;
 }
 
+.judul_lagu:hover {
+  color: #1db954;
+}
+
 .deleted {
   color: #f94449 !important;
 }
