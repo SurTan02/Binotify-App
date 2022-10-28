@@ -200,6 +200,17 @@ ALTER TABLE ONLY public.Song
 
 INSERT INTO public.user (username, email, password, isAdmin) VALUES ('admin', 'admin@brisic.com', '$2y$10$Ak.28BnV7LurDwQ6znkHI.wNxDn.x1V8wFK84BWZpEoqXYoXe9uU2', true);
 
+INSERT INTO public.album (judul, penyanyi, image_path, tanggal_terbit, genre) 
+    VALUES ('Manusia', 'Tulus', '/view/assets/img/album_manusia.jpeg', '2022-09-10', 'Pop');
+INSERT INTO public.album (judul, penyanyi, image_path, tanggal_terbit, genre) 
+    VALUES ('Bohemian Rhapsody', 'Queen', '/view/assets/img/album_bohemian-rhapsody.jpeg', '2017-09-10', 'Rock');
+INSERT INTO public.album (judul, penyanyi, image_path, tanggal_terbit, genre) 
+    VALUES ('Monokrom', 'Tulus', '/view/assets/img/album_monokrom.jpeg', '2019-09-10', 'Metal');
+INSERT INTO public.album (judul, penyanyi, image_path, tanggal_terbit, genre) 
+    VALUES ('The Book', 'YOASOBI', '/view/assets/img/album_the-book.jpeg', '2021-09-10', 'Hip-hop');
+INSERT INTO public.album (judul, penyanyi, image_path, tanggal_terbit, genre) 
+    VALUES ('Rubik', 'Dere', '/view/assets/img/album_rubik.jpeg', '2022-09-10', 'Hip-hop');
+
 --
 -- PostgreSQL database dump complete
 --
