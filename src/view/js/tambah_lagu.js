@@ -73,6 +73,7 @@ function addSong(duration) {
         console.log(response);
         if (response == 1) {
           alert("Lagu berhasil ditambahkan");
+          document.location.reload(true);
         } else {
           alert("Lagu gagal ditambahkan");
         }

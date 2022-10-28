@@ -59,8 +59,9 @@
                     if ($result['album_id'] == $album['album_id']){
                         $temp = '<option value= '.$album['album_id'].'>'  .$album['judul']. '</option>' . $option;
                         $option = $temp;
+                    }else{
+                        $option .= '<option value= '.$album['album_id'].'>'  .$album['judul']. '</option>';
                     }
-                    $option .= '<option value= '.$album['album_id'].'>'  .$album['judul']. '</option>';
                 }
                 $detail_lagu_html = str_replace('{option}',  $option , $detail_lagu_html);
                 $foot_html = str_replace('{js1}', '/view/js/edit_lagu.js', $foot_html);

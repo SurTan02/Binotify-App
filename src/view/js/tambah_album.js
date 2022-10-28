@@ -77,6 +77,7 @@ function addAlbum(){
             console.log(response);
             if (response == 1){
               alert("Album berhasil ditambahkan");
+              document.location.reload(true);
             } else{
               alert("Album gagal ditambahkan");
             }
