@@ -1,7 +1,7 @@
-import { uploadHandler } from './uploader.js';
+import { uploadHandler } from "./uploader.js";
 
-const element = document.getElementById('edit_form');
-element.addEventListener('submit', async event => {
+const element = document.getElementById("edit_form");
+element.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   let title = document.getElementById("title");
@@ -21,11 +21,11 @@ element.addEventListener('submit', async event => {
   error_image_path.innerHTML = "";
 
   var isSafe = true;
-  if (title.value === '') {
+  if (title.value === "") {
     error_title.innerHTML = "Judul Lagu tidak boleh kosong";
     isSafe = false;
   }
-  if (tanggal.value === '') {
+  if (tanggal.value === "") {
     error_tanggal.innerHTML = "Tanggal tidak boleh kosong";
     isSafe = false;
   }
@@ -35,7 +35,7 @@ element.addEventListener('submit', async event => {
   }
 
   if (audio_path.files.length == 0) {
-    error_audio_path.innerHTML = "Gambar tidak boleh kosong";
+    error_audio_path.innerHTML = "Audio tidak boleh kosong";
     isSafe = false;
   }
 
@@ -43,14 +43,13 @@ element.addEventListener('submit', async event => {
     let image_response = await uploadHandler("image");
     let audio_response = await uploadHandler("audio");
     if (image_response == 1 && audio_response == 1) {
-      var au = document.createElement('audio');
+      var au = document.createElement("audio");
       au.src = "/view/assets/song/" + audio_path.files[0].name;
-      au.addEventListener('loadedmetadata', function () {
+      au.addEventListener("loadedmetadata", function () {
         addSong(parseInt(au.duration));
       });
     }
   }
-
 });
 
 function addSong(duration) {
@@ -59,12 +58,14 @@ function addSong(duration) {
   const genre = document.getElementById("genre").value;
   const tanggal = document.getElementById("tanggal").value;
 
-  const audio_path = "/view/assets/song/" + document.getElementById("audio_path").files[0].name;
-  const image_path = "/view/assets/img/" + document.getElementById("image_path").files[0].name;
+  const audio_path =
+    "/view/assets/song/" + document.getElementById("audio_path").files[0].name;
+  const image_path =
+    "/view/assets/img/" + document.getElementById("image_path").files[0].name;
 
   // console.log(duration, title,penyanyi,genre,album,tanggal,audio_path,image_path);
 
-  if (title !== '' && tanggal !== '' && duration !== '' && audio_path !== '') {
+  if (title !== "" && tanggal !== "" && duration !== "" && audio_path !== "") {
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
@@ -78,19 +79,24 @@ function addSong(duration) {
           alert("Lagu gagal ditambahkan");
         }
       }
-    }
+    };
     xhr.open("POST", "./view/js/ajax/tambah_lagu.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send(
-      "title=" + title +
-      "&penyanyi=" + penyanyi +
-      "&genre=" + genre +
-      "&tanggal=" + tanggal +
-      "&audio_path=" + audio_path +
-      "&image_path=" + image_path +
-      "&duration=" + duration
+      "title=" +
+        title +
+        "&penyanyi=" +
+        penyanyi +
+        "&genre=" +
+        genre +
+        "&tanggal=" +
+        tanggal +
+        "&audio_path=" +
+        audio_path +
+        "&image_path=" +
+        image_path +
+        "&duration=" +
+        duration
     );
   }
-
-
 }
