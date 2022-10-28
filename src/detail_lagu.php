@@ -80,15 +80,12 @@
                 
             }
             $content_page_html =  $detail_lagu_html;
-            
         }
         else{
-            $header_html = str_replace('{title}', "404", $header_html);
-            $content_page_html =  "404";
+            header("location: /not_found.php");
         }
     } else{
-        $header_html = str_replace('{title}', "404", $header_html);
-        $content_page_html =  "404";
+        header("location: /not_found.php");
     }
     echo $header_html;
     echo $content_page_html; 

@@ -217,18 +217,14 @@
                 return false;
             } 
             
-            if (($data['album'] == '')){
-                $data['album'] = NULL;
-            }
 
             try {
-                $this->db->query("INSERT INTO $this->table (judul, penyanyi, genre, tanggal_terbit, album_id, audio_path, image_path, duration)
-                                  VALUES (:judul, :penyanyi, :genre, :tanggal_terbit, :album, :audio_path, :image_path, :duration)");
+                $this->db->query("INSERT INTO $this->table (judul, penyanyi, genre, tanggal_terbit, audio_path, image_path, duration)
+                                  VALUES (:judul, :penyanyi, :genre, :tanggal_terbit, :audio_path, :image_path, :duration)");
                 $this->db->bind(':judul', $data['title']);
                 $this->db->bind(':penyanyi', $data['penyanyi']);
                 $this->db->bind(':genre', $data['genre']);
                 $this->db->bind(':tanggal_terbit', $data['tanggal']);
-                $this->db->bind(':album', $data['album']);
                 $this->db->bind(':audio_path', $data['audio_path']);
                 $this->db->bind(':image_path', $data['image_path']);
                 $this->db->bind(':duration', $data['duration']);

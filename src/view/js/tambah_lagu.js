@@ -57,7 +57,7 @@ function addSong(duration){
     const title = document.getElementById("title").value;
     const penyanyi = document.getElementById("penyanyi").value;
     const genre = document.getElementById("genre").value;
-    const album = document.getElementById("album").value;
+    // const album = document.getElementById("album").value;
     const tanggal = document.getElementById("tanggal").value;
 
     const audio_path = "/view/assets/song/" + document.getElementById("audio_path").files[0].name;
@@ -85,7 +85,6 @@ function addSong(duration){
         "title=" + title +
             "&penyanyi=" + penyanyi +
             "&genre=" + genre +
-            "&album=" + album +
             "&tanggal=" + tanggal +
             "&audio_path=" + audio_path +
             "&image_path=" + image_path +

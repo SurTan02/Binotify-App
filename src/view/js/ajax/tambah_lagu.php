@@ -12,7 +12,6 @@
             "penyanyi"=>$_POST["penyanyi"],
             "genre"=>$_POST["genre"],
             "tanggal"=>$_POST["tanggal"],
-            "album"=>$_POST["album"],
             "audio_path"=>$_POST["audio_path"],
             "image_path"=>$_POST["image_path"],
             "duration"=>$_POST["duration"],
