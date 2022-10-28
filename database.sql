@@ -200,6 +200,26 @@ ALTER TABLE ONLY public.Song
 
 INSERT INTO public.user (username, email, password, isAdmin) VALUES ('admin', 'admin@brisic.com', '$2y$10$Ak.28BnV7LurDwQ6znkHI.wNxDn.x1V8wFK84BWZpEoqXYoXe9uU2', true);
 
+INSERT INTO public.user (username, email, password, isAdmin) VALUES ('brianaldo', 'brianaldo@brisic.com', '$2y$10$21OxUj8OiYONDvBAKFBJk.uSrgLvqU6Xz0Pk2trqxxeil2kQzeWV6', true);
+
+INSERT INTO public.user (username, email, password, isAdmin) VALUES ('suryanto', 'suryanto@gmail.com', '$2y$10$21OxUj8OiYONDvBAKFBJk.uSrgLvqU6Xz0Pk2trqxxeil2kQzeWV6', true);
+
+INSERT INTO public.user (username, email, password, isAdmin) VALUES ('fikrikhoironn', 'fikrikf470@gmail.com', '$2y$10$21OxUj8OiYONDvBAKFBJk.uSrgLvqU6Xz0Pk2trqxxeil2kQzeWV6', true);
+
+INSERT INTO public.user (username, email, password, isAdmin) VALUES ('viel', 'viel@gmail.com', '$2y$10$21OxUj8OiYONDvBAKFBJk.uSrgLvqU6Xz0Pk2trqxxeil2kQzeWV6', false);
+
+INSERT INTO public.user (username, email, password, isAdmin) VALUES ('cello', 'cello@gmail.com', '$2y$10$21OxUj8OiYONDvBAKFBJk.uSrgLvqU6Xz0Pk2trqxxeil2kQzeWV6', false);
+
+INSERT INTO public.user (username, email, password, isAdmin) VALUES ('dian', 'dian@gmail.com', '$2y$10$21OxUj8OiYONDvBAKFBJk.uSrgLvqU6Xz0Pk2trqxxeil2kQzeWV6', false);
+
+INSERT INTO public.user (username, email, password, isAdmin) VALUES ('doni', 'doni@gmail.com', '$2y$10$21OxUj8OiYONDvBAKFBJk.uSrgLvqU6Xz0Pk2trqxxeil2kQzeWV6', false);
+
+INSERT INTO public.user (username, email, password, isAdmin) VALUES ('dwi', 'dwi@gmail.com', '$2y$10$21OxUj8OiYONDvBAKFBJk.uSrgLvqU6Xz0Pk2trqxxeil2kQzeWV6', false);
+
+INSERT INTO public.user (username, email, password, isAdmin) VALUES ('fikri', 'fikri@gmail.com', '$2y$10$21OxUj8OiYONDvBAKFBJk.uSrgLvqU6Xz0Pk2trqxxeil2kQzeWV6', false);
+
+INSERT INTO public.user (username, email, password, isAdmin) VALUES ('firdaus', 'firdaus@gmail.com', '$2y$10$21OxUj8OiYONDvBAKFBJk.uSrgLvqU6Xz0Pk2trqxxeil2kQzeWV6', false);
+
 INSERT INTO public.album (judul, penyanyi, image_path, tanggal_terbit, genre) 
     VALUES ('Manusia', 'Tulus', '/view/assets/img/album_manusia.jpeg', '2022-09-10', 'Pop');
 INSERT INTO public.album (judul, penyanyi, image_path, tanggal_terbit, genre) 
