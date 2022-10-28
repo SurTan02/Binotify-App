@@ -76,7 +76,14 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  color:white;
 }
+
+.section-2 .guest_warn{
+  display: none;
+}
+
+
 audio#playmusic {
   position: absolute;
   width: 600px;
