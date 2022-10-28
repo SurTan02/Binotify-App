@@ -29,7 +29,7 @@ CREATE FUNCTION public.on_song_delete() RETURNS trigger
     AS $$
     BEGIN
 		IF OLD.album_id IS NOT NULL THEN
-			UPDATE album
+			UPDATE public.album
 			SET total_duration = total_duration - OLD.duration
 			WHERE album.album_id = OLD.album_id;
 		END IF;
@@ -50,7 +50,7 @@ CREATE FUNCTION public.on_song_insert() RETURNS trigger
     AS $$
     BEGIN
         IF NEW.album_id IS NOT NULL THEN
-			UPDATE album
+			UPDATE public.album
 			SET total_duration = total_duration + NEW.duration
 			WHERE album.album_id = NEW.album_id;
 		END IF;
@@ -71,13 +71,13 @@ CREATE FUNCTION public.on_song_update() RETURNS trigger
     AS $$
     BEGIN
 		IF OLD.album_id IS NOT NULL THEN
-			UPDATE album
+			UPDATE public.album
 			SET total_duration = total_duration - OLD.duration
 			WHERE album.album_id = OLD.album_id;
 		END IF;
 		
 		IF NEW.album_id IS NOT NULL THEN
-			UPDATE album
+			UPDATE public.album
 			SET total_duration = total_duration + NEW.duration
 			WHERE album.album_id = NEW.album_id;
 		END IF;
@@ -242,10 +242,6 @@ INSERT INTO public.song (Judul, Penyanyi, Tanggal_terbit, duration,  Genre, Audi
 
 INSERT INTO public.song (Judul, Penyanyi, Tanggal_terbit, duration, album_id, Genre, Audio_path, Image_path) VALUES (
 'Dont Stop Me Now', 'Queen', '1990-09-10', 340, 2, 'Metal', '/view/assets/song/Dont Stop Me Now.mp3', '/view/assets/img/album_bohemian-rhapsody.jpeg');
-
-INSERT INTO public.song (Judul, Penyanyi, Tanggal_terbit, duration, Genre, Audio_path, Image_path) VALUES (
-'Bohemian Rhapsody', 'Queen', '1985-09-10', 360, 'Metal', '/view/assets/song/Bohemian Rhapsody.mp3', '/view/assets/img/album_bohemian-rhapsody.jpeg');
-
 --
 -- PostgreSQL database dump complete
 --
