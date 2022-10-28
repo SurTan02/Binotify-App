@@ -87,7 +87,6 @@
                 $query = "SELECT * FROM song WHERE ";
                 if ($genre != '') {
                     $query = $query . "LOWER(genre) = :genre AND ";
-                    $this->db->bind(':genre', $genre);
                 }
 
                 $query = $query . 
