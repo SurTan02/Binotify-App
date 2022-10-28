@@ -79,18 +79,27 @@ h1 {
 .user-information > div {
   text-align: center;
 }
+
 .users-pagination-pages {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 8px;
-  font-weight: bold;
   margin-top: 20px;
+  gap: 20px;
+}
+.users-pagination-pages li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
 }
 
 .users-pagination-pages li:hover {
   cursor: pointer;
   color: rgba(30, 215, 97, 255);
   background-color: rgb(255, 255, 255);
-  border-radius: 100%;
+
+  border-radius: 50%;
 }
