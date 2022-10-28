@@ -103,7 +103,7 @@ pengguna tidak terautentikasi(selanjutnya disebut <b>guest</b>), pengguna teraut
 ### Client-side
 1. Login &nbsp; : 13520056
 2. Register : 13520056
-3. Home : 13520056
+3. Home : 13520056, 13520113
 4. Daftar Album : 13520113
 5. Search, Sort, dan Filter : 13520113
 6. Detail Lagu : 13520059, 13520056
@@ -113,3 +113,8 @@ pengguna tidak terautentikasi(selanjutnya disebut <b>guest</b>), pengguna teraut
 10. Daftar User : 13520056
 11. Halaman 404 : 13520056
 12. Navbar : 13520056
+
+### Note
+- Akun Admin :
+  - Username : admin
+  - Password : admin

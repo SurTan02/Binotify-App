@@ -54,7 +54,8 @@ function generateSongCard($song, $number) {
   $song_card_html = str_replace('{song-year}', $song['tahun'], $song_card_html);
   $song_card_html = str_replace('{song-genre}', $song['genre'], $song_card_html);
   // $song_card_html = str_replace('{durasi}', $song['duration'], $song_card_html);
-  $song_card_html = str_replace('{song-image-path}', $song['image_path'], $song_card_html);
+  $song['image_path'] == '' ? $img = "view/assets/img/default.png" : $img = $song['image_path'];
+  $song_card_html = str_replace('{song-image-path}', $img, $song_card_html);
   $song_card_html = str_replace('{song_id}', $song['song_id'], $song_card_html);
   $song_card_html = str_replace('{list-number}', $number, $song_card_html);
   

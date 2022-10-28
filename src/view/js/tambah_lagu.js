@@ -29,38 +29,43 @@ element.addEventListener('submit', async event => {
     error_tanggal.innerHTML = "Tanggal tidak boleh kosong";
     isSafe = false;
   }
-  if (image_path.files.length == 0) {
-    error_image_path.innerHTML = "Gambar tidak boleh kosong";
-    isSafe = false;
-  }
 
   if (audio_path.files.length == 0) {
-    error_audio_path.innerHTML = "Gambar tidak boleh kosong";
+    error_audio_path.innerHTML = "Audio tidak boleh kosong";
     isSafe = false;
   }
 
   if (isSafe) {
-    let image_response = await uploadHandler("image");
+    let image_response = 1;
+    let has_image = 0;
+
+
+    if (image_path.files.length != 0){
+      image_response = await uploadHandler("image");
+      has_image = 1;
+    }
     let audio_response = await uploadHandler("audio");
     if (image_response == 1 && audio_response == 1) {
       var au = document.createElement('audio');
       au.src = "/view/assets/song/" + audio_path.files[0].name;
       au.addEventListener('loadedmetadata', function () {
-        addSong(parseInt(au.duration));
+        addSong(parseInt(au.duration), has_image);
       });
     }
   }
 
 });
 
-function addSong(duration) {
+function addSong(duration, has_image) {
   const title = document.getElementById("title").value;
   const penyanyi = document.getElementById("penyanyi").value;
   const genre = document.getElementById("genre").value;
   const tanggal = document.getElementById("tanggal").value;
-
+  let image_path ='';
   const audio_path = "/view/assets/song/" + document.getElementById("audio_path").files[0].name;
-  const image_path = "/view/assets/img/" + document.getElementById("image_path").files[0].name;
+  if (has_image){
+    image_path = "/view/assets/img/" + document.getElementById("image_path").files[0].name;
+  }
 
   // console.log(duration, title,penyanyi,genre,album,tanggal,audio_path,image_path);
 
