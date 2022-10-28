@@ -128,7 +128,7 @@
         public function getAlbumByPenyanyi($penyanyi) {
             $result;
             try {
-                $query = "SELECT album_id, judul FROM album WHERE penyanyi = :penyanyi";
+                $query = "SELECT album_id, judul FROM album WHERE LOWER(penyanyi) = LOWER(:penyanyi)";
                 $this->db->query($query);
                 $this->db->bind(':penyanyi', $penyanyi);
                 $result = $this->db->multi_result();
