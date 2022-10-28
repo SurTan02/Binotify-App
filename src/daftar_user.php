@@ -24,7 +24,7 @@ $header_html = getHeader($isAdmin, $isSetSession, $username);
 
 $head_html = file_get_contents('./view/html/templates/head.html');
 
-$head_html = str_replace('{title}', 'Spotify', $head_html);
+$head_html = str_replace('{title}', 'Brisic', $head_html);
 $head_html = str_replace('{css1}', './view/css/components/header.css', $head_html);
 $head_html = str_replace('{css2}', './view/css/daftar_user.css', $head_html);
 
