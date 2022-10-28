@@ -38,6 +38,10 @@ body {
   align-self: stretch;
 }
 
+h1 {
+  margin-left: 20px;
+}
+
 .users {
   display: flex;
   flex-direction: column;
@@ -45,6 +49,8 @@ body {
   gap: 10px;
   color: white;
   font-family: "Inter", sans-serif;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .users li {
@@ -53,14 +59,14 @@ body {
 
 .table-header {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 0.2fr 0.2fr 1fr 1fr 1fr;
   text-align: center;
   font-weight: bold;
 }
 
 .user-information {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 0.2fr 0.2fr 1fr 1fr 1fr;
   margin-top: 8px;
   color: rgb(255, 255, 255);
 }
