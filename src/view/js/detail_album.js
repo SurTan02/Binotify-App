@@ -59,6 +59,7 @@ function save() {
   const judul = document.getElementById("album__judul").innerHTML.trim();
   const genre = document.getElementById("album__genre").innerHTML.trim();
   const tanggal = document.getElementById("album__tanggal-terbit").value;
+  const add_song = document.getElementById("add_lagu").value;
   const img = document.getElementById("image-input").files;
 
   const deletedSongsId = [];
@@ -95,6 +96,7 @@ function save() {
   formData.append("tanggal", tanggal);
   formData.append("file", img[0]);
   formData.append("deleteIds", JSON.stringify(deletedSongsId));
+  formData.append("addSong", add_song);
 
   xhr.open("POST", "./view/js/ajax/save_album.php", true);
   xhr.send(formData);

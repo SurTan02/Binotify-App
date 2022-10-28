@@ -1,12 +1,12 @@
 <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
-        if (isset($_POST["id"])      ||
-            isset($_POST["judul"])   ||
-            isset($_POST["genre"])   ||
-            isset($_POST["tanggal"]) ||
-            isset($_POST["deleteIds"])
-            ) {
+        if (isset($_POST["id"])        ||
+            isset($_POST["judul"])     ||
+            isset($_POST["genre"])     ||
+            isset($_POST["tanggal"])   ||
+            isset($_POST["deleteIds"]) ||
+            isset($_POST["addSong"])) {
 
             $response = 200;
                 
@@ -32,6 +32,8 @@
             $deletedIds = $_POST["deleteIds"];
 
             $deletedIds = json_decode(stripslashes($deletedIds));
+
+            $addSong = $_POST["addSong"];
             
             require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/Album.php';
             require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/Song.php';
@@ -51,6 +53,14 @@
             $db_song = new Song();
             foreach ($deletedIds as $id) {
                 $song_results = $db_song->setAlbumIDtoNull($id);
+                if (!$song_results) {
+                    $response = 500;
+                    die($response);
+                }
+            }
+
+            if ($addSong != "") {
+                $song_results = $db_song->setSongAlbumID($addSong, $id);
                 if (!$song_results) {
                     $response = 500;
                     die($response);

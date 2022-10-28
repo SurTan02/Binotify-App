@@ -45,6 +45,15 @@
             
             $admin_control = "";
             if ($isAdmin) {
+                $song_add_list = $song->getNoAlbumSong($album_result['penyanyi']);
+
+                $song_add_html = "";
+                foreach ($song_add_list as $song_add) {
+                    $song_add_id = $song_add['song_id'];
+                    $song_add_judul = $song_add['judul'];
+                    $song_add_html = $song_add_html . "<option value='$song_add_id'>$song_add_judul</option>";
+                }
+
                 $detail_album_html = str_replace('{album_tanggal-terbit}', '<input
                     style="font-size: small; outline: none !important"
                     id="album__tanggal-terbit"
@@ -58,6 +67,11 @@
                                                         id="image-input"
                                                         accept="image/jpeg, image/png, image/jpg"
                                                         />
+                                                        <label for="add_lagu">Add song:</label>
+                                                        <select id="add_lagu" name="add_lagu">
+                                                            <option value=""></option>
+                                                           '.$song_add_html.'
+                                                        </select>
                                                     </div>';
             } else {
                 $detail_album_html = str_replace('{album_tanggal-terbit}', 

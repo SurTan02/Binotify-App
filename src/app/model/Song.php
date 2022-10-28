@@ -248,5 +248,33 @@
                 return false;
             }
         }
+
+        public function getNoAlbumSong($penyanyi) {
+           $result;
+            try {
+                $query = "SELECT * FROM song WHERE (LOWER(penyanyi) = LOWER(:penyanyi)) AND (album_id IS NULL)";
+                $this->db->query($query);
+                $this->db->bind(':penyanyi', $penyanyi);
+                $result = $this->db->multi_result();
+            } catch ( error ) {
+                echo 'ERROR!';
+                $result = NULL;
+            }
+            return $result;
+        }
+
+        public function setSongAlbumID($song_id, $album_id) {
+            try {
+                $query = "UPDATE song SET album_id = :album_id WHERE song_id = :song_id";
+                $this->db->query($query);
+                $this->db->bind(':song_id', $song_id);
+                $this->db->bind(':album_id', $album_id);
+                $this->db->execute();
+
+                return true;
+            } catch ( error $e ) {
+                return false;
+            }
+        }
     }
 ?>
