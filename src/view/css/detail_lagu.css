@@ -1,0 +1,682 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap");
+
+.container {
+  /* align-items: center; */
+  background-color: rgb(25, 25, 25);
+  height: 100%;
+  width: 100%;
+  padding-top: 50px;
+}
+
+.song-card {
+  display: flex;
+  /* flex-direction: row; */
+  flex-direction: column;
+  gap: 50px;
+  border-radius: 1rem;
+  padding: 1rem;
+  align-items: center;
+}
+
+.section-1 {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  /* justify-content: space-between; */
+}
+
+.image-album-container {
+  width: 260px;
+  height: auto;
+}
+
+.image-album-container img {
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+}
+
+.desc {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* background-color: yellow; */
+}
+
+.desc .judul_lagu {
+  font-size: 3.5em;
+  color: #1db954;
+  padding: 0px;
+}
+
+.desc .penyanyi {
+  font-size: 2em;
+  color: #b3b3b3;
+}
+
+.desc .genre {
+  font-size: 1.5em;
+  color: #b3b3b3;
+}
+
+.desc .album {
+  font-size: 2em;
+  color: #b3b3b3;
+}
+
+.desc .album:hover {
+  color: #1db954;
+  cursor: pointer;
+}
+
+.desc .tanggal {
+  font-size: 1em;
+  color: #b3b3b3;
+}
+
+.section-2 {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
+#guest_warn {
+  display: none;
+  text-align: center;
+}
+
+audio#playmusic {
+  position: absolute;
+  width: 600px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin-top: 80px;
+  justify-content: center;
+}
+.admin-only {
+  color: #b3b3b3;
+  text-align: center;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  align-items: center;
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(25, 25, 25, 0.4);
+  padding-top: 2em;
+  /* margin: 2em; */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  margin: 15% auto;
+  border: 1px solid #888;
+  width: 350px;
+  height: auto;
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: -4px;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Modal Header */
+.modal-header {
+  padding: 8px 16px;
+  background-color: #1db954;
+  color: white;
+  text-align: center;
+}
+
+/* Modal Body */
+.modal-body {
+  padding: 2px 16px;
+  margin: 1rem;
+  /* padding: 2rem; */
+}
+
+.modal-body form {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Modal Footer */
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: rgb(25, 25, 25);
+  margin: auto;
+  padding: 0;
+  align-items: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+/* Add Animation */
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+.input_container {
+  margin: 10px auto;
+}
+
+.input_container label {
+  align-self: flex-start;
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.input_container input {
+  display: block;
+  align-self: flex-start;
+  box-sizing: border-box;
+  width: 100%;
+  height: 30px;
+  border: 1px solid #e5e5e5;
+  padding: 5px;
+  border-radius: 3px;
+  margin-top: 5px;
+}
+
+select#album {
+  width: 100%;
+}
+
+.input_container .error {
+  color: red;
+  font-size: 0.8em;
+  margin: 0;
+  padding: 0px 0px 0px 0px;
+}
+
+.input_container select {
+  display: block;
+  align-self: flex-start;
+  box-sizing: border-box;
+  width: 21em;
+  height: 30px;
+  border: 1px solid #e5e5e5;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.modal-body button {
+  background-color: #1db954;
+  width: 120px;
+  height: 40px;
+  border-radius: 50px;
+  font-family: "inter", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  border: none;
+  color: white;
+  margin-top: 20px;
+}
+
+.modal-body button:hover {
+  background-color: white;
+  color: #1db954;
+  cursor: pointer;
+}
+
+#edit_button {
+  background-color: #1db954;
+  width: 120px;
+  height: 40px;
+  border-radius: 50px;
+  font-family: "inter", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  border: none;
+  color: white;
+}
+
+#edit_button:hover {
+  background-color: white;
+  color: #1db954;
+  cursor: pointer;
+}
+
+#delete_button,
+#no_delete {
+  background-color: red;
+  width: 120px;
+  height: 40px;
+  border-radius: 50px;
+  font-family: "inter", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  border: none;
+  color: white;
+}
+
+#delete_button:hover,
+#no_delete:hover {
+  background-color: white;
+  color: red;
+  cursor: pointer;
+}
+
+/* audio#playmusic */
+@media screen and (max-width: 800px) {
+  audio#playmusic {
+    position: absolute;
+    width: 300px;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .section-2 {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .button-container {
+    flex-direction: row;
+    gap: 0;
+    margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .modal-content {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .modal-body {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .modal-body form {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .input_container {
+    margin: 10px auto;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .input_container label {
+    align-self: flex-start;
+    font-family: "Inter", sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .input_container input {
+    display: block;
+    align-self: flex-start;
+    box-sizing: border-box;
+    width: 100%;
+    height: 30px;
+    border: 1px solid #e5e5e5;
+    padding: 5px;
+    border-radius: 3px;
+    margin-top: 5px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  select#album {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .input_container .error {
+    color: red;
+    font-size: 0.8em;
+    margin: 0;
+    padding: 0px 0px 0px 0px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .input_container select {
+    display: block;
+    align-self: flex-start;
+    box-sizing: border-box;
+    width: 21em;
+    height: 30px;
+    border: 1px solid #e5e5e5;
+    padding: 5px;
+    border-radius: 3px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .modal-body button {
+    background-color: #1db954;
+    width: 120px;
+    height: 40px;
+    border-radius: 50px;
+    font-family: "inter", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    border: none;
+    color: white;
+    margin: 20px auto;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .modal-body button:hover {
+    background-color: white;
+    color: #1db954;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #edit_button {
+    background-color: #1db954;
+    width: 120px;
+    height: 40px;
+    border-radius: 50px;
+    font-family: "inter", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    border: none;
+    color: white;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #edit_button:hover {
+    background-color: white;
+    color: #1db954;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #delete_button,
+  #no_delete {
+    background-color: red;
+    width: 120px;
+    height: 40px;
+    border-radius: 50px;
+    font-family: "inter", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    border: none;
+    color: white;
+    margin: 20px auto;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #delete_button:hover,
+  #no_delete:hover {
+    background-color: white;
+    color: red;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .modal-body button {
+    background-color: #1db954;
+    width: 120px;
+    height: 40px;
+    border-radius: 50px;
+    font-family: "inter", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    border: none;
+    color: white;
+    margin: 20px auto;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .modal-body button:hover {
+    background-color: white;
+    color: #1db954;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #edit_button {
+    background-color: #1db954;
+    width: 120px;
+    height: 40px;
+    border-radius: 50px;
+    font-family: "inter", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    border: none;
+    color: white;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #edit_button:hover {
+    background-color: white;
+    color: #1db954;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .modal-content {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .modal-body {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .modal-body form {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .input_container {
+    margin: 10px auto;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .input_container label {
+    align-self: flex-start;
+    font-family: "Inter", sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .input_container input {
+    display: block;
+    align-self: flex-start;
+    box-sizing: border-box;
+    width: 100%;
+    height: 30px;
+    border: 1px solid #e5e5e5;
+    padding: 5px;
+    border-radius: 3px;
+    margin-top: 5px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  select#album {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .input_container .error {
+    color: red;
+    font-size: 0.8em;
+    margin: 0;
+    padding: 0px 0px 0px 0px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .input_container select {
+    display: block;
+    align-self: flex-start;
+    box-sizing: border-box;
+    width: 21em;
+    height: 30px;
+    border: 1px solid #e5e5e5;
+    padding: 5px;
+    border-radius: 3px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .modal-body button {
+    background-color: #1db954;
+    width: 120px;
+    height: 40px;
+    border-radius: 50px;
+    font-family: "inter", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    border: none;
+    color: white;
+    margin: 20px auto;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .modal-body button:hover {
+    background-color: white;
+    color: #1db954;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #edit_button {
+    background-color: #1db954;
+    width: 120px;
+    height: 40px;
+    border-radius: 50px;
+    font-family: "inter", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    border: none;
+    color: white;
+    margin: 20px auto;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #edit_button:hover {
+    background-color: white;
+    color: #1db954;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #delete_button,
+  #no_delete {
+    background-color: red;
+    width: 120px;
+    height: 40px;
+    border-radius: 50px;
+    font-family: "inter", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    border: none;
+    color: white;
+    margin: 20px auto;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #delete_button:hover,
+  #no_delete:hover {
+    background-color: white;
+    color: red;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .modal-body button {
+    background-color: #1db954;
+    width: 120px;
+    height: 40px;
+    border-radius: 50px;
+    font-family: "inter", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    border: none;
+    color: white;
+    margin: 20px auto;
+  }
+}

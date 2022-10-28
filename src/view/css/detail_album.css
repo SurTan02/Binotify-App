@@ -1,0 +1,132 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: rgb(5, 36, 153);
+  background: linear-gradient(
+      180deg,
+      rgba(5, 36, 153, 1) 0%,
+      rgba(11, 28, 90, 1) 24%,
+      rgba(18, 18, 18, 1) 100%
+    )
+    fixed;
+}
+
+#album__judul,
+#album__penyanyi {
+  display: inline-block;
+}
+
+.detail_album-body {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.detail_album-information {
+  margin: 64px 32px 16px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+}
+
+.detail_album-information h1 {
+  font-size: 56px;
+}
+
+.detail_album-information > div {
+  width: 100%;
+}
+
+.detail_album-information a {
+  display: inline-block;
+  cursor: pointer;
+  -moz-transform: scale(-1, 1);
+  -webkit-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+  font-size: xx-small;
+}
+
+.detail_album-action {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.detail_album-action button {
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: none;
+  background-color: none;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.detail_album-action button:hover {
+  background-color: #cccccc;
+}
+
+#album_img {
+  width: 232px;
+  height: 232px;
+}
+
+.detail_album-songs {
+  flex-grow: 1;
+  padding: 16px;
+  background: rgb(18, 18, 18);
+  background: linear-gradient(
+      180deg,
+      rgba(18, 18, 18, 0.16) 0%,
+      rgba(18, 18, 18, 0.32) 48%,
+      rgba(18, 18, 18, 1) 100%
+    )
+    fixed;
+}
+
+.number-container:hover .number {
+  display: none;
+}
+
+.number-container .remove {
+  display: none;
+}
+
+.number-container:hover .remove {
+  display: inline-block;
+}
+
+.judul_lagu {
+  color: white;
+}
+
+.judul_lagu:hover {
+  color: #1db954;
+}
+
+.deleted {
+  color: #f94449 !important;
+}
+
+.deleted .judul_lagu {
+  color: #f94449 !important;
+}
+
+@media only screen and (min-width: 800px) {
+  .detail_album-information {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  .detail_album-information h1 {
+    font-size: 96px;
+  }
+}

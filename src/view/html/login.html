@@ -1,0 +1,45 @@
+<div class="main_container">
+  <div class="logo_container">
+    <img src="./view/assets/img/Icon.svg" id="logo" />
+    <hr />
+  </div>
+  <div class="text_container">
+    <h1>To continue, log in to Brisic.</h1>
+    <div class="form_container">
+      <form
+        action=""
+        method="POST"
+        id="login_form"
+        onsubmit="return validateInput()"
+      >
+        <div class="input_container">
+          <label for="username">Username</label>
+          <input type="text" name="username" id="username" autocomplete="off" />
+          <div class="error" id="error_username"></div>
+        </div>
+
+        <div class="input_container">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            autocomplete="off"
+          />
+          <div class="error" id="error_password"></div>
+        </div>
+
+        <div class="submit_container">
+          <input type="submit" value="Login" name="login" id="login_button" />
+        </div>
+        <div class="register_container">
+          Don't have an account?
+          <a href="register.php">register here.</a>
+        </div>
+        <div class="guest_container">
+          <a href="index.php">Continue as guest.</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

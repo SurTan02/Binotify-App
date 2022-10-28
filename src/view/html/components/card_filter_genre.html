@@ -1,0 +1,17 @@
+<li
+  class="filter-container_card"
+  style="background-color: {genre_background_color};"
+>
+  <label for="genre_{genre}">
+    <span>{genre_title}</span>
+    <input
+      type="radio"
+      id="genre_{genre}"
+      name="genre"
+      value="{genre}"
+      {isChecked}
+      onchange="loadSong()"
+    />
+    <img src="{genre_img_path}" />
+  </label>
+</li>

@@ -1,0 +1,142 @@
+body {
+    background-color: rgba(18, 18, 18, 1);
+}
+
+.search-body {
+    background-color: rgba(18, 18, 18, 1);
+    padding: 32px 16px 32px 16px;
+    overflow-x: hidden;
+}
+
+.filter {
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+}
+
+.filter-header {
+    color: white;
+    margin-bottom: 24px;
+}
+
+.filter-box {
+    position: relative;
+    width: 98vw;
+    overflow: hidden;
+    margin-left: -16px;
+}
+
+.filter-box::after {
+    content: "";
+    position: absolute;
+    display: block;
+    right: 0;
+    top: 0;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(18, 18, 18, 1) 100%);
+    width: 208px;
+    height: 100%;
+    pointer-events: none;
+}
+
+.filter-container {
+    list-style: none;
+    height: 112px;
+    width: 100%;
+    padding: 8px 0px 8px 0px;
+    display: flex;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding-left: 16px;
+}
+
+.filter-container::-webkit-scrollbar {
+    display: none;
+}
+
+.filter-container>li:last-child {
+    margin-right: 104px;
+}
+
+.songs {
+    position: relative;
+}
+
+.songs-header {
+    color: white;
+    margin-bottom: 24px;
+}
+
+.songs-list {
+    display: grid;
+    position: relative;
+    grid-auto-flow: row;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.songs-pagination {
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.songs-pagination-information {
+    color: white;
+    font-size: small;
+}
+
+.songs-pagination-sort>button {
+    background-color: rgba(0, 0, 0, 0);
+    border: 0;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.songs-pagination-sort>button>img {
+    height: 32px;
+    width: 32px;
+}
+
+.songs-pagination-pages {
+    width: 100%;
+    display: flex;
+    color: white;
+    list-style: none;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+.songs-pagination-pages>li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.page-active {
+    font-weight: bold;
+    background-color: white;
+    color: black;
+    border-radius: 50%;
+}
+
+@media only screen and (min-width: 800px) {
+    .songs-list {
+        grid-auto-flow: column;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+        gap: 4px;
+        column-gap: 32px;
+    }
+
+    .songs-pagination-information {
+        font-size: large;
+    }
+
+}

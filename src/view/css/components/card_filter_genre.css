@@ -1,0 +1,43 @@
+.filter-container_card {
+    display: inline-block;
+    margin-right: 16px;
+    height: 104px;
+    width: 208px;
+    color: white;
+    flex-shrink: 0;
+    border-radius: 8px;
+    font-size: 24px;
+}
+
+.filter-container_card>label {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.filter-container_card>label>span {
+    display: block;
+    position: relative;
+    margin-top: 16px;
+    margin-left: 12px;
+}
+
+.filter-container_card>label>input {
+    visibility: hidden;
+}
+
+.filter-container_card:has(input:checked) {
+    font-weight: bolder;
+}
+
+.filter-container_card>label>img {
+    position: absolute;
+    transform: rotate(30deg);
+    height: 72px;
+    width: 72px;
+    bottom: -8px;
+    right: -8px;
+}

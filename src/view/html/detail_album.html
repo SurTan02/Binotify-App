@@ -1,0 +1,66 @@
+<body>
+  <div class="detail_album-body">
+    <div class="detail_album-information">
+      <img id="album_img" src="{img_path}" />
+      <div>
+        <span style="font-size: small; font-weight: bold">ALBUM</span>
+        <div>
+          <h1
+            id="album__judul"
+            onfocusout="validateContent(this)"
+            style="outline: none !important"
+          >
+            {album_judul}
+          </h1>
+          <a onclick="edit(this)">✎</a>
+        </div>
+        <div>
+          <h2 id="album__penyanyi" onfocusout="validateContent(this)">
+            {album_penyanyi}
+          </h2>
+        </div>
+        <div>
+          <span
+            style="
+              font-size: small;
+              font-weight: bold;
+              outline: none !important;
+            "
+            id="album__genre"
+            onfocusout="validateContent(this)"
+          >
+            {album_genre}
+          </span>
+          <a onclick="edit(this)">✎</a>
+        </div>
+        <div style="display: flex; align-items: center">
+          {album_tanggal-terbit}
+          <span style="color: #b3b3b3; flex-grow: 1; text-align: right"
+            >{total_durasi}</span
+          >
+        </div>
+      </div>
+    </div>
+    <div class="detail_album-songs">
+      {admin_control}
+      <table
+        style="
+          width: 100%;
+          font-size: small;
+          color: #b3b3b3;
+          border-collapse: separate;
+          border-spacing: 8px 16px;
+        "
+      >
+        <tr>
+          <th style="font-weight: normal; width: 5%">#</th>
+          <th style="font-weight: normal; width: 80%; text-align: left">
+            TITLE
+          </th>
+          <th style="font-weight: normal; width: 15%">DURATION</th>
+        </tr>
+        {song-list}
+      </table>
+    </div>
+  </div>
+</body>
