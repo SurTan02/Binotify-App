@@ -40,6 +40,7 @@ input_username.addEventListener("change", debounce(function () {
           isInputValid["username"] = true;
           input_username.style.borderColor = "#00ff00";
           error_username.innerHTML = "";
+          validateInput();
         } else {
           isInputValid["username"] = false;
           input_username.style.borderColor = "#ff0000";
@@ -48,6 +49,7 @@ input_username.addEventListener("change", debounce(function () {
           error_username.style.fontFamily = "inter";
           error_username.style.fontSize = "12px";
           error_username.style.fontStyle = "oblique";
+          validateInput();
         }
       }
       else {
@@ -58,11 +60,10 @@ input_username.addEventListener("change", debounce(function () {
         error_username.style.fontFamily = "inter";
         error_username.style.fontSize = "12px";
         error_username.style.fontStyle = "oblique";
+        validateInput();
       }
     }
   }
-  console.log(isInputValid);
-  validateInput();
   xhr.open("GET", "./view/js/ajax/register.php?username=" + input_username.value, true);
   xhr.send();
 }, 0));
@@ -88,6 +89,7 @@ input_email.addEventListener("change", debounce(function () {
           isInputValid["email"] = true;
           input_email.style.borderColor = "#00ff00";
           error_email.innerHTML = "";
+          validateInput();
         } else {
           isInputValid["email"] = false;
           input_email.style.borderColor = "#ff0000";
@@ -95,6 +97,7 @@ input_email.addEventListener("change", debounce(function () {
           error_email.style.fontFamily = "inter";
           error_email.style.fontSize = "12px";
           error_email.style.fontStyle = "italic";
+          validateInput();
         }
       }
       else {
@@ -104,11 +107,11 @@ input_email.addEventListener("change", debounce(function () {
         error_email.style.fontFamily = "inter";
         error_email.style.fontSize = "12px";
         error_email.style.fontStyle = "italic";
+        validateInput();
+
       }
     }
   }
-  console.log(isInputValid);
-  validateInput();
 
 
   xhr.open("GET", "./view/js/ajax/register.php?email=" + input_email.value, true);
@@ -131,6 +134,8 @@ input_password_confirm.addEventListener("change", debounce(function () {
     input_password_confirm.style.borderColor = "#00ff00";
     error_password_confirm.innerHTML = "";
     isInputValid["password"] = true;
+    validateInput();
+
   }
   else {
     input_password.style.borderColor = "#ff0000";
@@ -140,10 +145,10 @@ input_password_confirm.addEventListener("change", debounce(function () {
     error_password_confirm.style.fontSize = "12px";
     error_password_confirm.style.fontStyle = "oblique";
     isInputValid["password"] = false;
+    validateInput();
+
 
   }
-  console.log(isInputValid);
-  validateInput();
 
 
 }, 0));
