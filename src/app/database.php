@@ -4,7 +4,7 @@
         private $statement;
 
         public function __construct() {
-            $host = "db";
+            $host = "binotify-app-db";
             $dbuser = "postgres";
             $dbpass = "postgres";
             $port = "5432";
