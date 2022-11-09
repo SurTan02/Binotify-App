@@ -2,7 +2,7 @@ version: "3.3"
 services:
   binotify-app-web:
     build: .
-    image: tubes-1:latest
+    image: binotify-app-web:latest
     volumes:
       - ./src:/var/www/html
     ports:
