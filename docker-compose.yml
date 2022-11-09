@@ -1,6 +1,6 @@
 version: "3.3"
 services:
-  web:
+  binotify-app-web:
     build: .
     image: tubes-1:latest
     volumes:
@@ -8,7 +8,7 @@ services:
     ports:
       - 8008:80
 
-  db:
+  binotify-app-db:
     image: postgres:latest
     restart: always
     ports:
