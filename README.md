@@ -55,7 +55,7 @@ pengguna tidak terautentikasi(selanjutnya disebut <b>guest</b>), pengguna teraut
 ## Screenshot
 
 1. Halaman Login
-   ![Login Page](./image/login.png)
+   ![Login Page](./image/Login.png)
 
 2. Halaman Register
    ![Register Page](./image/register.png)
