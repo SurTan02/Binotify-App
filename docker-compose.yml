@@ -6,15 +6,15 @@ services:
     volumes:
       - ./src:/var/www/html
     ports:
-      - 8008:80
+      - ${BINOTIFY_APP_WEB_PORT:-8008}:80
 
   binotify-app-db:
     image: postgres:latest
     restart: always
     ports:
-      - 15432:5432
+      - ${BINOTIFY_APP_DB_PORT:-15432}:5432
     environment:
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=database
+      - POSTGRES_PASSWORD=${BINOTIFY_APP_DB_PASSWORD:-postgres}
+      - POSTGRES_DB=${BINOTIFY_APP_DB_NAME:-database}
     volumes:
       - ./database.sql:/docker-entrypoint-initdb.d/database.sql
