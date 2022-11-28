@@ -132,7 +132,6 @@ ALTER TABLE public.Song OWNER TO postgres;
 --
 -- Name: user; Type: TABLE; Schema: public; Owner: postgres
 --
-
 CREATE TABLE public.user (
     user_id SERIAL NOT NULL,
     email character varying(256) NOT NULL,
@@ -189,7 +188,25 @@ CREATE TRIGGER on_song_insert AFTER INSERT ON public.song FOR EACH ROW EXECUTE F
 
 CREATE TRIGGER on_song_update AFTER UPDATE ON public.song FOR EACH ROW EXECUTE FUNCTION public.on_song_update();
 
+CREATE TYPE statusENUM AS ENUM (
+    'PENDING',
+    'ACCEPTED',
+    'REJECTED'
+);
 
+CREATE TABLE public.subscription {
+    creator_id integerNOT NULL,
+    subscriber_id integer NOT NULL,
+    status statusENUM DEFAULT 'PENDING' NOT NULL
+};
+
+ALTER TABLE public.subscription OWNER TO postgres;
+
+ALTER TABLE ONLY public.subscription
+    ADD CONSTRAINT subscription_pkey PRIMARY KEY (creator_id, subscriber_id);
+
+ALTER TABLE ONLY public.subscription
+    ADD CONSTRAINT fk_subscriber_id FOREIGN KEY (subscriber_id) REFERENCES public.user(user_id) ON DELETE SET NULL;
 
 --
 -- Name: song fk_album_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
