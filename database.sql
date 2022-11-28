@@ -140,6 +140,14 @@ CREATE TABLE public.user (
     isAdmin boolean DEFAULT false NOT NULL
 );
 
+CREATE TYPE public.statusenum AS ENUM ('PENDING', 'ACCEPTED', 'REJECTED');
+
+CREATE TABLE public.subscription (
+    creator_id integer NOT NULL,
+    subscriber_id integer NOT NULL,
+    status public.statusenum DEFAULT 'PENDING' NOT NULL
+);
+
 
 ALTER TABLE public.user OWNER TO postgres;
 
@@ -188,17 +196,7 @@ CREATE TRIGGER on_song_insert AFTER INSERT ON public.song FOR EACH ROW EXECUTE F
 
 CREATE TRIGGER on_song_update AFTER UPDATE ON public.song FOR EACH ROW EXECUTE FUNCTION public.on_song_update();
 
-CREATE TYPE statusENUM AS ENUM (
-    'PENDING',
-    'ACCEPTED',
-    'REJECTED'
-);
 
-CREATE TABLE public.subscription {
-    creator_id integerNOT NULL,
-    subscriber_id integer NOT NULL,
-    status statusENUM DEFAULT 'PENDING' NOT NULL
-};
 
 ALTER TABLE public.subscription OWNER TO postgres;
 
