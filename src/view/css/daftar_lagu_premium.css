@@ -1,0 +1,37 @@
+body {
+    background: rgb(5, 36, 153);
+    background: linear-gradient(
+        180deg,
+        rgba(5, 36, 153, 1) 0%,
+        rgba(11, 28, 90, 1) 24%,
+        rgba(18, 18, 18, 1) 100%
+      )
+      fixed;
+  }
+  
+  .wrapper {
+    margin-top: 0;
+    color: #fff;
+    padding: 0px 16px;
+  }
+  
+  .wrapper h1 {
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 50px;
+  }
+  
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    margin-top: 10;
+  }
+  
+  @media only screen and (min-width: 800px) {
+    .cards {
+      gap: 32px;
+      padding: 32px 184px;
+    }
+  }
+  
