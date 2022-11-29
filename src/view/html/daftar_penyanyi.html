@@ -1,0 +1,21 @@
+<body>
+  <div class="singers-body">
+    <div class="singers">
+      <h2 class="singers-header">Daftar Penyanyi</h2>
+      <div class="singers-pagination">
+        <span
+          class="singers-pagination-information"
+          id="singers-pagination-information"
+        >
+          Showing results <b>{start}-{stop}</b> of <b>{total}</b>
+        </span>
+      </div>
+      <ol class="singers-list" id="singers-list">
+        {user_list}
+      </ol>
+      <ol class="singers-pagination-pages" id="singers-pagination-pages">
+        {pagination}
+      </ol>
+    </div>
+  </div>
+</body>
