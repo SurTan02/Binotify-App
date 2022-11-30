@@ -24,21 +24,13 @@
     $header_html = getHeader($isAdmin, $isSetSession, $username);
     $daftar_penyanyi_html = file_get_contents('./view/html/daftar_penyanyi.html');
 
-
-
-
     // get subscription data
     $subscriptionDB = new Subscription();
     $subscriptionData = $subscriptionDB->getSubscriptionById($idUser);
-    // foreach ($subscriptionData as $subscription_list){
-    //     echo "creator_id: " . $subscription_list["creator_id"] . "<br>";
-    //     echo "subscriber_id: " . $subscription_list["subscriber_id"] . "<br>";
-    //     echo "status: " . $subscription_list["status"] . "<br>";
-    // }
 
 
     // get penyanyi
-    $api_url = 'http://binotify-rest-service-app:8080/user/';
+    $api_url = 'http://binotify-rest-service-app:8080/user';
     // Read JSON file
     $json_data = file_get_contents($api_url);
     // Decode JSON data into PHP array
@@ -51,15 +43,32 @@
     foreach ($user_data as $user) {
         $found = false;
         foreach ($subscriptionData as $subscriptionList){
-            if ($user->user_id == $subscriptionList["creator_id"] && ($subscriptionList["status"] == "REJECTED" || $subscriptionList["status"] == "PENDING")){
+            if ($user->user_id == $subscriptionList["creator_id"] && ($subscriptionList["status"] == "REJECTED" )){
                 $found = true;
                 $user_list_html = $user_list_html . 
                     "<li class='list-singer'>
                         <div class='singer'>
                         <div class='singer-information1'>
+                            <span 
+                            class='singer-number'>$user->user_id.</span>
+                            <span 
+                            class='singer-title'>$user->name</span>
+                        </div>
+                        <button class='rejected-button'>Rejected</button>
+                        </div>
+                    </li>";
+            }
+            else if ($user->user_id == $subscriptionList["creator_id"] && ($subscriptionList["status"] == "PENDING" )){
+                $found = true;
+                $user_list_html = $user_list_html . 
+                    "<li class='list-singer'>
+                        <div class='singer'>
+                        <div class='singer-information1'>
+                            <span 
+                            class='singer-number'>$user->user_id.</span>
                             <span class='singer-title'>$user->name</span>
                         </div>
-                        <button class='subscribe-button'>Subscribe</button>
+                        <button class='pending-button'>Pending</button>
                         </div>
                     </li>";
             }
@@ -68,7 +77,9 @@
                 $user_list_html = $user_list_html . 
                     "<li class='list-singer'>
                         <div class='singer'>
-                        <div class='singer-information1'>
+                        <div class='singer-information1'>   
+                            <span 
+                            class='singer-number'>$user->user_id.</span>
                             <span class='singer-title'>$user->name</span>
                         </div>
                         <button class='subscribed-button'>Check Out!</button>
@@ -81,6 +92,8 @@
                 "<li class='list-singer'>
                     <div class='singer'>
                     <div class='singer-information1'>
+                        <span 
+                        class='singer-number'>$user->user_id.</span>
                         <span class='singer-title'>$user->name</span>
                     </div>
                     <button class='subscribe-button'>Subscribe</button>
