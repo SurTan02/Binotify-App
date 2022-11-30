@@ -82,7 +82,7 @@
                             class='singer-number'>$user->user_id.</span>
                             <span class='singer-title'>$user->name</span>
                         </div>
-                        <button class='subscribed-button'>Check Out!</button>
+                        <a href=daftar_lagu_premium.php?penyanyi=$user->user_id class='subscribed-button'>Check Out!</a>
                         </div>
                     </li>";
             }
