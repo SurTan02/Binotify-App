@@ -11,6 +11,13 @@ class SubscriptionForSend {
   }
 }
 
+// class SoapHeader {
+//   public function __construct()
+//   {
+//     $this->x-api-key = 'f93b06b72ce07bdfea7cc0fe9105f599';
+//   }
+// }
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $user_id = $_SESSION['user_id'];
   // $user_id = 1;
@@ -18,14 +25,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $creator_id = $_POST["creator_id"];
     // $creator_id = 4;
 
-    $client = new SoapClient('http://binotify-soap-service:8081/com/binotifysoap/SubscriptionService?wsdl');
+    $client = new SoapClient('http://binotify-soap-service:8081/com/binotifysoap/SubscriptionService?wsdl', array("stream_context" => stream_context_create(array("http" => array(
+      'header' => 'x-api-key: f93b06b72ce07bdfea7cc0fe9105f599')))));
     $params = array("creator_id" => $creator_id, "subscriber_id" => $user_id);
 
     // $data = new SubscriptionForSend(4, 1);
     // array_push($params, $data);
 
     try {
-        $client->__soapCall("addSubscription", array($params));
+        $client->__soapCall("addSubscription", array($params) );
     } catch (Exception $e) {
         echo 'ERROR: ' .$e->getMessage();
     }

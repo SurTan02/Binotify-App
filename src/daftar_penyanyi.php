@@ -95,7 +95,7 @@ foreach ($user_data as $user) {
                     class='singer-number'>$user->user_id.</span>
                     <span class='singer-title'>$user->name</span>
                 </div>
-                <button class='subscribe-button' id='subscribe-button' onClick =  'sendSubscriptionRequest($user->user_id)'>Subscribe
+                <button class='subscribe-button' id='subscribe-button-$user->user_id' onClick =  'sendSubscriptionRequest($user->user_id)'>Subscribe
                 </button> 
                 </div>
             </li>";

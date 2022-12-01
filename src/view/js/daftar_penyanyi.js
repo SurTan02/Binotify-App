@@ -4,9 +4,9 @@ function sendSubscriptionRequest(creator_id) {
     if (xhr.readyState == 4 && xhr.status == 200) {
       console.log(xhr.responseText);
       console.log("success");
-      document.getElementById("subscribe-button").innerHTML = "Pending";
-      document.getElementById("subscribe-button").disabled = true;
-      document.getElementById("subscribe-button").style.backgroundColor = "#f5a623";
+      document.getElementById("subscribe-button-" + creator_id).innerHTML = "Pending";
+      document.getElementById("subscribe-button-" + creator_id).disabled = true;
+      document.getElementById("subscribe-button-" + creator_id).style.backgroundColor = "#f5a623";
     }
   }
 
