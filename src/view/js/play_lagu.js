@@ -11,11 +11,6 @@ music.onplay = function(){
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200){
         const response = JSON.parse(xhr.responseText);
-        // const response = 0;
-        // console.log(response);
-        // if (response >= 3){
-        //     // music.remove();
-        // }
         }
     }
     xhr.open("POST", "/app/controller/play_lagu.php", true);

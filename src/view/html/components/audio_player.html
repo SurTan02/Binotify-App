@@ -1,0 +1,21 @@
+<div class="box">
+  <div id="music-playing-container">
+    <h1 id="music-playing-title">Playing...</h1>
+    <audio id="music-playing-audio" current-time="{{hostCurrentTime::timeupdate}}">
+      <source id="music-playing" type="audio/mp3"/>
+      <!-- <source id="playmusicwav" type="audio/wav" /> -->
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+  <div class="music-control">
+    <img id="music-control-play" 
+         src="./view/assets/img/play.svg"
+         onclick="playingControl()"
+         class="play-button"
+    />
+    <div id="music-progress-bar">
+      <progress id='progress-bar' min='0' max='100' value='0'>0% played</progress>
+      <p id='progress-text'>0:0</p>
+    </div>
+  </div>
+</div>

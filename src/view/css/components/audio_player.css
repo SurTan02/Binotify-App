@@ -1,0 +1,55 @@
+.box{
+    background: linear-gradient(to bottom, #000000, #121212);
+    position:fixed;
+    left: 0;
+    bottom: 0;
+    padding: 1.5rem 0;
+    width: 100%;
+    align-items: center;
+}
+
+.music-control{
+    text-align: center;
+}
+
+#music-playing-container{
+    color: white;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+#music-progress-bar{
+    color: white;
+}
+
+progress {
+    /* float: left; */
+    text-align: left;
+    color: green;
+    font-size: 12px;
+    width: 25rem;
+    background: #434343;
+    border-radius: 100px;
+    height: 2rem;
+    margin: auto;
+    /* padding:15px 0 0 0 ; */
+    /* vertical-align: middle; */
+}
+progress::-moz-progress-bar { 
+    color:green;
+    background:#434343; 
+    border-radius: 100px;
+}
+
+progress[value]::-webkit-progress-bar {
+    background-color: #434343;
+    border-radius: 100px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+progress[value]::-webkit-progress-value {
+    background-color: green;
+    border-radius: 50px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+    padding-left:0px;
+}

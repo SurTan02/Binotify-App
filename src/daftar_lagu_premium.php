@@ -12,6 +12,7 @@
     $head_html = str_replace('{css1}', './view/css/components/header.css', $head_html);
     $head_html = str_replace('{css2}', './view/css/daftar_lagu_premium.css', $head_html);
     $head_html = str_replace('{css3}', './view/css/components/card_song.css', $head_html);
+    $head_html = str_replace('{css4}', './view/css/components/audio_player.css', $head_html);
 
     $idUser = validateAuthCookie($_COOKIE);
 
@@ -24,7 +25,7 @@
     $header_html = getHeader($isAdmin, $isSetSession, $username);
     
     $daftar_lagu = file_get_contents('./view/html/daftar_lagu_premium.html');
-    $song_player = file_get_contents('./view/html/components/play_song.html');
+    $song_player = file_get_contents('./view/html/components/audio_player.html');
     
     // get penyanyi
     try {
@@ -41,14 +42,13 @@
         // Decode JSON data into PHP array
         $song_data = json_decode($json_data);
         // All user data exists in 'data' object
-         $response_data;
+        // $response_data;
         // $song_data = $json_data;
         $song_list_html = "";
         $number = 1;
         
         $daftar_lagu = str_replace('{nama_penyanyi}', $song_data[0]->name , $daftar_lagu);
         foreach ($song_data as $song) {
-            $found = false;
                     $song_list_html = $song_list_html . 
                         "<li
                         class='list-song'
@@ -59,14 +59,14 @@
                             <span class='song-title'>$song->judul</span>
                           </div>
                           <div class='song-information2'>
-                            <button onclick='myFunction(\"$song->judul\",\"$song->audio_path\")'>CLICK</button>
+                            <img name='song-play-button' src=\"./view/assets/img/play.svg\" class=\"play-button\"
+                            onclick='playAnySong(\"$song->judul\",\"$song->audio_path\", $number)' /> 
                           </div>
                         </div>
                       </li>
                       ";
             $number += 1;
         }
-        $song_list_html = $song_list_html . $song_player;
         $daftar_lagu = str_replace('{card_component}', $song_list_html, $daftar_lagu);
       } else{
           header("location: /not_found.php");
@@ -77,8 +77,8 @@
     }
     
     echo $head_html;
-    
     echo $header_html;
     echo $daftar_lagu;
-    echo '<script src="view/js/play_song.js"></script>';
+    echo $song_player;
+    echo '<script src="view/js/audio_player.js"></script>';
 ?>
