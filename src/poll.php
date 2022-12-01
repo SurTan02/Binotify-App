@@ -15,7 +15,6 @@ set_time_limit(0);
 
 $client = new SoapClient('http://binotify-soap-service:8081/com/binotifysoap/SubscriptionService?wsdl');
 $db = new Database();
-$count = 0;
 
 while (true) {
     $db_res;
@@ -29,13 +28,6 @@ while (true) {
 
     $params = array();
 
-    $count++;
-
-    if (count($db_res) == 0) {
-        // sleep(10); 
-        continue;
-    }
-
     foreach ($db_res as $d) {
         $data = new Subscription($d['creator_id'], $d['subscriber_id'], $d['status']);
         array_push($params, $data);
@@ -48,18 +40,33 @@ while (true) {
         echo 'ERROR: ' .$e->getMessage();
     }
 
-    foreach ($poll_res->Subscriptions as $d) {
-        print_r($d);
+    if (is_array($poll_res->Subscriptions)) {
+        foreach ($poll_res->Subscriptions as $d) {
+            try {
+                $query  = "UPDATE subscription SET status = :status WHERE creator_id = :creator_id AND subscriber_id = :subscriber_id";
+                $db->query($query);
+                $db->bind(':status', $d->status);
+                $db->bind(':creator_id', $d->creator_id);
+                $db->bind(':subscriber_id', $d->subscriber_id);
+                $db->execute();
+            } catch (Exception $e) {
+                echo 'ERROR: ' .$e->getMessage();
+            }
+        }
+    } else {
         try {
-        $query  = "UPDATE subscription SET status = :status WHERE creator_id = :creator_id AND subscriber_id = :subscriber_id";
-        $db->query($query);
-        $db->bind(':status', $d->status);
-        $db->bind(':creator_id', $d->creator_id);
-        $db->bind(':subscriber_id', $d->subscriber_id);
-        $db->execute();
+            print_r($poll_res);
+            $query  = "UPDATE subscription SET status = :status WHERE creator_id = :creator_id AND subscriber_id = :subscriber_id";
+            $db->query($query);
+            $db->bind(':status', $poll_res->Subscriptions->status);
+            $db->bind(':creator_id', $poll_res->Subscriptions->creator_id);
+            $db->bind(':subscriber_id', $poll_res->Subscriptions->subscriber_id);
+            $db->execute();
         } catch (Exception $e) {
             echo 'ERROR: ' .$e->getMessage();
         }
     }
+
+    print_r($poll_res);
 }
 ?>
