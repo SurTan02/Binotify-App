@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/helper/session.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/Subscription.php';
 
 
 class SubscriptionForSend {
@@ -25,8 +26,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $creator_id = $_POST["creator_id"];
     // $creator_id = 4;
 
+    
+    $s = new Subscription(); 
+    $result = $s->addSubscription($user_id, $creator_id);
+
     $client = new SoapClient('http://binotify-soap-service:8081/com/binotifysoap/SubscriptionService?wsdl', array("stream_context" => stream_context_create(array("http" => array(
-      'header' => 'x-api-key: f93b06b72ce07bdfea7cc0fe9105f599')))));
+      'header' => 'x-api-key: 1c45664223d0e4a79784b2e5937ebb63')))));
     $params = array("creator_id" => $creator_id, "subscriber_id" => $user_id);
 
     // $data = new SubscriptionForSend(4, 1);

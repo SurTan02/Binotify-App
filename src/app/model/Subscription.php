@@ -26,5 +26,21 @@
     }
     return $result;
   }
+
+  public function addSubscription($subscriber_id, $creator_id){
+    try{
+      $query = "INSERT INTO subscription(subscriber_id, creator_id) values (:subscriber_id, :creator_id)";
+      $this->db->query($query);
+      $this->db->bind(':subscriber_id', $subscriber_id);
+      $this->db->bind(':creator_id', $creator_id);
+      // $result = $this->db->multi_result();
+      $this->db->execute();
+                return true;
+    } catch (error $e) {
+      echo 'ERROR!';
+      $result = NULL;
+    }
+    return $result;
+  }
 }
 ?>
