@@ -66,7 +66,7 @@ window.onload = function(){
         try {
             var percentage = Math.floor((100 / audio_1.duration) * audio_1.currentTime);
             progressBar.value = percentage;
-            progressText.innerHTML = Math.floor(audio_1.currentTime) + " : " + Math.floor(audio_1.duration)
+            progressText.innerHTML = convertToMinute(Math.floor(audio_1.currentTime)) + " / " + convertToMinute(Math.floor(audio_1.duration))
         } catch (error) {
         }
     }
@@ -79,4 +79,12 @@ window.onload = function(){
             e.target.innerHTML = progressBar.value + '% played';
         }
     }
+}
+
+// 
+function convertToMinute(duration){
+    const minute = Math.floor(duration / 60);
+    const second = duration % 60;
+
+    return (minute +":" + second)
 }
