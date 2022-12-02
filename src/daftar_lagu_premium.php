@@ -47,27 +47,31 @@
         $song_list_html = "";
         $number = 1;
         
-        $daftar_lagu = str_replace('{nama_penyanyi}', $song_data[0]->name , $daftar_lagu);
-        foreach ($song_data as $song) {
-                    $song_list_html = $song_list_html . 
-                        "<li
-                        class='list-song'
-                      >
-                        <div class='song'>
-                          <span>$number</span>
-                          <div class='song-information1'>
-                            <span class='song-title'>$song->judul</span>
-                          </div>
-                          <div class='song-information2'>
-                            <img name='song-play-button' src=\"./view/assets/img/play.svg\" class=\"play-button\"
-                            onclick='playAnySong(\"$song->judul\",\"$song->audio_path\", $number)' /> 
-                          </div>
-                        </div>
-                      </li>
-                      ";
+        if ($song_data){
+          $daftar_lagu = str_replace('{nama_penyanyi}', $song_data[0]->name , $daftar_lagu);
+          foreach ($song_data as $song) {
+            $song_list_html = $song_list_html . 
+                "<li
+                class='list-song'
+              >
+                <div class='song'>
+                  <span>$number</span>
+                  <div class='song-information1'>
+                    <span class='song-title'>$song->judul</span>
+                  </div>
+                  <div class='song-information2'>
+                    <img name='song-play-button' src=\"./view/assets/img/play.svg\" class=\"play-button\"
+                    onclick='playAnySong(\"$song->judul\",\"$song->audio_path\", $number)' /> 
+                  </div>
+                </div>
+              </li>
+              ";
             $number += 1;
+          }
+          $daftar_lagu = str_replace('{card_component}', $song_list_html, $daftar_lagu);
+        }else{
+          header("location: /not_found.php");
         }
-        $daftar_lagu = str_replace('{card_component}', $song_list_html, $daftar_lagu);
       } else{
           header("location: /not_found.php");
       }
