@@ -40,6 +40,10 @@ while (true) {
         echo 'ERROR: ' .$e->getMessage();
     }
 
+    if (!isset($poll_res->Subscriptions) || empty($poll_res->Subscriptions)) {
+        continue;
+    }
+
     if (is_array($poll_res->Subscriptions)) {
         foreach ($poll_res->Subscriptions as $d) {
             try {
@@ -55,7 +59,6 @@ while (true) {
         }
     } else {
         try {
-            print_r($poll_res);
             $query  = "UPDATE subscription SET status = :status WHERE creator_id = :creator_id AND subscriber_id = :subscriber_id";
             $db->query($query);
             $db->bind(':status', $poll_res->Subscriptions->status);
@@ -66,7 +69,5 @@ while (true) {
             echo 'ERROR: ' .$e->getMessage();
         }
     }
-
-    print_r($poll_res);
 }
 ?>
