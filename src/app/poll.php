@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/app/database.php';
+require_once '/var/www/html/app/database.php';
 
 class Subscription {
     public function __construct($creator_id, $subscriber_id, $status)
