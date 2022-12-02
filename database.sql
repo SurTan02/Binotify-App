@@ -257,6 +257,21 @@ INSERT INTO public.song (Judul, Penyanyi, Tanggal_terbit, duration,  Genre, Audi
 
 INSERT INTO public.song (Judul, Penyanyi, Tanggal_terbit, duration, album_id, Genre, Audio_path, Image_path) VALUES (
 'Dont Stop Me Now', 'Queen', '1990-09-10', 479, 2, 'Metal', '/view/assets/song/Dont Stop Me Now.mp3', '/view/assets/img/album_bohemian-rhapsody.jpeg');
+
+INSERT INTO public.subscription values (1, 1, 'ACCEPTED');
+
+INSERT INTO public.subscription values (2, 1, 'PENDING');
+
+INSERT INTO public.subscription values (3, 1, 'REJECTED');
+
+INSERT INTO public.subscription values (4, 1, 'ACCEPTED');
+
+INSERT INTO public.subscription values (5, 1, 'PENDING');
+
+INSERT INTO public.subscription values (6, 1, 'REJECTED');
+
+
+
 --
 -- PostgreSQL database dump complete
 --
