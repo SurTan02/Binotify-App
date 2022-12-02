@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $s->addSubscription($user_id, $creator_id);
 
     $client = new SoapClient('http://binotify-soap-service:8081/com/binotifysoap/SubscriptionService?wsdl', array("stream_context" => stream_context_create(array("http" => array(
-      'header' => 'x-api-key: 1c45664223d0e4a79784b2e5937ebb63')))));
+      'header' => 'x-api-key: f922a587fa3e0eec5de229bcfc34bb52')))));
     $params = array("creator_id" => $creator_id, "subscriber_id" => $user_id);
 
     // $data = new SubscriptionForSend(4, 1);

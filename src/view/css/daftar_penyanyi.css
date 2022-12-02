@@ -65,6 +65,7 @@ body {
 
 .singers {
   position: relative;
+  padding: 0 64px;
 }
 
 .singers-header {
@@ -73,11 +74,15 @@ body {
 }
 
 .singers-list {
-  display: grid;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 80vw;
   position: relative;
-  grid-auto-flow: row;
+  gap: 40px;
+  /* grid-auto-flow: row;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
 }
 
 .singers-pagination {
@@ -130,7 +135,7 @@ body {
   border-radius: 50%;
 }
 
-@media only screen and (min-width: 800px) {
+/* @media only screen and (min-width: 800px) {
   .singers-list {
     grid-auto-flow: column;
     grid-template-columns: 1fr 1fr;
@@ -142,4 +147,4 @@ body {
   .singers-pagination-information {
     font-size: large;
   }
-}
+} */
