@@ -21,7 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     
     $s = new Subscription(); 
-    $result = $s->addSubscription($user_id, $creator_id);
 
     $api = 'x-api-key: '. BINOTIFY_APP_SOAP_API_KEY;
 
@@ -31,6 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
         $client->__soapCall("AddSubscription", array($params) );
+        $result = $s->addSubscription($user_id, $creator_id);
     } catch (Exception $e) {
         echo 'ERROR: ' .$e->getMessage();
     }
