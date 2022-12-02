@@ -1,5 +1,6 @@
 <?php
 require_once '/var/www/html/app/database.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/config.php';
 
 class Subscription {
     public function __construct($creator_id, $subscriber_id, $status)
@@ -13,7 +14,10 @@ class Subscription {
 ignore_user_abort(true);
 set_time_limit(0);
 
-$client = new SoapClient('http://binotify-soap-service:8081/com/binotifysoap/SubscriptionService?wsdl');
+$api = 'x-api-key: '. BINOTIFY_APP_SOAP_API_KEY;
+
+$client = new SoapClient('http://binotify-soap-service:8081/com/binotifysoap/SubscriptionService?wsdl', array("stream_context" => stream_context_create(array("http" => array(
+      'header' => 'x-api-key: b3869857e4f01114fe352ee4e69a26ee')))));
 $db = new Database();
 
 while (true) {

@@ -1,14 +1,16 @@
 <?php
+    require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/config.php';
+
     class Database {
         private $db_connection;
         private $statement;
 
         public function __construct() {
-            $host = "binotify-app-db";
-            $dbuser = "postgres";
-            $dbpass = "postgres";
+            $host = BINOTIFY_APP_DB;
+            $dbuser = BINOTIFY_APP_DB_USER;
+            $dbpass = BINOTIFY_APP_DB_PASSWORD;
             $port = "5432";
-            $dbname = "database";
+            $dbname = BINOTIFY_APP_DB_NAME;
             
             $this->db_connection = new PDO("pgsql:dbname=$dbname;host=$host", $dbuser, $dbpass);
         }
