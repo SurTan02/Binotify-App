@@ -49,7 +49,7 @@ foreach ($user_data as $user) {
                     <div class='singer'>
                     <div class='singer-information1'>
                         <span 
-                        class='singer-number'>$user->user_id.</span>
+                        class='singer-number'>id: $user->user_id</span>
                         <span 
                         class='singer-title'>$user->name</span>
                     </div>
@@ -64,7 +64,7 @@ foreach ($user_data as $user) {
                     <div class='singer'>
                     <div class='singer-information1'>
                         <span 
-                        class='singer-number'>$user->user_id.</span>
+                        class='singer-number'>id: $user->user_id</span>
                         <span class='singer-title'>$user->name</span>
                     </div>
                     <button class='pending-button'>Pending</button>
@@ -78,7 +78,7 @@ foreach ($user_data as $user) {
                     <div class='singer'>
                     <div class='singer-information1'>   
                         <span 
-                        class='singer-number'>$user->user_id.</span>
+                        class='singer-number'>id: $user->user_id</span>
                         <span class='singer-title'>$user->name</span>
                     </div>
                     <a href=daftar_lagu_premium.php?penyanyi=$user->user_id class='subscribed-button'>Check Out!</a>
@@ -92,7 +92,7 @@ foreach ($user_data as $user) {
                 <div class='singer'>
                 <div class='singer-information1'>
                     <span 
-                    class='singer-number'>$user->user_id.</span>
+                    class='singer-number'>id: $user->user_id</span>
                     <span class='singer-title'>$user->name</span>
                 </div>
                 <button class='subscribe-button' id='subscribe-button-$user->user_id' onClick =  'sendSubscriptionRequest($user->user_id)'>Subscribe
